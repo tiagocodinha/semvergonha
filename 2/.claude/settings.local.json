@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:restaurantecontrabando.pt)",
+      "WebFetch(domain:thenew.pt)",
+      "WebFetch(domain:beginrestaurante.com)",
+      "WebFetch(domain:www.restaurantpotong.com)",
+      "WebFetch(domain:ikoyilondon.com)",
+      "WebFetch(domain:www.volteretarestaurante.com)",
+      "WebFetch(domain:www.asadoretxebarri.com)",
+      "WebFetch(domain:miv-studio.wixsite.com)",
+      "WebFetch(domain:defoodtruckclub.nl)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npx --version)",
+      "Bash(node --version)"
+    ]
+  }
+}

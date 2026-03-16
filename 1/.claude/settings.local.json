@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(cygpath -w \"/c/Program Files/nodejs/npx\")",
+      "Bash(cmd.exe /c \"where npx\")",
+      "Bash(cmd.exe /c \"where npx.cmd\")",
+      "Bash(cmd.exe /c \"where node.exe\")",
+      "Bash(powershell.exe -Command \"\\(New-Object -ComObject Scripting.FileSystemObject\\).GetFile\\(''C:\\\\Program Files\\\\nodejs\\\\npx.cmd''\\).ShortPath\")",
+      "Bash(node -e \"require.resolve\\(''serve''\\)\")",
+      "WebFetch(domain:miv-studio.wixsite.com)"
+    ]
+  }
+}
