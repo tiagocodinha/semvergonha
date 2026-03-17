@@ -214,10 +214,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loading');
 
     function showMainContent() {
-        if (introOverlay.classList.contains('hidden')) return;
-        introOverlay.classList.add('hidden');
-        document.body.classList.remove('loading');
-        if (bgVideo) bgVideo.play().catch(() => {});
+        if (introOverlay.classList.contains('fading')) return;
+        introOverlay.classList.add('fading');
+
+        introOverlay.style.opacity = '0';
+        introOverlay.style.transition = 'opacity 0.8s ease';
+
+        setTimeout(() => {
+            introOverlay.style.display = 'none';
+            document.body.classList.remove('loading');
+            if (bgVideo) {
+                const playPromise = bgVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        bgVideo.style.display = 'none';
+                    });
+                }
+            }
+        }, 800);
     }
 
     if (introVideo) {
@@ -227,7 +241,6 @@ document.addEventListener('DOMContentLoaded', () => {
             introVideo.play().catch(() => {});
         }, { once: true });
 
-        // Start zoom reveal 1s before intro video ends
         introVideo.addEventListener('timeupdate', () => {
             if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.5) {
                 showMainContent();
@@ -237,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         introVideo.addEventListener('ended', () => showMainContent());
         introVideo.addEventListener('error', () => showMainContent());
 
+        // Fallback: se o intro não arrancar em 15s, mostrar conteúdo na mesma
         setTimeout(() => showMainContent(), 15000);
     } else {
         setTimeout(() => showMainContent(), 500);
@@ -249,27 +263,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ─── Background Video Forward/Reverse Loop ───
+    // ─── Background Video — Loop nativo ──────────
+    // Removido o reverse loop manual (incompatível com iOS Safari).
+    // O atributo `loop` no HTML trata do loop automaticamente em todos os dispositivos.
     if (bgVideo) {
-        let lastTimestamp = null;
-
-        bgVideo.addEventListener('ended', () => {
-            lastTimestamp = null;
-            requestAnimationFrame(reverseStep);
-        });
-
-        function reverseStep(timestamp) {
-            if (!lastTimestamp) lastTimestamp = timestamp;
-            const delta = (timestamp - lastTimestamp) / 1000;
-            lastTimestamp = timestamp;
-            bgVideo.currentTime = Math.max(0, bgVideo.currentTime - delta);
-            if (bgVideo.currentTime <= 0.05) {
-                bgVideo.currentTime = 0;
-                bgVideo.play().catch(() => {});
-                return;
-            }
-            requestAnimationFrame(reverseStep);
-        }
+        bgVideo.loop = true;
     }
 
     // ─── Custom Cursor ───────────────────────────
@@ -332,7 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
         }).join('');
 
-        // Add click handlers
         countryList.querySelectorAll('.country-option').forEach(opt => {
             opt.addEventListener('click', () => {
                 const digitsRaw = opt.dataset.digits;
@@ -349,7 +346,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearPhoneError();
             });
 
-            // Cursor hover for dynamically added elements
             if (window.matchMedia('(pointer: fine)').matches && cursor && cursorFollower) {
                 opt.addEventListener('mouseenter', () => {
                     cursor.classList.add('hovering');
@@ -390,7 +386,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCountryList(countrySearch.value);
     });
 
-    // Close dropdown on outside click
     document.addEventListener('click', (e) => {
         if (!countryDropdown.classList.contains('hidden') &&
             !countryDropdown.contains(e.target) &&
@@ -399,7 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Only allow digits in phone input
     phoneInput.addEventListener('input', () => {
         phoneInput.value = phoneInput.value.replace(/\D/g, '');
         clearPhoneError();
