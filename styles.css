@@ -1,0 +1,807 @@
+/* ============================================
+   SEM VERGONHA | COMING SOON
+   ============================================ */
+
+:root {
+    --color-bg: #0a0a0a;
+    --color-gold: #c8a97e;
+    --color-gold-light: #e8d5b5;
+    --color-gold-dark: #a88a5e;
+    --color-text: #ffffff;
+    --color-text-muted: #888888;
+    --color-text-subtle: #555555;
+    --color-border: #222222;
+    --color-border-light: #333333;
+    --color-error: #e74c3c;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-accent: 'Cormorant Garamond', Georgia, serif;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+body.loading {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
+}
+
+input, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+::selection {
+    background-color: var(--color-gold);
+    color: var(--color-bg);
+}
+
+/* --- Intro Video Overlay --- */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.intro-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-overlay video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+/* --- Custom Cursor --- */
+.custom-cursor,
+.custom-cursor-follower {
+    display: none;
+}
+
+@media (pointer: fine) {
+    .custom-cursor {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 6px;
+        height: 6px;
+        background-color: var(--color-gold);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.25s, height 0.25s, background-color 0.25s, opacity 0.25s;
+        mix-blend-mode: difference;
+    }
+
+    .custom-cursor.hovering {
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        border: 1px solid var(--color-gold);
+        mix-blend-mode: normal;
+    }
+
+    .custom-cursor-follower {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 28px;
+        height: 28px;
+        border: 1px solid rgba(200, 169, 126, 0.4);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+        opacity: 0.5;
+    }
+
+    .custom-cursor-follower.hovering {
+        width: 44px;
+        height: 44px;
+        opacity: 0.3;
+        border-color: rgba(200, 169, 126, 0.2);
+    }
+
+    body {
+        cursor: none;
+    }
+
+    a, button, input, select, .social-icon, .country-selector {
+        cursor: none;
+    }
+}
+
+/* --- Video Background --- */
+.video-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(10, 10, 10, 0.3) 0%,
+        rgba(10, 10, 10, 0.6) 100%
+    );
+    z-index: 1;
+}
+
+/* --- Main Content --- */
+.content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+/* --- Zoom Reveal Animation --- */
+body.loading .content {
+    transform: scale(0.6);
+    opacity: 0;
+}
+
+body:not(.loading) .content {
+    animation: zoomIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Hero Brand --- */
+.hero-brand {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-logo {
+    max-width: clamp(200px, 50vw, 400px);
+    height: auto;
+    margin: 0 auto 12px;
+    filter: invert(1);
+    display: block;
+}
+
+.hero-tagline {
+    font-family: var(--font-accent);
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.25em;
+    color: var(--color-text-muted);
+}
+
+.tagline-amp {
+    color: var(--color-gold);
+    font-style: normal;
+}
+
+/* --- Sign Up Section --- */
+.signup-section {
+    width: 100%;
+    max-width: 440px;
+}
+
+.signup-card {
+    background: rgba(10, 10, 10, 0.65);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(200, 169, 126, 0.15);
+    border-radius: 4px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: visible;
+}
+
+.signup-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    opacity: 0.6;
+}
+
+.signup-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.signup-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 400;
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.signup-desc {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+/* --- Form --- */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-field {
+    position: relative;
+}
+
+.form-field input[type="text"],
+.form-field input[type="email"] {
+    width: 100%;
+    padding: 14px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border-light);
+    color: var(--color-text);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.form-field input::placeholder {
+    color: var(--color-text-subtle);
+    font-style: italic;
+}
+
+.field-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-gold);
+    transition: width var(--transition-base);
+}
+
+.form-field input:focus ~ .field-line,
+.phone-input-wrapper:focus-within ~ .field-line {
+    width: 100%;
+}
+
+.field-error {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--color-error);
+    margin-top: 4px;
+    min-height: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.field-error.visible {
+    opacity: 1;
+}
+
+.form-field.has-error input,
+.form-field.has-error .phone-input-wrapper {
+    border-bottom-color: var(--color-error) !important;
+}
+
+.form-field.has-error .field-line {
+    background: var(--color-error);
+    width: 100%;
+}
+
+/* --- Phone Field --- */
+.phone-input-wrapper {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border-light);
+    transition: border-color var(--transition-fast);
+}
+
+.phone-input-wrapper input[type="tel"] {
+    flex: 1;
+    padding: 14px 0 14px 8px;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.phone-input-wrapper input[type="tel"]::placeholder {
+    color: var(--color-text-subtle);
+    font-style: italic;
+}
+
+.country-selector {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 8px 10px 0;
+    flex-shrink: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.country-selector:hover {
+    opacity: 0.7;
+}
+
+.country-flag {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.country-code {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.country-arrow {
+    color: var(--color-text-subtle);
+    transition: transform 0.2s;
+}
+
+.country-selector.open .country-arrow {
+    transform: rotate(180deg);
+}
+
+/* --- Country Dropdown --- */
+.country-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(18, 18, 18, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+    z-index: 100;
+    max-height: 280px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    animation: dropdownIn 0.25s ease;
+}
+
+.country-dropdown.hidden {
+    display: none;
+}
+
+@keyframes dropdownIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.country-search {
+    width: 100%;
+    padding: 12px 14px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-size: 0.82rem;
+    outline: none;
+}
+
+.country-search::placeholder {
+    color: var(--color-text-subtle);
+}
+
+.country-list {
+    overflow-y: auto;
+    flex: 1;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-light) transparent;
+}
+
+.country-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.country-list::-webkit-scrollbar-thumb {
+    background: var(--color-border-light);
+    border-radius: 2px;
+}
+
+.country-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.country-option:hover {
+    background: rgba(200, 169, 126, 0.1);
+    color: var(--color-text);
+}
+
+.country-option.selected {
+    color: var(--color-gold);
+}
+
+.country-option-flag {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.country-option-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.country-option-code {
+    color: var(--color-text-subtle);
+    font-size: 0.78rem;
+    flex-shrink: 0;
+}
+
+/* --- Submit Button --- */
+.signup-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px;
+    margin-top: 6px;
+    background: var(--color-gold);
+    color: var(--color-bg);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.signup-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.signup-btn:hover::before {
+    left: 100%;
+}
+
+.signup-btn:hover {
+    background: var(--color-gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200, 169, 126, 0.3);
+}
+
+.btn-icon {
+    display: flex;
+    transition: transform var(--transition-base);
+}
+
+.signup-btn:hover .btn-icon {
+    transform: translateX(4px);
+}
+
+/* --- Success State --- */
+.signup-success {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.signup-success.hidden {
+    display: none;
+}
+
+.success-icon {
+    color: var(--color-gold);
+    margin-bottom: 16px;
+    animation: successPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.signup-success h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--color-gold);
+    margin-bottom: 8px;
+}
+
+.signup-success p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+@keyframes successPop {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* --- Social Bar --- */
+.social-bar {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all var(--transition-base);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.social-icon:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(200, 169, 126, 0.2);
+    background: rgba(200, 169, 126, 0.08);
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+    .content {
+        padding: 16px;
+        justify-content: center;
+    }
+
+    .hero-brand {
+        margin-bottom: 20px;
+    }
+
+    .signup-card {
+        padding: 20px 18px;
+    }
+
+    .signup-header {
+        margin-bottom: 14px;
+    }
+
+    .signup-title {
+        font-size: 1.4rem;
+        margin-bottom: 6px;
+    }
+
+    .signup-desc {
+        font-size: 0.75rem;
+    }
+
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .phone-input-wrapper input[type="tel"] {
+        padding: 10px 0;
+        font-size: 0.85rem;
+    }
+
+    .phone-input-wrapper input[type="tel"] {
+        padding-left: 8px;
+    }
+
+    .signup-form {
+        gap: 10px;
+    }
+
+    .signup-btn {
+        padding: 14px;
+        margin-top: 4px;
+    }
+
+    .social-bar {
+        margin-top: 14px;
+        padding-top: 12px;
+    }
+
+    .social-icon {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (max-height: 780px) {
+    .hero-brand {
+        margin-bottom: 16px;
+    }
+
+    .hero-logo {
+        max-width: clamp(160px, 40vw, 300px);
+        margin-bottom: 6px;
+    }
+
+    .hero-tagline {
+        font-size: 0.9rem;
+    }
+
+    .signup-card {
+        padding: 20px 18px;
+    }
+
+    .signup-header {
+        margin-bottom: 12px;
+    }
+
+    .signup-title {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+    }
+
+    .signup-desc {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .phone-input-wrapper input[type="tel"] {
+        padding: 10px 0;
+    }
+
+    .phone-input-wrapper input[type="tel"] {
+        padding-left: 8px;
+    }
+
+    .signup-form {
+        gap: 8px;
+    }
+
+    .signup-btn {
+        padding: 12px;
+        margin-top: 2px;
+    }
+
+    .social-bar {
+        margin-top: 12px;
+        padding-top: 10px;
+    }
+}
+
+@media (max-height: 650px) {
+    .signup-desc {
+        display: none;
+    }
+
+    .hero-tagline {
+        display: none;
+    }
+
+    .hero-brand {
+        margin-bottom: 12px;
+    }
+
+    .hero-logo {
+        max-width: clamp(140px, 35vw, 240px);
+    }
+}

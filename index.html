@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sem Vergonha | Em Breve na Nazaré</title>
+    <meta name="description" content="Sem Vergonha — O restaurante mais descarado da Nazaré. Em breve.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="loading">
+
+    <!-- Intro Video Overlay -->
+    <div id="intro-overlay" class="intro-overlay">
+        <video id="intro-video" muted playsinline preload="auto">
+            <source src="intro.webm" type="video/webm">
+        </video>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor" class="custom-cursor"></div>
+    <div id="cursor-follower" class="custom-cursor-follower"></div>
+
+    <!-- Fullscreen Video Background -->
+    <div class="video-wrapper">
+        <video id="bg-video" muted playsinline preload="auto">
+            <source src="semvergonha.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Logo -->
+        <div class="hero-brand">
+            <img src="logo.png" alt="Sem Vergonha" class="hero-logo">
+        </div>
+
+        <!-- Sign Up Section -->
+        <div id="signup-section" class="signup-section">
+            <div class="signup-card">
+                <div class="signup-header">
+                    <h2 class="signup-title">Não tenhas vergonha.</h2>
+                </div>
+                <form id="signup-form" class="signup-form" autocomplete="off" novalidate>
+                    <div class="form-field">
+                        <input type="text" id="signup-name" name="name" placeholder="O teu nome (ou alcunha)" required>
+                        <div class="field-line"></div>
+                    </div>
+                    <div class="form-field">
+                        <input type="email" id="signup-email" name="email" placeholder="O teu melhor email" required>
+                        <div class="field-line"></div>
+                        <span class="field-error" id="email-error"></span>
+                    </div>
+                    <div class="form-field phone-field">
+                        <div class="phone-input-wrapper">
+                            <button type="button" id="country-selector" class="country-selector" aria-label="Selecionar país">
+                                <span class="country-flag" id="selected-flag">🇵🇹</span>
+                                <span class="country-code" id="selected-code">+351</span>
+                                <svg class="country-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                            </button>
+                            <input type="tel" id="signup-phone" name="phone" placeholder="Número de telemóvel" required>
+                        </div>
+                        <div class="field-line"></div>
+                        <span class="field-error" id="phone-error"></span>
+                        <!-- Country Dropdown -->
+                        <div id="country-dropdown" class="country-dropdown hidden">
+                            <input type="text" id="country-search" class="country-search" placeholder="Procurar país...">
+                            <div class="country-list" id="country-list"></div>
+                        </div>
+                    </div>
+                    <button type="submit" class="signup-btn">
+                        <span class="btn-label">Quero entrar</span>
+                        <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </span>
+                    </button>
+                </form>
+                <div id="signup-success" class="signup-success hidden">
+                    <div class="success-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <h3>Já estás cá dentro!</h3>
+                    <p>Em breve contamos-te tudo.</p>
+                </div>
+                <!-- Social Links -->
+                <div class="social-bar">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="mailto:hello@semvergonha.pt" class="social-icon" aria-label="Email">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
