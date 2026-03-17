@@ -252,8 +252,10 @@ body:not(.loading) .content {
     max-width: clamp(200px, 50vw, 400px);
     height: auto;
     margin: 0 auto 12px;
-    filter: brightness(0) invert(1);
     display: block;
+    filter: brightness(0) invert(1) !important;
+    forced-color-adjust: none;
+    -webkit-forced-color-adjust: none;
 }
 
 .hero-tagline {
