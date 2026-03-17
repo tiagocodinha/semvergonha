@@ -235,10 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (introVideo) {
-        introVideo.playbackRate = 0.5;
+        // REMOVIDO: introVideo.playbackRate = 0.5  ← era isto que quebrava no iOS
 
-        introVideo.addEventListener('canplaythrough', () => {
-            introVideo.play().catch(() => {});
+        const quickFallback = setTimeout(() => showMainContent(), 3000);
+
+        introVideo.addEventListener('canplay', () => {
+            clearTimeout(quickFallback);
+            introVideo.play().catch(() => showMainContent());
         }, { once: true });
 
         introVideo.addEventListener('timeupdate', () => {
@@ -248,20 +251,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         introVideo.addEventListener('ended', () => showMainContent());
-        introVideo.addEventListener('error', () => showMainContent());
+        introVideo.addEventListener('error', () => {
+            clearTimeout(quickFallback);
+            showMainContent();
+        });
 
-        // Fallback: se o intro não arrancar em 15s, mostrar conteúdo na mesma
-        setTimeout(() => showMainContent(), 15000);
+        introVideo.load();
+        introVideo.play().catch(() => {});
+
     } else {
         setTimeout(() => showMainContent(), 500);
     }
 
-    if (document.readyState === 'complete') {
-        if (introVideo) {
-            introVideo.playbackRate = 0.5;
-            introVideo.play().catch(() => {});
-        }
-    }
 
     // ─── Background Video — Loop nativo ──────────
     // Removido o reverse loop manual (incompatível com iOS Safari).
