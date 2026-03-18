@@ -209,34 +209,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── Intro Video ─────────────────────────────
     const introOverlay = document.getElementById('intro-overlay');
-    const introVideo = document.getElementById('intro-video');
-    const bgVideo = document.getElementById('bg-video');
+    const introVideo   = document.getElementById('intro-video');
+    const bgVideo      = document.getElementById('bg-video');
     document.body.classList.add('loading');
 
+    // Revela o conteúdo principal (remove overlay do intro)
     function showMainContent() {
         if (introOverlay.classList.contains('fading')) return;
         introOverlay.classList.add('fading');
+
+        // Remove 'loading' agora → zoomIn da página corre em paralelo com o fade do overlay
+        document.body.classList.remove('loading');
 
         introOverlay.style.opacity = '0';
         introOverlay.style.transition = 'opacity 0.8s ease';
 
         setTimeout(() => {
             introOverlay.style.display = 'none';
-            document.body.classList.remove('loading');
             if (bgVideo) {
                 const playPromise = bgVideo.play();
                 if (playPromise !== undefined) {
-                    playPromise.catch(() => {
-                        bgVideo.style.display = 'none';
-                    });
+                    playPromise.catch(() => { bgVideo.style.display = 'none'; });
                 }
             }
         }, 800);
     }
 
     if (introVideo) {
-        // REMOVIDO: introVideo.playbackRate = 0.5  ← era isto que quebrava no iOS
-
+        // Fallback de segurança: se o vídeo nunca carregar/jogar, mostra em 3s
         const quickFallback = setTimeout(() => showMainContent(), 3000);
 
         introVideo.addEventListener('canplay', () => {
@@ -244,6 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
             introVideo.play().catch(() => showMainContent());
         }, { once: true });
 
+        // ── PRINCIPAL: inicia a transição 1.5 s antes do fim do vídeo ──
+        // O form começa a aparecer enquanto o vídeo ainda está a correr.
         introVideo.addEventListener('timeupdate', () => {
             if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.5) {
                 showMainContent();
@@ -263,16 +265,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => showMainContent(), 500);
     }
 
-
     // ─── Background Video — Loop nativo ──────────
-    // Removido o reverse loop manual (incompatível com iOS Safari).
-    // O atributo `loop` no HTML trata do loop automaticamente em todos os dispositivos.
     if (bgVideo) {
         bgVideo.loop = true;
     }
 
-    // ─── Custom Cursor ───────────────────────────
-    const cursor = document.getElementById('cursor');
+    // ─── Custom Cursor (desktop apenas) ──────────
+    const cursor         = document.getElementById('cursor');
     const cursorFollower = document.getElementById('cursor-follower');
 
     if (window.matchMedia('(pointer: fine)').matches && cursor && cursorFollower) {
@@ -283,14 +282,14 @@ document.addEventListener('DOMContentLoaded', () => {
             mouseX = e.clientX;
             mouseY = e.clientY;
             cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
+            cursor.style.top  = mouseY + 'px';
         });
 
         function animateFollower() {
             followerX += (mouseX - followerX) * 0.1;
             followerY += (mouseY - followerY) * 0.1;
             cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
+            cursorFollower.style.top  = followerY + 'px';
             requestAnimationFrame(animateFollower);
         }
         animateFollower();
@@ -311,11 +310,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── Country Selector ────────────────────────
     const countrySelector = document.getElementById('country-selector');
     const countryDropdown = document.getElementById('country-dropdown');
-    const countryList = document.getElementById('country-list');
-    const countrySearch = document.getElementById('country-search');
-    const selectedFlag = document.getElementById('selected-flag');
-    const selectedCode = document.getElementById('selected-code');
-    const phoneInput = document.getElementById('signup-phone');
+    const countryList     = document.getElementById('country-list');
+    const countrySearch   = document.getElementById('country-search');
+    const selectedFlag    = document.getElementById('selected-flag');
+    const selectedCode    = document.getElementById('selected-code');
+    const phoneInput      = document.getElementById('signup-phone');
 
     function renderCountryList(filter = '') {
         const filtered = countries.filter(c =>
@@ -324,7 +323,11 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         countryList.innerHTML = filtered.map(c => {
             const isSelected = c.name === selectedCountry.name && c.code === selectedCountry.code;
-            return `<div class="country-option${isSelected ? ' selected' : ''}" data-name="${c.name}" data-code="${c.code}" data-flag="${c.flag}" data-digits="${Array.isArray(c.digits) ? c.digits.join(',') : c.digits}">
+            return `<div class="country-option${isSelected ? ' selected' : ''}"
+                        data-name="${c.name}"
+                        data-code="${c.code}"
+                        data-flag="${c.flag}"
+                        data-digits="${Array.isArray(c.digits) ? c.digits.join(',') : c.digits}">
                 <span class="country-option-flag">${c.flag}</span>
                 <span class="country-option-name">${c.name}</span>
                 <span class="country-option-code">${c.code}</span>
@@ -335,9 +338,9 @@ document.addEventListener('DOMContentLoaded', () => {
             opt.addEventListener('click', () => {
                 const digitsRaw = opt.dataset.digits;
                 selectedCountry = {
-                    name: opt.dataset.name,
-                    code: opt.dataset.code,
-                    flag: opt.dataset.flag,
+                    name:   opt.dataset.name,
+                    code:   opt.dataset.code,
+                    flag:   opt.dataset.flag,
                     digits: digitsRaw.includes(',') ? digitsRaw.split(',').map(Number) : parseInt(digitsRaw)
                 };
                 selectedFlag.textContent = selectedCountry.flag;
@@ -376,11 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
     countrySelector.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (countryDropdown.classList.contains('hidden')) {
-            openDropdown();
-        } else {
-            closeDropdown();
-        }
+        countryDropdown.classList.contains('hidden') ? openDropdown() : closeDropdown();
     });
 
     countrySearch.addEventListener('input', () => {
@@ -407,18 +406,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function validatePhone(phone) {
-        const digits = phone.replace(/\D/g, '');
+        const digits   = phone.replace(/\D/g, '');
         const expected = selectedCountry.digits;
-        if (Array.isArray(expected)) {
-            return expected.includes(digits.length);
-        }
-        return digits.length === expected;
+        return Array.isArray(expected) ? expected.includes(digits.length) : digits.length === expected;
     }
 
     function getExpectedDigits() {
         const d = selectedCountry.digits;
-        if (Array.isArray(d)) return d.join(' ou ');
-        return d;
+        return Array.isArray(d) ? d.join(' ou ') : d;
     }
 
     function showError(fieldEl, errorEl, message) {
@@ -440,20 +435,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ─── Sign Up Form ────────────────────────────
-    const signupForm = document.getElementById('signup-form');
+    const signupForm    = document.getElementById('signup-form');
     const signupSuccess = document.getElementById('signup-success');
 
     if (signupForm) {
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const nameInput = document.getElementById('signup-name');
+            const nameInput  = document.getElementById('signup-name');
             const emailInput = document.getElementById('signup-email');
             const emailError = document.getElementById('email-error');
             const phoneError = document.getElementById('phone-error');
             const emailField = emailInput.closest('.form-field');
             const phoneField = phoneInput.closest('.form-field');
-            const nameField = nameInput.closest('.form-field');
+            const nameField  = nameInput.closest('.form-field');
 
             let valid = true;
 
@@ -502,9 +497,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!valid) return;
 
-            // Success
-            signupForm.style.opacity = '0';
-            signupForm.style.transform = 'translateY(-10px)';
+            // ── Success ──
+            signupForm.style.opacity    = '0';
+            signupForm.style.transform  = 'translateY(-10px)';
             signupForm.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
 
             setTimeout(() => {
@@ -513,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 signupSuccess.style.opacity = '0';
                 requestAnimationFrame(() => {
                     signupSuccess.style.transition = 'opacity 0.6s ease';
-                    signupSuccess.style.opacity = '1';
+                    signupSuccess.style.opacity    = '1';
                 });
             }, 400);
         });
@@ -525,12 +520,12 @@ document.addEventListener('DOMContentLoaded', () => {
         magneticEls.forEach(el => {
             el.addEventListener('mousemove', (e) => {
                 const rect = el.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
+                const x = e.clientX - rect.left - rect.width  / 2;
+                const y = e.clientY - rect.top  - rect.height / 2;
                 el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
             });
             el.addEventListener('mouseleave', () => {
-                el.style.transform = '';
+                el.style.transform  = '';
                 el.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
                 setTimeout(() => { el.style.transition = ''; }, 400);
             });
