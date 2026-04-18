@@ -205,6 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Zimbabu\u00e9', code: '+263', flag: '\u{1F1FF}\u{1F1FC}', digits: 9 },
     ];
 
+    const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxvvSLi8LjVl6SgmB2EsBea5P--EzUlL_TXiGVvT0MmG0QV_Sf9gSym3o1nXhzNrYBjGQ/exec';
+
     let selectedCountry = countries[0]; // Portugal default
 
     // ─── Intro Video ─────────────────────────────
@@ -244,8 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             introVideo.play().catch(() => showMainContent());
         }, { once: true });
 
-        // ── PRINCIPAL: inicia a transição 1.5 s antes do fim do vídeo ──
-        // O form começa a aparecer enquanto o vídeo ainda está a correr.
+        // ── PRINCIPAL: inicia a transição 0.5s antes do fim do vídeo ──
         introVideo.addEventListener('timeupdate', () => {
             if (introVideo.duration && introVideo.currentTime >= introVideo.duration - 0.5) {
                 showMainContent();
@@ -434,6 +435,29 @@ document.addEventListener('DOMContentLoaded', () => {
         clearError(phoneField, phoneError);
     }
 
+    // ─── Animação de sucesso ──────────────────────
+    function showSuccess() {
+        signupForm.style.opacity   = '0';
+        signupForm.style.transform = 'translateY(-10px)';
+        signupForm.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+        setTimeout(() => {
+            signupForm.style.display = 'none';
+            signupSuccess.classList.remove('hidden');
+            signupSuccess.style.opacity = '0';
+            requestAnimationFrame(() => {
+                signupSuccess.style.transition = 'opacity 0.6s ease';
+                signupSuccess.style.opacity    = '1';
+            });
+
+            // ── Redirect para Instagram após 4s ──
+            setTimeout(() => {
+                window.location.href = 'https://www.instagram.com/semvergonharestaurant/';
+            }, 4000);
+
+        }, 400);
+    }
+
     // ─── Sign Up Form ────────────────────────────
     const signupForm    = document.getElementById('signup-form');
     const signupSuccess = document.getElementById('signup-success');
@@ -497,20 +521,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!valid) return;
 
-            // ── Success ──
-            signupForm.style.opacity    = '0';
-            signupForm.style.transform  = 'translateY(-10px)';
-            signupForm.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            // ── Submit para Google Sheets ──
+            const submitBtn = signupForm.querySelector('.signup-btn');
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
 
-            setTimeout(() => {
-                signupForm.style.display = 'none';
-                signupSuccess.classList.remove('hidden');
-                signupSuccess.style.opacity = '0';
-                requestAnimationFrame(() => {
-                    signupSuccess.style.transition = 'opacity 0.6s ease';
-                    signupSuccess.style.opacity    = '1';
-                });
-            }, 400);
+            const payload = {
+                name:        nameInput.value.trim(),
+                email:       emailInput.value.trim(),
+                phone:       phoneInput.value.trim(),
+                country:     selectedCountry.name,
+                countryCode: selectedCountry.code
+            };
+
+            fetch(SHEETS_URL, {
+                method:  'POST',
+                mode:    'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body:    JSON.stringify(payload)
+            })
+            .then(() => {
+                showSuccess();
+            })
+            .catch(() => {
+                // Com no-cors o fetch nunca rejeita por CORS — só por falha de rede.
+                // Mesmo assim mostramos sucesso ao utilizador para não bloquear a experiência.
+                showSuccess();
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            });
         });
     }
 
