@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food & Drinks — Sem Vergonha | Nazaré</title>
+  <meta name="description" content="Cozinha de partilha e cocktails de autor. Descobre a carta do Sem Vergonha em Nazaré.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://widget.letsumai.com/dist/embed.min.js" data-api-key="0bf29084-b7e0-4c90-8654-06c53f4949cb" data-widget-type="reservation"></script>
+</head>
+<body>
+
+  <!-- FLOATING RESERVE BUTTON -->
+  <a href="#" class="floating-reserve umai-reserve" data-i18n="reserve">Reservar Mesa</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="../" class="nav__logo">
+      <img src="../assets/semvergonha_logo.png" alt="Sem Vergonha" class="nav__logo-img">
+    </a>
+    <div class="nav__links">
+      <a href="../food-drinks/" class="nav__link--active">FOOD & DRINKS</a>
+      <a href="../contactos/" data-i18n="nav.contacts">CONTACTOS</a>
+    </div>
+    <div class="nav__actions">
+      <a href="#" class="nav__cta umai-reserve" id="umai-reservation-button" data-i18n="reserve">Reservar Mesa</a>
+      <button class="lang-toggle" aria-label="Language">EN</button>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mob-menu" id="mobMenu">
+    <div class="mob-menu__inner">
+      <a href="../food-drinks/">FOOD & DRINKS</a>
+      <a href="../contactos/" data-i18n="nav.contacts">CONTACTOS</a>
+      <a href="#" class="mob-menu__cta umai-reserve" data-i18n="reserve">Reservar Mesa</a>
+      <button class="lang-toggle">EN</button>
+      <div class="mob-menu__info">
+        <a href="tel:+351936437156" class="mob-menu__phone">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          936 437 156
+          <small class="mob-menu__phone-note" data-i18n="mob.phone_note">Chamada para rede móvel nacional</small>
+        </a>
+        <span class="mob-menu__hours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          12h00 às 02h00
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <img src="../assets/SemVergonha-taste-21.jpg" alt="Food & Drinks" class="page-hero__bg">
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="label label--light">Food & Drinks</span>
+      <h1 data-i18n="fd.hero_h1">Aqui, cada prato<br>conta uma história.</h1>
+      <p data-i18n="fd.hero_p">Cozinha de partilha e cocktails de autor. Pratos pensados para mesa, conversa e repetição.</p>
+    </div>
+  </header>
+
+  <!-- FOOD GALLERY -->
+  <section class="section section--beige">
+    <div class="wrap">
+      <div class="food-gallery" data-r>
+        <div class="food-gallery__track">
+          <div class="food-gallery__item">
+            <img src="../assets/SemVergonha-taste-21.jpg" alt="Sem Vergonha">
+          </div>
+          <div class="food-gallery__item">
+            <img src="../assets/SemVergonha-taste-26.jpg" alt="Sem Vergonha">
+          </div>
+          <div class="food-gallery__item">
+            <img src="../assets/SemVergonha-taste-30.jpg" alt="Sem Vergonha">
+          </div>
+          <div class="food-gallery__item">
+            <img src="../assets/SemVergonha-taste-39.jpg" alt="Sem Vergonha">
+          </div>
+          <div class="food-gallery__item">
+            <img src="../assets/SemVergonha-taste-66.jpg" alt="Sem Vergonha">
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu Nav -->
+      <nav class="menu-nav" id="menuNav">
+        <button class="menu-nav__link active" data-target="cocktails">Cocktails</button>
+        <button class="menu-nav__link" data-target="comida" data-i18n="fd.tab_comida">Comida</button>
+        <button class="menu-nav__link" data-target="bar">Bar</button>
+      </nav>
+
+      <!-- Menu -->
+      <div class="menu" data-r>
+
+        <!-- COCKTAILS -->
+        <div id="cocktails" class="menu__section">
+          <div class="menu__sidebar-layout">
+            <aside class="menu__sidebar" data-sidebar="cocktails">
+              <button class="menu__sidebar-link active" data-cat="ck-signature">Signature</button>
+              <button class="menu__sidebar-link" data-cat="ck-classicos">Clássicos</button>
+              <button class="menu__sidebar-link" data-cat="ck-mocktails">Mocktails</button>
+            </aside>
+            <div class="menu__sidebar-content">
+
+              <div class="menu__category" id="ck-signature">
+                <h3>Cocktails Signature</h3>
+                <div class="menu__item"><span><strong>Fina Flor</strong></span><span class="menu__desc">Gin · St-Germain · Framboesa · Lima</span><span class="menu__price">10</span></div>
+                <div class="menu__item"><span><strong>Bon Vivant</strong></span><span class="menu__desc">Bacardí · Giffard · Baunilha · Maracujá · Lima · Espuma Espumante</span><span class="menu__price">10</span></div>
+                <div class="menu__item"><span><strong>Má Língua</strong></span><span class="menu__desc">Patrón Silver · Limoncello · Malagueta · Manga · Lima · Agave</span><span class="menu__price">12</span></div>
+                <div class="menu__item"><span><strong>Moscow Mure</strong></span><span class="menu__desc">Grey Goose · Ginger Beer · Lima · Espuma Gengibre</span><span class="menu__price">12</span></div>
+                <div class="menu__item"><span><strong>Imaturo</strong></span><span class="menu__desc">Grey Goose · Maçã Verde · Lima · Xarope de Açúcar · Hortelã</span><span class="menu__price">12</span></div>
+                <div class="menu__item"><span><strong>Shameless</strong> <span class="menu__badge">Mocktail</span></span><span class="menu__desc">The Foxtale 0% · Ginger Beer · Maracujá · Lima · Espuma Gengibre</span><span class="menu__price">8</span></div>
+              </div>
+
+              <div class="menu__category" id="ck-classicos">
+                <h3>Cocktails Clássicos</h3>
+                <div class="menu__item"><span>Mojito</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Caipirinha</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Margarita</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Aperol Spritz</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Limoncello Spritz</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Negroni</span><span class="menu__price">9</span></div>
+                <div class="menu__item"><span>Basil Smash</span><span class="menu__price">9</span></div>
+                <div class="menu__item"><span>Long Island Iced Tea</span><span class="menu__price">9</span></div>
+                <div class="menu__item"><span>Whiskey Sour</span><span class="menu__price">9</span></div>
+                <div class="menu__item"><span>Espresso Martini</span><span class="menu__price">9</span></div>
+                <div class="menu__item"><span>St-Germain Spritz</span><span class="menu__price">10</span></div>
+                <div class="menu__item"><span>Paloma</span><span class="menu__price">11</span></div>
+              </div>
+
+              <div class="menu__category" id="ck-mocktails">
+                <h3>Mocktails</h3>
+                <div class="menu__item"><span>Virgin Caipirinha</span><span class="menu__price">6</span></div>
+                <div class="menu__item"><span>Virgin Mojito</span><span class="menu__price">6</span></div>
+                <div class="menu__item"><span>Martini Floreale Spritz</span><span class="menu__price">6</span></div>
+              </div>
+
+            </div>
+          </div>
+          <span class="menu__note" data-i18n="fd.note2_ck">Nenhum prato, produto alimentar ou bebida, incluindo o couvert, pode ser cobrado se não for solicitado pelo cliente ou por este for inutilizado.</span>
+          <span class="menu__note" data-i18n="fd.note1_ck">Caso sofra de alguma intolerância alimentar ou alergia alimentar por favor informe o nosso staff.</span>
+        </div>
+
+        <!-- COMIDA -->
+        <div id="comida" class="menu__section">
+          <div class="menu__sidebar-layout">
+            <aside class="menu__sidebar" data-sidebar="comida">
+              <button class="menu__sidebar-link active" data-cat="fd-couvert" data-i18n="fd.sidebar_couvert">Couvert</button>
+              <button class="menu__sidebar-link" data-cat="fd-entradas" data-i18n="fd.sidebar_entradas">Entradas</button>
+              <button class="menu__sidebar-link" data-cat="fd-pratos" data-i18n="fd.sidebar_pratos">Pratos</button>
+              <button class="menu__sidebar-link" data-cat="fd-acomp" data-i18n="fd.sidebar_sides">Sides</button>
+              <button class="menu__sidebar-link" data-cat="fd-sobremesas" data-i18n="fd.sidebar_sobremesas">Sobremesas</button>
+            </aside>
+            <div class="menu__sidebar-content">
+
+              <div class="menu__category" id="fd-couvert">
+                <h3 data-i18n="fd.cat_couvert">Couvert</h3>
+                <div class="menu__item"><span>Pão · Manteiga do Chef</span><span class="menu__allergens"><span class="a a1"></span><span class="a a7"></span></span><span class="menu__price">4</span></div>
+              </div>
+
+              <div class="menu__category" id="fd-entradas">
+                <h3 data-i18n="fd.cat_entradas">Para Começar</h3>
+                <div class="menu__item"><span>Tostada de Atum</span><span class="menu__desc">Abacate · Kimchi</span><span class="menu__allergens"><span class="a a1"></span><span class="a a2"></span><span class="a a3"></span><span class="a a4"></span><span class="a a6"></span><span class="a a10"></span></span><span class="menu__price">8.4</span></div>
+                <div class="menu__item"><span>Ostra Assinatura <em>2 un.</em></span><span class="menu__desc">Ponzu · Chilli Crisp</span><span class="menu__allergens"><span class="a a1"></span><span class="a a4"></span><span class="a a6"></span><span class="a a11"></span><span class="a a14"></span></span><span class="menu__price">7.5</span></div>
+                <div class="menu__item"><span>Ostra Clássica <em>2 un.</em></span><span class="menu__allergens"><span class="a a14"></span></span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Croquete de Rabo de Boi <em>2 un.</em></span><span class="menu__desc">Mayo de Alho Confit · Pickle de Mostarda</span><span class="menu__allergens"><span class="a a1"></span><span class="a a3"></span><span class="a a7"></span><span class="a a9"></span><span class="a a10"></span></span><span class="menu__price">6.8</span></div>
+                <div class="menu__item"><span>Tártaro de Vaca</span><span class="menu__desc">Brioche Tostado · Gema Curada</span><span class="menu__allergens"><span class="a a1"></span><span class="a a3"></span><span class="a a7"></span><span class="a a10"></span></span><span class="menu__price">10.8</span></div>
+                <div class="menu__item"><span>Espetada de Corações de Galinha <em>2 un.</em></span><span class="menu__desc">Gochujang · Limão Preservado</span><span class="menu__allergens"><span class="a a1"></span><span class="a a3"></span><span class="a a6"></span><span class="a a10"></span></span><span class="menu__price">6.5</span></div>
+                <div class="menu__item"><span>Espetada de Pleurotes <em>2 un.</em></span><span class="menu__desc">Gochujang · Limão Preservado (Vegetariano)</span><span class="menu__allergens"><span class="a a1"></span><span class="a a3"></span><span class="a a6"></span><span class="a a10"></span></span><span class="menu__price">6.5</span></div>
+              </div>
+
+              <div class="menu__category" id="fd-pratos">
+                <h3 data-i18n="fd.cat_pratos">Pratos</h3>
+                <div class="menu__item"><span>Atum Braseado</span><span class="menu__desc">Ponzu · Chilli Crisp</span><span class="menu__allergens"><span class="a a1"></span><span class="a a4"></span><span class="a a6"></span><span class="a a11"></span></span><span class="menu__price">14</span></div>
+                <div class="menu__item"><span>Bimis Grelhados</span><span class="menu__desc">Hummus · Sumac · Frutos Secos</span><span class="menu__allergens"><span class="a a1"></span><span class="a a8"></span><span class="a a11"></span></span><span class="menu__price">8.5</span></div>
+                <div class="menu__item"><span>Gambas</span><span class="menu__desc">Molho das Cabeças · Lima Kaffir</span><span class="menu__allergens"><span class="a a2"></span><span class="a a7"></span></span><span class="menu__price">11.5</span></div>
+                <div class="menu__item"><span>Lula Grelhada</span><span class="menu__desc">Molho da Própria Tinta</span><span class="menu__allergens"><span class="a a7"></span><span class="a a14"></span></span><span class="menu__price">19.8</span></div>
+                <div class="menu__item"><span>Berbigão</span><span class="menu__desc">Algas · Manteiga Fumada</span><span class="menu__allergens"><span class="a a14"></span></span><span class="menu__price">10.2</span></div>
+                <div class="menu__item"><span>Espetada de Porco Preto</span><span class="menu__desc">Romesco · Gremolata</span><span class="menu__allergens"><span class="a a8"></span></span><span class="menu__price">15</span></div>
+                <div class="menu__item"><span>Vazia Grelhada</span><span class="menu__desc">Jus de Carne</span><span class="menu__allergens"><span class="a a7"></span><span class="a a9"></span><span class="a a10"></span></span><span class="menu__price">21</span></div>
+                <div class="menu__item"><span>Shrimp Roll</span><span class="menu__desc">Brioche · Camarão · Alho Confit · Togarashi</span><span class="menu__allergens"><span class="a a1"></span><span class="a a2"></span><span class="a a3"></span><span class="a a7"></span><span class="a a10"></span><span class="a a11"></span></span><span class="menu__price">9.5</span></div>
+              </div>
+
+              <div class="menu__category" id="fd-acomp">
+                <h3 data-i18n="fd.cat_sides">Acompanhamentos</h3>
+                <div class="menu__item"><span>Batata de Dupla Fritura</span><span class="menu__desc">Aioli de Alho Confit · Parmesão</span><span class="menu__allergens"><span class="a a1"></span><span class="a a3"></span><span class="a a7"></span><span class="a a10"></span></span><span class="menu__price">5</span></div>
+                <div class="menu__item"><span>Arroz Frito</span><span class="menu__allergens"><span class="a a1"></span><span class="a a6"></span><span class="a a7"></span></span><span class="menu__price">5</span></div>
+                <div class="menu__item"><span>Coração de Alface</span><span class="menu__desc">Citrinos · Frutos Secos · Tahini</span><span class="menu__allergens"><span class="a a11"></span></span><span class="menu__price">6</span></div>
+              </div>
+
+              <div class="menu__category" id="fd-sobremesas">
+                <h3 data-i18n="fd.cat_sobremesas">Sobremesas</h3>
+                <div class="menu__item"><span>Rabanada</span><span class="menu__desc">Creme Inglês · Gelado de Limão</span><span class="menu__allergens"><span class="a a1"></span><span class="a a3"></span><span class="a a7"></span></span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Nestum de Chocolate</span><span class="menu__desc">Maracujá · Avelã · Miso</span><span class="menu__allergens"><span class="a a1"></span><span class="a a6"></span><span class="a a7"></span><span class="a a8"></span></span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Pavlova</span><span class="menu__desc">Coco · Ananás Grelhado · Lima</span><span class="menu__allergens"><span class="a a1"></span><span class="a a3"></span><span class="a a7"></span></span><span class="menu__price">6</span></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="allergen-legend">
+            <h4 data-i18n="fd.allergen_title">Alergénios</h4>
+            <div class="allergen-legend__grid">
+              <span><span class="a a1"></span> <span data-i18n="fd.a1">Glúten</span></span>
+              <span><span class="a a2"></span> <span data-i18n="fd.a2">Crustáceos</span></span>
+              <span><span class="a a3"></span> <span data-i18n="fd.a3">Ovos</span></span>
+              <span><span class="a a4"></span> <span data-i18n="fd.a4">Peixe</span></span>
+              <span><span class="a a5"></span> <span data-i18n="fd.a5">Amendoins</span></span>
+              <span><span class="a a6"></span> <span data-i18n="fd.a6">Soja</span></span>
+              <span><span class="a a7"></span> <span data-i18n="fd.a7">Lácteos</span></span>
+              <span><span class="a a8"></span> <span data-i18n="fd.a8">Frutos de casca rija</span></span>
+              <span><span class="a a9"></span> <span data-i18n="fd.a9">Aipo</span></span>
+              <span><span class="a a10"></span> <span data-i18n="fd.a10">Mostarda</span></span>
+              <span><span class="a a11"></span> <span data-i18n="fd.a11">Sésamo</span></span>
+              <span><span class="a a12"></span> <span data-i18n="fd.a12">Sulfitos</span></span>
+              <span><span class="a a13"></span> <span data-i18n="fd.a13">Tremoço</span></span>
+              <span><span class="a a14"></span> <span data-i18n="fd.a14">Moluscos</span></span>
+            </div>
+          </div>
+
+          <span class="menu__note" data-i18n="fd.note1">Se tem alguma alergia ou intolerância alimentar, informe a nossa equipa. Teremos todo o gosto em fornecer informação detalhada sobre os alergénios presentes nos nossos pratos.</span>
+          <span class="menu__note" data-i18n="fd.note2">Nenhum prato, produto alimentar ou bebida, incluindo o couvert, pode ser cobrado se não for solicitado pelo cliente ou por este for inutilizado.</span>
+        </div>
+
+        <!-- BAR -->
+        <div id="bar" class="menu__section">
+          <div class="menu__sidebar-layout">
+            <aside class="menu__sidebar" data-sidebar="bar">
+              <button class="menu__sidebar-link active" data-cat="bar-aguas" data-i18n="fd.sidebar_aguas">Águas</button>
+              <button class="menu__sidebar-link" data-cat="bar-refri" data-i18n="fd.sidebar_refri">Refrigerantes</button>
+              <button class="menu__sidebar-link" data-cat="bar-cafe" data-i18n="fd.sidebar_cafe">Cafés & Chás</button>
+              <button class="menu__sidebar-link" data-cat="bar-cerveja" data-i18n="fd.sidebar_cerveja">Cerveja</button>
+              <button class="menu__sidebar-link" data-cat="bar-sangria">Sangria</button>
+              <button class="menu__sidebar-link" data-cat="bar-gin">Gin</button>
+              <button class="menu__sidebar-link" data-cat="bar-vodka">Vodka</button>
+              <button class="menu__sidebar-link" data-cat="bar-whiskey">Whiskey</button>
+              <button class="menu__sidebar-link" data-cat="bar-rum">Rum & Tequila</button>
+              <button class="menu__sidebar-link" data-cat="bar-licor" data-i18n="fd.sidebar_licor">Licores</button>
+              <button class="menu__sidebar-link" data-cat="bar-brandy">Brandy</button>
+              <button class="menu__sidebar-link" data-cat="bar-shots">Shots</button>
+            </aside>
+            <div class="menu__sidebar-content">
+
+              <div class="menu__category" id="bar-aguas">
+                <h3 data-i18n="fd.cat_aguas">Águas</h3>
+                <div class="menu__item"><span>Água Luso <em>1L</em></span><span class="menu__price">2.2</span></div>
+                <div class="menu__item"><span>Água Luso <em>50cl</em></span><span class="menu__price">1.3</span></div>
+                <div class="menu__item"><span>Água Luso Takeaway <em>50cl</em></span><span class="menu__price">1.2</span></div>
+                <div class="menu__item"><span>Castello <em>25cl</em></span><span class="menu__price">2.2</span></div>
+                <div class="menu__item"><span>Água das Pedras <em>25cl</em></span><span class="menu__price">2.2</span></div>
+                <div class="menu__item"><span>Água das Pedras Limão <em>25cl</em></span><span class="menu__price">2.5</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-refri">
+                <h3 data-i18n="fd.cat_refri">Refrigerantes</h3>
+                <div class="menu__item"><span>Coca-Cola <em>35cl</em></span><span class="menu__price">2.5</span></div>
+                <div class="menu__item"><span>Coca-Cola Zero <em>35cl</em></span><span class="menu__price">2.5</span></div>
+                <div class="menu__item"><span>7UP <em>30cl</em></span><span class="menu__price">2.5</span></div>
+                <div class="menu__item"><span>Fanta <em>35cl</em></span><span class="menu__price">2.5</span></div>
+                <div class="menu__item"><span>Ice Tea <em>33cl</em></span><span class="menu__price">2.5</span></div>
+                <div class="menu__item"><span>Água Tónica</span><span class="menu__desc">Manga · Pêssego · Limão</span><span class="menu__price">3</span></div>
+                <div class="menu__item"><span>Ginger Ale</span><span class="menu__price">3</span></div>
+                <div class="menu__item"><span>Red Bull</span><span class="menu__price">3</span></div>
+                <div class="menu__item"><span>Limonada</span><span class="menu__price">3</span></div>
+                <div class="menu__item"><span>Sumo de Laranja Natural</span><span class="menu__price">4</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-cafe">
+                <h3 data-i18n="fd.cat_cafe">Cafés & Chás</h3>
+                <div class="menu__item"><span>Café</span><span class="menu__price">1.3</span></div>
+                <div class="menu__item"><span>Descafeinado</span><span class="menu__price">1.3</span></div>
+                <div class="menu__item"><span>Café Duplo</span><span class="menu__price">2.6</span></div>
+                <div class="menu__item"><span>Cappuccino</span><span class="menu__price">3.5</span></div>
+                <div class="menu__item"><span>Chá / Infusão</span><span class="menu__desc">Cidreira · Camomila · Verde · Preto · Frutos Vermelhos · Hortelã</span><span class="menu__price">1.2</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-cerveja">
+                <h3 data-i18n="fd.cat_cerveja">Cerveja / Sidra</h3>
+                <div class="menu__item"><span>Sagres <em>20cl</em></span><span class="menu__price">1.3</span></div>
+                <div class="menu__item"><span>Sagres <em>50cl</em></span><span class="menu__price">3.5</span></div>
+                <div class="menu__item"><span>Tango / Panaché <em>20cl</em></span><span class="menu__price">1.3</span></div>
+                <div class="menu__item"><span>Bandida do Pomar <em>40cl</em></span><span class="menu__price">3.5</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-sangria">
+                <h3>Sangria</h3>
+                <div class="menu__item"><span>St-Germain <em>1L</em></span><span class="menu__price">20</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-gin">
+                <h3>Gin</h3>
+                <div class="menu__item"><span>Bombay Sapphire</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>The Foxtale 0% Dry Fire</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Bulldog</span><span class="menu__price">9</span></div>
+                <div class="menu__item"><span>Martin Miller's</span><span class="menu__price">10</span></div>
+                <div class="menu__item"><span>Nordés</span><span class="menu__price">11</span></div>
+                <div class="menu__item"><span>Hendrick's</span><span class="menu__price">11</span></div>
+                <div class="menu__item"><span>Oxley</span><span class="menu__price">15</span></div>
+                <div class="menu__item"><span>Contramestre</span><span class="menu__price">17</span></div>
+                <div class="menu__item"><span>Monkey 47</span><span class="menu__price">17</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-vodka">
+                <h3>Vodka</h3>
+                <div class="menu__item"><span>Eristoff</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Eristoff Black</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Eristoff Pink</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Eristoff Passion</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Grey Goose</span><span class="menu__price">11</span></div>
+                <div class="menu__item"><span>Grey Goose</span><span class="menu__desc">L'Orange · Le Citron · La Poire</span><span class="menu__price">13</span></div>
+                <div class="menu__item"><span>Grey Goose Altius</span><span class="menu__price">20</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-whiskey">
+                <h3>Whiskey</h3>
+                <div class="menu__item"><span>Dewar's White Label</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>William Lawson's</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Jameson</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Johnnie Walker Red Label</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Dewar's 8 Anos Caribbean Smooth</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Dewar's 12 Anos</span><span class="menu__price">9</span></div>
+                <div class="menu__item"><span>Jack Daniel's</span><span class="menu__price">9</span></div>
+                <div class="menu__item"><span>Dewar's 15 Anos</span><span class="menu__price">12</span></div>
+                <div class="menu__item"><span>Nikka</span><span class="menu__price">15</span></div>
+                <div class="menu__item"><span>Macallan</span><span class="menu__price">25</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-rum">
+                <h3>Rum / Tequila</h3>
+                <div class="menu__item"><span>Bacardí Carta Blanca</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Bacardí Limón</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Bacardí Razz</span><span class="menu__price">7.5</span></div>
+                <div class="menu__item"><span>Bacardí Spiced</span><span class="menu__price">7.5</span></div>
+                <div class="menu__item"><span>Bacardí 8 Anos</span><span class="menu__price">10</span></div>
+                <div class="menu__item"><span>Diplomático</span><span class="menu__price">12</span></div>
+                <div class="menu__item"><span>Tequila Camino Real</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Patrón Silver</span><span class="menu__price">10</span></div>
+                <div class="menu__item"><span>Patrón Reposado</span><span class="menu__price">12</span></div>
+                <div class="menu__item"><span>Patrón Añejo</span><span class="menu__price">14</span></div>
+                <div class="menu__item"><span>Patrón El Cielo</span><span class="menu__price">25</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-licor">
+                <h3 data-i18n="fd.cat_licor">Aperitivo / Licor</h3>
+                <div class="menu__item"><span>Amêndoa Amarga</span><span class="menu__price">5.5</span></div>
+                <div class="menu__item"><span>Martini Bianco</span><span class="menu__price">5</span></div>
+                <div class="menu__item"><span>Martini Rosso</span><span class="menu__price">5</span></div>
+                <div class="menu__item"><span>Moscatel</span><span class="menu__price">5</span></div>
+                <div class="menu__item"><span>Triple Seco</span><span class="menu__price">5</span></div>
+                <div class="menu__item"><span>Absinto</span><span class="menu__price">6</span></div>
+                <div class="menu__item"><span>Licor Beirão</span><span class="menu__price">6</span></div>
+                <div class="menu__item"><span>Martini Fiero</span><span class="menu__price">6</span></div>
+                <div class="menu__item"><span>Safari</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Malibu</span><span class="menu__price">7</span></div>
+                <div class="menu__item"><span>Baileys</span><span class="menu__price">8</span></div>
+                <div class="menu__item"><span>Jägermeister</span><span class="menu__price">9</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-brandy">
+                <h3 data-i18n="fd.cat_brandy">Aguardente / Brandy</h3>
+                <div class="menu__item"><span>Brandy Croft</span><span class="menu__price">6</span></div>
+                <div class="menu__item"><span>Macieira</span><span class="menu__price">6</span></div>
+                <div class="menu__item"><span>CRF</span><span class="menu__price">7</span></div>
+              </div>
+
+              <div class="menu__category" id="bar-shots">
+                <h3>Shots</h3>
+                <div class="menu__item"><span>Shot</span><span class="menu__price">3</span></div>
+                <div class="menu__item"><span>Shot Premium</span><span class="menu__price">6</span></div>
+                <div class="menu__item"><span>Shot Ultra Premium</span><span class="menu__price">20</span></div>
+              </div>
+
+            </div>
+          </div>
+          <span class="menu__note" data-i18n="fd.note2">Nenhum prato, produto alimentar ou bebida, incluindo o couvert, pode ser cobrado se não for solicitado pelo cliente ou por este for inutilizado.</span>
+          <span class="menu__note" data-i18n="fd.note1_ck">Caso sofra de alguma intolerância alimentar ou alergia alimentar por favor informe o nosso staff.</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__inner">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <img src="../assets/semvergonha_logo.png" alt="Sem Vergonha" class="footer__logo-img">
+            <p class="footer__tagline" data-i18n="footer.tagline">Restaurante & Cocktail Bar</p>
+          </div>
+        </div>
+        <div class="footer__grid">
+          <div class="footer__col">
+            <strong data-i18n="footer.hours">Horário</strong>
+            <span>12h00 — 02h00</span>
+            <span data-i18n="footer.everyday">Todos os dias</span>
+          </div>
+          <div class="footer__col">
+            <strong data-i18n="footer.contact">Contacto</strong>
+            <a href="tel:+351936437156">936 437 156</a>
+            <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>
+          </div>
+          <div class="footer__col">
+            <strong data-i18n="footer.follow">Segue-nos</strong>
+            <div class="footer__social">
+              <a href="https://instagram.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+              <a href="https://facebook.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+              <a href="https://tiktok.com/@semvergonharestaurant" target="_blank" rel="noopener" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>Av. da República 6, 2450-104 Nazaré</span>
+          <span data-i18n="footer.rights">&copy; 2026 Sem Vergonha. Todos os direitos reservados.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script type="text/javascript">
+  function init() {
+    ["#umai-reservation-button", ".umai-reserve"].forEach(function(sel) {
+      var links = document.querySelectorAll(sel);
+      links.forEach(function(link) {
+        link.addEventListener("click", function(e) {
+          e.preventDefault();
+          umaiWidget.config({ apiKey: "0bf29084-b7e0-4c90-8654-06c53f4949cb", widgetType: "reservation" });
+          umaiWidget.openWidget();
+          return false;
+        });
+      });
+    });
+  }
+  document.addEventListener("DOMContentLoaded", init);
+
+  // Menu nav tabs
+  (function() {
+    var nav = document.getElementById('menuNav');
+    if (!nav) return;
+    var btns = nav.querySelectorAll('.menu-nav__link');
+    var sections = document.querySelectorAll('.menu__section');
+    var first = document.getElementById('cocktails');
+    if (first) first.classList.add('active');
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        sections.forEach(function(s) { s.classList.remove('active'); });
+        btn.classList.add('active');
+        var target = document.getElementById(btn.getAttribute('data-target'));
+        if (target) target.classList.add('active');
+        var gallery = document.querySelector('.food-gallery');
+        if (gallery) {
+          var galleryBottom = gallery.getBoundingClientRect().bottom + window.pageYOffset;
+          window.scrollTo({ top: galleryBottom - 10, behavior: 'smooth' });
+        }
+      });
+    });
+  })();
+
+  // All sidebar navigation (cocktails, comida, bar)
+  (function() {
+    var clickLock = false;
+    var sidebars = document.querySelectorAll('.menu__sidebar');
+    sidebars.forEach(function(sidebar) {
+      var links = sidebar.querySelectorAll('.menu__sidebar-link');
+      var cats = [];
+      links.forEach(function(link) {
+        var el = document.getElementById(link.getAttribute('data-cat'));
+        if (el) cats.push({ link: link, el: el });
+        link.addEventListener('click', function() {
+          clickLock = true;
+          links.forEach(function(l) { l.classList.remove('active'); });
+          link.classList.add('active');
+          var target = document.getElementById(link.getAttribute('data-cat'));
+          if (target) {
+            var offset = target.getBoundingClientRect().top + window.pageYOffset - 140;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+          }
+          setTimeout(function() { clickLock = false; }, 800);
+        });
+      });
+      window.addEventListener('scroll', function() {
+        if (clickLock) return;
+        var section = sidebar.closest('.menu__section');
+        if (!section || !section.classList.contains('active')) return;
+        var scrollY = window.pageYOffset + 160;
+        for (var i = cats.length - 1; i >= 0; i--) {
+          var rect = cats[i].el.getBoundingClientRect();
+          var elTop = rect.top + window.pageYOffset;
+          if (elTop <= scrollY) {
+            links.forEach(function(l) { l.classList.remove('active'); });
+            cats[i].link.classList.add('active');
+            break;
+          }
+        }
+      });
+    });
+  })();
+
+</script>
+</body>
+</html>

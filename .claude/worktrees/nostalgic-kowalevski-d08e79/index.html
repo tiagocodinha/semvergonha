@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sem Vergonha — Restaurant Cocktail Bar | Nazaré</title>
+  <meta name="description" content="Sem Vergonha — Dine & Party em Nazaré. Restaurante, cocktail bar e social hub frente ao mar.">
+  <meta property="og:title" content="Sem Vergonha — Restaurant Cocktail Bar">
+  <meta property="og:description" content="Dine & Party em Nazaré. Nem jantar. Nem festa. Os dois.">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:url" content="https://semvergonharestaurant.pt">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"Sem Vergonha","url":"https://semvergonharestaurant.pt","servesCuisine":"Contemporary Portuguese","priceRange":"€€-€€€","address":{"@type":"PostalAddress","addressLocality":"Nazaré","addressCountry":"PT"},"openingHours":"Mo-Su 12:00-02:00","email":"hey@semvergonharestaurant.com"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://widget.letsumai.com/dist/embed.min.js" data-api-key="0bf29084-b7e0-4c90-8654-06c53f4949cb" data-widget-type="reservation"></script>
+</head>
+<body>
+
+  <!-- FLOATING RESERVE BUTTON -->
+  <a href="#" class="floating-reserve umai-reserve">Reservar Mesa</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="/" class="nav__logo">
+      <img src="assets/semvergonha_logo.png" alt="Sem Vergonha" class="nav__logo-img">
+    </a>
+    <div class="nav__links">
+      <a href="/food-drinks/">FOOD & DRINKS</a>
+      <a href="/experiencia/">EXPERIÊNCIA</a>
+      <a href="/eventos/">EVENTOS</a>
+      <a href="/contactos/">CONTACTOS</a>
+    </div>
+    <a href="#" class="nav__cta umai-reserve" id="umai-reservation-button">Reservar Mesa</a>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mob-menu" id="mobMenu">
+    <div class="mob-menu__inner">
+      <a href="/food-drinks/">FOOD & DRINKS</a>
+      <a href="/experiencia/">EXPERIÊNCIA</a>
+      <a href="/eventos/">EVENTOS</a>
+      <a href="/contactos/">CONTACTOS</a>
+      <a href="#" class="mob-menu__cta umai-reserve">Reservar Mesa</a>
+      <div class="mob-menu__info">
+        <a href="tel:+351936437156" class="mob-menu__phone">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          936 437 156
+          <small class="mob-menu__phone-note">Chamada para rede móvel nacional</small>
+        </a>
+        <span class="mob-menu__hours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          12h00 às 02h00
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__slider" id="heroSlider">
+      <div class="hero__slide active">
+        <img src="assets/semvergonha.jpg" alt="Sem Vergonha Restaurant">
+      </div>
+      <div class="hero__slide">
+        <img src="assets/semvergonha1.jpg" alt="Sem Vergonha Bar">
+      </div>
+      <div class="hero__slide">
+        <img src="assets/semvergonha2.jpg" alt="Sem Vergonha Ambiente">
+      </div>
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">
+        <img src="assets/semvergonha_logo.png" alt="Sem Vergonha" class="hero__logo-img">
+      </h1>
+      <p class="hero__sub">Restaurante & Cocktail Bar</p>
+      <div class="hero__actions">
+        <a href="#" class="hero__btn hero__btn--fill umai-reserve">Reservar Mesa</a>
+        <a href="/food-drinks/" class="hero__btn hero__btn--outline">Menu</a>
+      </div>
+    </div>
+    <div class="hero__dots" id="heroDots">
+      <button class="hero__dot active" data-slide="0"></button>
+      <button class="hero__dot" data-slide="1"></button>
+      <button class="hero__dot" data-slide="2"></button>
+    </div>
+  </header>
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider wave-divider--white">
+    <svg viewBox="0 0 2880 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C120,35 240,5 360,20 C480,35 600,5 720,20 C840,35 960,5 1080,20 C1200,35 1320,5 1440,20 C1560,35 1680,5 1800,20 C1920,35 2040,5 2160,20 C2280,35 2400,5 2520,20 C2640,35 2760,5 2880,20" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,28 C120,43 240,13 360,28 C480,43 600,13 720,28 C840,43 960,13 1080,28 C1200,43 1320,13 1440,28 C1560,43 1680,13 1800,28 C1920,43 2040,13 2160,28 C2280,43 2400,13 2520,28 C2640,43 2760,13 2880,28" fill="none" stroke="var(--brown)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ABOUT INTRO -->
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="intro" data-r>
+        <div class="intro__text">
+          <div class="spin-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M10,10 L38,10 L24,30 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="24" y1="30" x2="24" y2="42" stroke="currentColor" stroke-width="1.5"/><line x1="16" y1="42" x2="32" y2="42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="16" r="2" fill="currentColor" opacity="0.3"/></svg>
+          </div>
+          <span class="label">Dine & Party</span>
+          <h2>Onde o jantar<br>se torna noite.</h2>
+          <p>O Sem Vergonha não é só um restaurante. Não é uma discoteca. É um sítio onde <em>alguma coisa acontece</em>. Aqui, o jantar evolui naturalmente para a noite. Os cocktails levam ao próximo prato. E a conversa leva a tudo o resto.</p>
+          <p>Nascido do espírito do <strong>"Muro da Pouca Vergonha"</strong> — o local mais icónico da Nazaré — reinterpretamos a tradição de convívio num contexto contemporâneo.</p>
+        </div>
+        <div class="intro__img">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Prato gourmet">
+          <div class="intro__img-badges">
+            <span>Cozinha de partilha</span>
+            <span>Cocktails de autor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider wave-divider--beige">
+    <svg viewBox="0 0 2880 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C120,35 240,5 360,20 C480,35 600,5 720,20 C840,35 960,5 1080,20 C1200,35 1320,5 1440,20 C1560,35 1680,5 1800,20 C1920,35 2040,5 2160,20 C2280,35 2400,5 2520,20 C2640,35 2760,5 2880,20" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,28 C120,43 240,13 360,28 C480,43 600,13 720,28 C840,43 960,13 1080,28 C1200,43 1320,13 1440,28 C1560,43 1680,13 1800,28 C1920,43 2040,13 2160,28 C2280,43 2400,13 2520,28 C2640,43 2760,13 2880,28" fill="none" stroke="var(--brown)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- GALLERY STRIP -->
+  <section class="gallery">
+    <div class="gallery__track">
+      <div class="gallery__item" data-r><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="Interior 1"></div>
+      <div class="gallery__item" data-r><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600&q=80" alt="Cocktails"></div>
+      <div class="gallery__item" data-r><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Interior 2"></div>
+      <div class="gallery__item" data-r><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&q=80" alt="Bar noturno"></div>
+      <div class="gallery__item" data-r><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Comida"></div>
+      <div class="gallery__item" data-r><img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=600&q=80" alt="Ambiente"></div>
+    </div>
+  </section>
+
+  <!-- SECTION CARDS HEADER -->
+  <section class="section section--beige">
+    <div class="wrap">
+      <div class="section__header section__header--center" data-r>
+        <div class="spin-icon" style="margin: 0 auto 20px;">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="24" r="3" fill="currentColor"/><line x1="24" y1="2" x2="24" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="24" y1="34" x2="24" y2="46" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="24" x2="14" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="34" y1="24" x2="46" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="label">Descobre</span>
+        <h2>O nosso universo.</h2>
+        <p>Quatro pilares que definem a experiência Sem Vergonha. Explora cada um.</p>
+      </div>
+
+      <div class="home-grid" data-r>
+        <a href="/food-drinks/" class="home-card">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Food & Drinks">
+          <div class="home-card__overlay">
+            <span class="label">Food & Drinks</span>
+            <h3>Aqui, cada prato conta uma história.</h3>
+          </div>
+        </a>
+        <a href="/experiencia/" class="home-card">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80" alt="Experiência">
+          <div class="home-card__overlay">
+            <span class="label">Experiência</span>
+            <h3>Descubra a energia de cada momento.</h3>
+          </div>
+        </a>
+        <a href="/eventos/" class="home-card">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Eventos">
+          <div class="home-card__overlay">
+            <span class="label">Eventos</span>
+            <h3>Momentos para celebrar.</h3>
+          </div>
+        </a>
+        <a href="/contactos/" class="home-card">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Contactos">
+          <div class="home-card__overlay">
+            <span class="label">Contactos</span>
+            <h3>Vem visitar-nos.</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider wave-divider--beige">
+    <svg viewBox="0 0 2880 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C120,35 240,5 360,20 C480,35 600,5 720,20 C840,35 960,5 1080,20 C1200,35 1320,5 1440,20 C1560,35 1680,5 1800,20 C1920,35 2040,5 2160,20 C2280,35 2400,5 2520,20 C2640,35 2760,5 2880,20" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,28 C120,43 240,13 360,28 C480,43 600,13 720,28 C840,43 960,13 1080,28 C1200,43 1320,13 1440,28 C1560,43 1680,13 1800,28 C1920,43 2040,13 2160,28 C2280,43 2400,13 2520,28 C2640,43 2760,13 2880,28" fill="none" stroke="var(--brown)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- INFO BAR -->
+  <section class="section section--beige">
+    <div class="wrap">
+      <div class="info-bar" data-r>
+        <div class="info-bar__item">
+          <div class="spin-icon spin-icon--small">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/><polyline points="24 10 24 24 34 30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <span>Horário</span>
+          <strong>12h — 02h</strong>
+        </div>
+        <div class="info-bar__item">
+          <div class="spin-icon spin-icon--small">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M24 4 L28 14 L40 8 L34 20 L46 24 L34 28 L40 40 L28 34 L24 46 L20 34 L8 40 L14 28 L2 24 L14 20 L8 8 L20 14 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span>Abertura</span>
+          <strong>Julho 2026</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__inner">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <img src="assets/semvergonha_logo.png" alt="Sem Vergonha" class="footer__logo-img">
+            <p class="footer__tagline">Restaurante & Cocktail Bar</p>
+          </div>
+        </div>
+        <div class="footer__grid">
+          <div class="footer__col">
+            <strong>Horário</strong>
+            <span>12h00 — 02h00</span>
+            <span>Todos os dias</span>
+          </div>
+          <div class="footer__col">
+            <strong>Contacto</strong>
+            <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>
+          </div>
+          <div class="footer__col">
+            <strong>Segue-nos</strong>
+            <div class="footer__social">
+              <a href="https://instagram.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+              <a href="https://facebook.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+              <a href="https://tiktok.com/@semvergonharestaurant" target="_blank" rel="noopener" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>Av. da República 6, 2450-104 Nazaré</span>
+          <span>&copy; 2026 Sem Vergonha. Todos os direitos reservados.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script type="text/javascript">
+  function init() {
+    ["#umai-reservation-button", ".umai-reserve"].forEach(function(sel) {
+      var links = document.querySelectorAll(sel);
+      links.forEach(function(link) {
+        link.addEventListener("click", function(e) {
+          e.preventDefault();
+          umaiWidget.config({ apiKey: "0bf29084-b7e0-4c90-8654-06c53f4949cb", widgetType: "reservation" });
+          umaiWidget.openWidget();
+          return false;
+        });
+      });
+    });
+  }
+  document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>

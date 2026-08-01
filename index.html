@@ -1,116 +1,254 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sem Vergonha Restaurant - Nazaré</title>
-    <meta name="description" content="Sem Vergonha">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "wdspryndpp");
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sem Vergonha — Restaurant Cocktail Bar | Nazaré</title>
+  <meta name="description" content="Sem Vergonha — Dine & Party em Nazaré. Restaurante, cocktail bar e social hub frente ao mar.">
+  <meta property="og:title" content="Sem Vergonha — Restaurant Cocktail Bar">
+  <meta property="og:description" content="Dine & Party em Nazaré. Nem jantar. Nem festa. Os dois.">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:url" content="https://semvergonharestaurant.pt">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"Sem Vergonha","url":"https://semvergonharestaurant.pt","servesCuisine":"Contemporary Portuguese","priceRange":"€€-€€€","address":{"@type":"PostalAddress","addressLocality":"Nazaré","addressCountry":"PT"},"openingHours":"Mo-Su 12:00-02:00","email":"hey@semvergonharestaurant.com"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://widget.letsumai.com/dist/embed.min.js" data-api-key="0bf29084-b7e0-4c90-8654-06c53f4949cb" data-widget-type="reservation"></script>
 </head>
-<body class="loading">
+<body>
 
-    <!-- Intro Video Overlay -->
-    <div id="intro-overlay" class="intro-overlay">
-        <video id="intro-video" muted playsinline preload="auto">
-            <source src="intro.mp4" type="video/mp4">
-        </video>
+  <!-- FLOATING RESERVE BUTTON -->
+  <a href="#" class="floating-reserve umai-reserve" data-i18n="reserve">Reservar Mesa</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="./" class="nav__logo">
+      <img src="assets/semvergonha_logo.png" alt="Sem Vergonha" class="nav__logo-img">
+    </a>
+    <div class="nav__links">
+      <a href="food-drinks/">FOOD & DRINKS</a>
+      <a href="contactos/" data-i18n="nav.contacts">CONTACTOS</a>
     </div>
-
-    <!-- Custom Cursor -->
-    <div id="cursor" class="custom-cursor"></div>
-    <div id="cursor-follower" class="custom-cursor-follower"></div>
-
-    <!-- Fullscreen Video Background -->
-    <div class="video-wrapper">
-        <video id="bg-video" muted playsinline autoplay loop preload="auto">
-            <source src="semvergonha.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
+    <div class="nav__actions">
+      <a href="#" class="nav__cta umai-reserve" id="umai-reservation-button" data-i18n="reserve">Reservar Mesa</a>
+      <button class="lang-toggle" aria-label="Language">EN</button>
     </div>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <!-- Main Content -->
-    <main class="content">
-        <!-- Logo -->
-        <div class="hero-brand">
-            <img src="logo.png" alt="Sem Vergonha" class="hero-logo">
+  <!-- MOBILE MENU -->
+  <div class="mob-menu" id="mobMenu">
+    <div class="mob-menu__inner">
+      <a href="food-drinks/">FOOD & DRINKS</a>
+      <a href="contactos/" data-i18n="nav.contacts">CONTACTOS</a>
+      <a href="#" class="mob-menu__cta umai-reserve" data-i18n="reserve">Reservar Mesa</a>
+      <button class="lang-toggle">EN</button>
+      <div class="mob-menu__info">
+        <a href="tel:+351936437156" class="mob-menu__phone">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          936 437 156
+          <small class="mob-menu__phone-note" data-i18n="mob.phone_note">Chamada para rede móvel nacional</small>
+        </a>
+        <span class="mob-menu__hours">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          12h00 às 02h00
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__slider" id="heroSlider">
+      <div class="hero__slide active">
+        <img src="assets/semvergonha.jpg" alt="Sem Vergonha Restaurant">
+      </div>
+      <div class="hero__slide">
+        <img src="assets/semvergonha1.jpg" alt="Sem Vergonha Bar">
+      </div>
+      <div class="hero__slide">
+        <img src="assets/semvergonha2.jpg" alt="Sem Vergonha Ambiente">
+      </div>
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">
+        <img src="assets/semvergonha_logo.png" alt="Sem Vergonha" class="hero__logo-img">
+      </h1>
+      <p class="hero__sub" data-i18n="hero.sub">Restaurante & Cocktail Bar</p>
+      <div class="hero__actions">
+        <a href="#" class="hero__btn hero__btn--fill umai-reserve" data-i18n="reserve">Reservar Mesa</a>
+        <a href="food-drinks/" class="hero__btn hero__btn--outline" data-i18n="hero.menu">Menu</a>
+      </div>
+    </div>
+    <div class="hero__dots" id="heroDots">
+      <button class="hero__dot active" data-slide="0"></button>
+      <button class="hero__dot" data-slide="1"></button>
+      <button class="hero__dot" data-slide="2"></button>
+    </div>
+  </header>
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider wave-divider--white">
+    <svg viewBox="0 0 2880 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C120,35 240,5 360,20 C480,35 600,5 720,20 C840,35 960,5 1080,20 C1200,35 1320,5 1440,20 C1560,35 1680,5 1800,20 C1920,35 2040,5 2160,20 C2280,35 2400,5 2520,20 C2640,35 2760,5 2880,20" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,28 C120,43 240,13 360,28 C480,43 600,13 720,28 C840,43 960,13 1080,28 C1200,43 1320,13 1440,28 C1560,43 1680,13 1800,28 C1920,43 2040,13 2160,28 C2280,43 2400,13 2520,28 C2640,43 2760,13 2880,28" fill="none" stroke="var(--brown)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ABOUT INTRO -->
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="intro" data-r>
+        <div class="intro__text">
+          <div class="spin-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M10,10 L38,10 L24,30 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="24" y1="30" x2="24" y2="42" stroke="currentColor" stroke-width="1.5"/><line x1="16" y1="42" x2="32" y2="42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="16" r="2" fill="currentColor" opacity="0.3"/></svg>
+          </div>
+          <span class="label" data-i18n="intro.label">Dine & Party</span>
+          <h2 data-i18n="intro.h2">Onde o jantar<br>se torna noite.</h2>
+          <p data-i18n="intro.p1">O Sem Vergonha não é só um restaurante. Não é uma discoteca. É um sítio onde <em>alguma coisa acontece</em>. Aqui, o jantar evolui naturalmente para a noite. Os cocktails levam ao próximo prato. E a conversa leva a tudo o resto.</p>
+          <p data-i18n="intro.p2">Nascido do espírito do <strong>"Muro da Pouca Vergonha"</strong> — o local mais icónico da Nazaré — reinterpretamos a tradição de convívio num contexto contemporâneo.</p>
         </div>
+        <div class="intro__img">
+          <img src="assets/SemVergonha-taste-39.jpg" alt="Prato gourmet">
+          <div class="intro__img-badges">
+            <span data-i18n="intro.badge1">Cozinha</span>
+            <span data-i18n="intro.badge2">Cocktails</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Sign Up Section -->
-        <div id="signup-section" class="signup-section">
-            <div class="signup-card">
-                <div class="signup-header">
-                    <h2 class="signup-title">Não tenhas vergonha.</h2>
-                </div>
-                <form id="signup-form" class="signup-form" autocomplete="off" novalidate>
-                    <div class="form-field">
-                        <input type="text" id="signup-name" name="name" placeholder="O teu nome (ou alcunha)" required>
-                        <div class="field-line"></div>
-                    </div>
-                    <div class="form-field">
-                        <input type="email" id="signup-email" name="email" placeholder="O teu melhor email" required>
-                        <div class="field-line"></div>
-                        <span class="field-error" id="email-error"></span>
-                    </div>
-                    <div class="form-field phone-field">
-                        <div class="phone-input-wrapper">
-                            <button type="button" id="country-selector" class="country-selector" aria-label="Selecionar país">
-                                <span class="country-flag" id="selected-flag">🇵🇹</span>
-                                <span class="country-code" id="selected-code">+351</span>
-                                <svg class="country-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-                            </button>
-                            <input type="tel" id="signup-phone" name="phone" placeholder="Número de telemóvel" required>
-                        </div>
-                        <div class="field-line"></div>
-                        <span class="field-error" id="phone-error"></span>
-                        <!-- Country Dropdown -->
-                        <div id="country-dropdown" class="country-dropdown hidden">
-                            <input type="text" id="country-search" class="country-search" placeholder="Procurar país...">
-                            <div class="country-list" id="country-list"></div>
-                        </div>
-                    </div>
-                    <button type="submit" class="signup-btn">
-                        <span class="btn-label">Quero entrar</span>
-                        <span class="btn-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                        </span>
-                    </button>
-                </form>
-                <div id="signup-success" class="signup-success hidden">
-                    <div class="success-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    </div>
-                    <h3>Já estás cá dentro!</h3>
-                    <p>Em breve contamos-te tudo.</p>
-                </div>
-                <!-- Social Links -->
-                <div class="social-bar">
-                    <a href="https://www.facebook.com/semvergonharestaurant/" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </a>
-                    <a href="https://www.instagram.com/semvergonharestaurant/" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    </a>
-                    <a href="https://www.tiktok.com/@semvergonharestaurant" class="social-icon" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.79a8.18 8.18 0 0 0 4.79 1.53V6.87a4.85 4.85 0 0 1-1.02-.18z"/></svg>
-                    </a>
-                    <a href="mailto:hey@semvergonharestaurant.com" class="social-icon" aria-label="Email">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
-                    </a>
-                </div>
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider wave-divider--beige">
+    <svg viewBox="0 0 2880 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C120,35 240,5 360,20 C480,35 600,5 720,20 C840,35 960,5 1080,20 C1200,35 1320,5 1440,20 C1560,35 1680,5 1800,20 C1920,35 2040,5 2160,20 C2280,35 2400,5 2520,20 C2640,35 2760,5 2880,20" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,28 C120,43 240,13 360,28 C480,43 600,13 720,28 C840,43 960,13 1080,28 C1200,43 1320,13 1440,28 C1560,43 1680,13 1800,28 C1920,43 2040,13 2160,28 C2280,43 2400,13 2520,28 C2640,43 2760,13 2880,28" fill="none" stroke="var(--brown)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- GALLERY STRIP -->
+  <section class="gallery">
+    <div class="gallery__track">
+      <div class="gallery__item" data-r><img src="assets/SemVergonha-taste-30.jpg" alt="Sem Vergonha"></div>
+      <div class="gallery__item" data-r><img src="assets/SemVergonha-taste-26.jpg" alt="Sem Vergonha"></div>
+      <div class="gallery__item" data-r><img src="assets/SemVergonha-taste-39.jpg" alt="Sem Vergonha"></div>
+      <div class="gallery__item" data-r><img src="assets/SemVergonha-taste-21.jpg" alt="Sem Vergonha"></div>
+      <div class="gallery__item" data-r><img src="assets/SemVergonha-taste-66.jpg" alt="Sem Vergonha"></div>
+    </div>
+  </section>
+
+  <!-- SECTION CARDS (hidden) -->
+  <!--
+  <section class="section section--beige">
+    <div class="wrap">
+      <div class="section__header section__header--center" data-r>
+        <span class="label" data-i18n="cards.label">Descobre</span>
+        <h2 data-i18n="cards.h2">O nosso universo.</h2>
+        <p data-i18n="cards.p">Explora o que o Sem Vergonha tem para oferecer.</p>
+      </div>
+      <div class="home-grid" data-r>
+        <a href="food-drinks/" class="home-card">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Food & Drinks">
+          <div class="home-card__overlay">
+            <span class="label">Food & Drinks</span>
+            <h3 data-i18n="cards.food_h3">Aqui, cada prato conta uma história.</h3>
+          </div>
+        </a>
+        <a href="contactos/" class="home-card">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Contactos">
+          <div class="home-card__overlay">
+            <span class="label">Contactos</span>
+            <h3 data-i18n="cards.contacts_h3">Vem visitar-nos.</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider wave-divider--beige">
+    <svg viewBox="0 0 2880 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C120,35 240,5 360,20 C480,35 600,5 720,20 C840,35 960,5 1080,20 C1200,35 1320,5 1440,20 C1560,35 1680,5 1800,20 C1920,35 2040,5 2160,20 C2280,35 2400,5 2520,20 C2640,35 2760,5 2880,20" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,28 C120,43 240,13 360,28 C480,43 600,13 720,28 C840,43 960,13 1080,28 C1200,43 1320,13 1440,28 C1560,43 1680,13 1800,28 C1920,43 2040,13 2160,28 C2280,43 2400,13 2520,28 C2640,43 2760,13 2880,28" fill="none" stroke="var(--brown)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- INFO BAR -->
+  <section class="section section--beige">
+    <div class="wrap">
+      <div class="info-bar" data-r>
+        <div class="info-bar__item">
+          <div class="spin-icon spin-icon--small">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/><polyline points="24 10 24 24 34 30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <span data-i18n="info.hours">Horário</span>
+          <strong>12h — 02h</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__inner">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <img src="assets/semvergonha_logo.png" alt="Sem Vergonha" class="footer__logo-img">
+            <p class="footer__tagline" data-i18n="footer.tagline">Restaurante & Cocktail Bar</p>
+          </div>
+        </div>
+        <div class="footer__grid">
+          <div class="footer__col">
+            <strong data-i18n="footer.hours">Horário</strong>
+            <span>12h00 — 02h00</span>
+            <span data-i18n="footer.everyday">Todos os dias</span>
+          </div>
+          <div class="footer__col">
+            <strong data-i18n="footer.contact">Contacto</strong>
+            <a href="tel:+351936437156">936 437 156</a>
+            <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>
+          </div>
+          <div class="footer__col">
+            <strong data-i18n="footer.follow">Segue-nos</strong>
+            <div class="footer__social">
+              <a href="https://instagram.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+              <a href="https://facebook.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+              <a href="https://tiktok.com/@semvergonharestaurant" target="_blank" rel="noopener" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
             </div>
+          </div>
         </div>
-    </main>
+        <div class="footer__bottom">
+          <span>Av. da República 6, 2450-104 Nazaré</span>
+          <span data-i18n="footer.rights">&copy; 2026 Sem Vergonha. Todos os direitos reservados.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    <script src="main.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script type="text/javascript">
+  function init() {
+    ["#umai-reservation-button", ".umai-reserve"].forEach(function(sel) {
+      var links = document.querySelectorAll(sel);
+      links.forEach(function(link) {
+        link.addEventListener("click", function(e) {
+          e.preventDefault();
+          umaiWidget.config({ apiKey: "0bf29084-b7e0-4c90-8654-06c53f4949cb", widgetType: "reservation" });
+          umaiWidget.openWidget();
+          return false;
+        });
+      });
+    });
+  }
+  document.addEventListener("DOMContentLoaded", init);
+  </script>
 </body>
 </html>
