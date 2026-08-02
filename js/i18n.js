@@ -29,8 +29,8 @@
     'info.opening': 'Opening',
     'info.july': 'July 2026',
 
-    'fd.hero_h1': 'Here, every dish<br>tells a story.',
-    'fd.hero_p': 'Sharing kitchen and signature cocktails. Dishes made for the table, conversation and repeating.',
+    'fd.hero_h1': 'Starts in the glass.<br>Continues at the table.',
+    'fd.hero_p': 'Signature cocktails and dishes made for sharing, fuelling conversation and stretching the night.',
     'fd.tab_comida': 'Food',
     'fd.sidebar_couvert': 'Couvert',
     'fd.sidebar_entradas': 'Starters',

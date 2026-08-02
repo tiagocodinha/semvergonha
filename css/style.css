@@ -401,7 +401,7 @@ img { display: block; max-width: 100%; }
 
 /* ── PAGE HERO (subpages) ── */
 .page-hero {
-  position: relative; height: 50vh; min-height: 360px;
+  position: relative; min-height: 50vh;
   overflow: hidden; background: var(--black);
   display: flex; align-items: center; justify-content: center;
 }
@@ -419,7 +419,7 @@ img { display: block; max-width: 100%; }
 }
 .page-hero__content {
   position: relative; z-index: 2;
-  text-align: center; padding: 60px 24px 0; color: #fff;
+  text-align: center; padding: 60px 24px 40px; color: #fff;
   max-width: 700px;
 }
 .page-hero__content h1 {
