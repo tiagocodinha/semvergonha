@@ -82,8 +82,8 @@
     'fd.sidebar_shots': 'Shots',
 
     'ct.hero_label': 'Contacts',
-    'ct.hero_h1': 'Come visit us.',
-    'ct.hero_p': 'We’re in Nazaré, facing the sea. Drop by.',
+    ‘ct.hero_h1’: ‘Show up shamelessly.’,
+    ‘ct.hero_p’: ‘We\’re in Nazaré, facing the sea. Book a table or just drop by for a cocktail.’,
     'ct.address': 'Address',
     'ct.email': 'Email',
     'ct.hours': 'Hours',
