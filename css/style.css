@@ -419,7 +419,7 @@ img { display: block; max-width: 100%; }
 }
 .page-hero__content {
   position: relative; z-index: 2;
-  text-align: center; padding: 60px 24px 40px; color: #fff;
+  text-align: center; padding: calc(72px + 48px) 24px 48px; color: #fff;
   max-width: 700px;
 }
 .page-hero__content h1 {
