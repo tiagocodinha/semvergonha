@@ -29,8 +29,8 @@
     'info.opening': 'Opening',
     'info.july': 'July 2026',
 
-    'fd.hero_h1': 'For any hour.<br>No shame.',
-    'fd.hero_p': 'Signature cocktails and dishes made for sharing, fuelling conversation and stretching the night.',
+    'fd.hero_h1': 'At the table or the bar. Any hour.',
+    'fd.hero_p': 'Signature dishes, sharing plates and cocktails for every moment of the day.',
     'fd.tab_comida': 'Food',
     'fd.sidebar_couvert': 'Couvert',
     'fd.sidebar_entradas': 'Starters',
