@@ -23,7 +23,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="stylesheet" href="../css/style.css">
-  <script src="https://widget.letsumai.com/dist/embed.min.js" data-api-key="0bf29084-b7e0-4c90-8654-06c53f4949cb" data-widget-type="reservation"></script>
 </head>
 <body>
 
@@ -223,16 +222,72 @@
 
   <script src="../js/main.js"></script>
   <script type="text/javascript">
+  var UMAI_API_KEY = "0bf29084-b7e0-4c90-8654-06c53f4949cb";
+  var UMAI_SCRIPT_URL = "https://widget.letsumai.com/dist/embed.min.js";
+  var umaiScriptPromise = null;
+  var umaiIsOpening = false;
+
+  function loadUmaiWidget() {
+    if (window.umaiWidget) {
+      return Promise.resolve(window.umaiWidget);
+    }
+
+    if (umaiScriptPromise) {
+      return umaiScriptPromise;
+    }
+
+    umaiScriptPromise = new Promise(function(resolve, reject) {
+      var script = document.createElement("script");
+      script.src = UMAI_SCRIPT_URL;
+      script.async = true;
+      script.setAttribute("data-api-key", UMAI_API_KEY);
+      script.setAttribute("data-widget-type", "reservation");
+
+      script.onload = function() {
+        if (window.umaiWidget) {
+          resolve(window.umaiWidget);
+        } else {
+          umaiScriptPromise = null;
+          reject(new Error("O widget da UMAI não foi inicializado."));
+        }
+      };
+
+      script.onerror = function() {
+        umaiScriptPromise = null;
+        reject(new Error("Não foi possível carregar o widget da UMAI."));
+      };
+
+      document.head.appendChild(script);
+    });
+
+    return umaiScriptPromise;
+  }
+
   function init() {
-    ["#umai-reservation-button", ".umai-reserve"].forEach(function(sel) {
-      var links = document.querySelectorAll(sel);
-      links.forEach(function(link) {
-        link.addEventListener("click", function(e) {
-          e.preventDefault();
-          umaiWidget.config({ apiKey: "0bf29084-b7e0-4c90-8654-06c53f4949cb", widgetType: "reservation" });
-          umaiWidget.openWidget();
+    var links = document.querySelectorAll(".umai-reserve");
+
+    links.forEach(function(link) {
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        if (umaiIsOpening) {
           return false;
-        });
+        }
+
+        umaiIsOpening = true;
+
+        loadUmaiWidget()
+          .then(function(widget) {
+            widget.config({ apiKey: UMAI_API_KEY, widgetType: "reservation" });
+            widget.openWidget();
+            umaiIsOpening = false;
+          })
+          .catch(function(error) {
+            console.error(error);
+            umaiIsOpening = false;
+          });
+
+        return false;
       });
     });
   }
