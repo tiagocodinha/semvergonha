@@ -35,8 +35,7 @@ img { display: block; max-width: 100%; }
 
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
 
-/* ── HIDE RESERVE BUTTONS (temporary) ── */
-.umai-reserve, .floating-reserve, .nav__cta, .mob-menu__cta, .hero__btn--fill { display: none !important; }
+
 
 /* ── HIDE LANG TOGGLE (temporary) ── */
 .lang-toggle { display: none !important; }
