@@ -37,6 +37,8 @@ img { display: block; max-width: 100%; }
 
 
 
+/* ── HIDE LANG TOGGLE (temporary) ── */
+.lang-toggle { display: none !important; }
 
 /* ── FLOATING RESERVE BUTTON ── */
 .floating-reserve {

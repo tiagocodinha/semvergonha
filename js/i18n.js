@@ -132,8 +132,9 @@
       });
     });
 
-    var lang = localStorage.getItem('sv_lang');
-    if (lang && lang !== 'pt') { applyLang(lang); }
+    // i18n disabled temporarily — always PT
+    // var lang = localStorage.getItem('sv_lang');
+    // if (lang && lang !== 'pt') { applyLang(lang); }
   });
 
   window.svI18n = { toggle: toggle, applyLang: applyLang };
