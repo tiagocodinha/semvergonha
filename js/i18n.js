@@ -14,10 +14,10 @@
 
     'hero.sub': 'Restaurant & Cocktail Bar',
     'hero.menu': 'Menu',
-    'intro.label': 'Dine & Party',
-    'intro.h2': 'Where dinner<br>becomes the night.',
-    ‘intro.p1’: ‘Sem Vergonha is not just a restaurant. And it doesn\’t need to be a nightclub for the night to happen. Here, you come to dine, stay for drinks and lose track of time without even noticing.’,
-    ‘intro.p2’: ‘Born from the spirit of the <strong>”Muro da Pouca Vergonha”</strong>, a place of gathering, conversation and a touch of boldness.’,
+    'intro.label': 'From Day to Night',
+    'intro.h2': 'To Eat.<br>To Drink.<br>To Stay.',
+    'intro.p1': 'Some come for lunch and stay for coffee. Some drop by for a cocktail and end up ordering from the menu. Some book dinner and lose track of time.',
+    'intro.p2': 'At Sem Vergonha there\'s no right way to be. There\'s a table, a bar, the sea ahead and time to enjoy.',
     'intro.badge1': 'Sharing kitchen',
     'intro.badge2': 'Signature cocktails',
     'cards.label': 'Discover',
@@ -41,6 +41,80 @@
     'fd.cat_entradas': 'Starters',
     'fd.cat_pratos': 'Mains',
     'fd.cat_sides': 'Sides',
+    'fd.cat_classicos': 'Classic Cocktails',
+    'fd.sidebar_classicos': 'Classics',
+
+    'fd.ck_ff_d': 'Gin · St-Germain · Raspberry · Lime',
+    'fd.ck_bv_d': 'Bacardí · Giffard · Vanilla · Passion Fruit · Lime · Sparkling Foam',
+    'fd.ck_ml_d': 'Patrón Silver · Limoncello · Chilli · Mango · Lime · Agave',
+    'fd.ck_mm_d': 'Grey Goose · Ginger Beer · Lime · Ginger Foam',
+    'fd.ck_im_d': 'Grey Goose · Green Apple · Lime · Sugar Syrup · Mint',
+    'fd.ck_sh_d': 'The Foxtale 0% · Ginger Beer · Passion Fruit · Lime · Ginger Foam',
+
+    'fd.couvert1': 'Bread · Chef\'s Butter',
+
+    'fd.e1': 'Tuna Tostada',
+    'fd.e1d': 'Avocado · Kimchi',
+    'fd.e2': 'Signature Oyster <em>2 pcs</em>',
+    'fd.e3': 'Classic Oyster <em>2 pcs</em>',
+    'fd.e4': 'Oxtail Croquette <em>2 pcs</em>',
+    'fd.e4d': 'Confit Garlic Mayo · Mustard Pickle',
+    'fd.e5': 'Beef Tartare',
+    'fd.e5d': 'Toasted Brioche · Cured Egg Yolk',
+    'fd.e6': 'Chicken Heart Skewer <em>2 pcs</em>',
+    'fd.e6d': 'Gochujang · Preserved Lemon',
+    'fd.e7': 'Oyster Mushroom Skewer <em>2 pcs</em>',
+    'fd.e7d': 'Gochujang · Preserved Lemon (Vegetarian)',
+
+    'fd.p1': 'Seared Tuna',
+    'fd.p2': 'Grilled Bimi',
+    'fd.p2d': 'Hummus · Sumac · Mixed Nuts',
+    'fd.p3': 'Shrimp',
+    'fd.p3d': 'Head Sauce · Kaffir Lime',
+    'fd.p4': 'Grilled Squid',
+    'fd.p4d': 'Own Ink Sauce',
+    'fd.p5': 'Cockles',
+    'fd.p5d': 'Seaweed · Smoked Butter',
+    'fd.p6': 'Black Pork Skewer',
+    'fd.p7': 'Grilled Steak',
+    'fd.p7d': 'Meat Jus',
+    'fd.p8d': 'Brioche · Shrimp · Confit Garlic · Togarashi',
+
+    'fd.si1': 'Double-Fried Potatoes',
+    'fd.si1d': 'Confit Garlic Mayo · Parmesan',
+    'fd.si2': 'Fried Rice',
+    'fd.si3': 'Lettuce Heart',
+    'fd.si3d': 'Citrus · Mixed Nuts · Tahini',
+
+    'fd.de1': 'French Toast',
+    'fd.de1d': 'Custard · Lemon Ice Cream',
+    'fd.de2': 'Chocolate Nestum',
+    'fd.de2d': 'Passion Fruit · Hazelnut · Miso',
+    'fd.de3d': 'Coconut · Grilled Pineapple · Lime',
+
+    'fd.b_luso1': 'Luso Water <em>1L</em>',
+    'fd.b_luso2': 'Luso Water <em>50cl</em>',
+    'fd.b_luso3': 'Luso Water Takeaway <em>50cl</em>',
+    'fd.b_castello': 'Castello Sparkling Water <em>25cl</em>',
+    'fd.b_pedras1': 'Pedras Sparkling Water <em>25cl</em>',
+    'fd.b_pedras2': 'Pedras Lemon Sparkling Water <em>25cl</em>',
+    'fd.b_tonica': 'Tonic Water',
+    'fd.b_tonica_d': 'Mango · Peach · Lemon',
+    'fd.b_limonada': 'Lemonade',
+    'fd.b_sumo': 'Fresh Orange Juice',
+    'fd.b_cafe': 'Espresso',
+    'fd.b_descaf': 'Decaf',
+    'fd.b_cafeduplo': 'Double Espresso',
+    'fd.b_cha': 'Tea / Infusion',
+    'fd.b_cha_d': 'Lemon Balm · Chamomile · Green · Black · Red Berries · Mint',
+    'fd.b_dw8': 'Dewar\'s 8 Years Caribbean Smooth',
+    'fd.b_dw12': 'Dewar\'s 12 Years',
+    'fd.b_dw15': 'Dewar\'s 15 Years',
+    'fd.b_bac8': 'Bacardí 8 Years',
+    'fd.b_bandida': 'Cider <em>40cl</em>',
+    'fd.b_amendoa': 'Bitter Almond',
+    'fd.b_absinto': 'Absinthe',
+
     'fd.cat_sobremesas': 'Desserts',
     'fd.cat_aguas': 'Water',
     'fd.cat_refri': 'Soft Drinks',
@@ -82,8 +156,8 @@
     'fd.sidebar_shots': 'Shots',
 
     'ct.hero_label': 'Contacts',
-    ‘ct.hero_h1’: ‘Show up shamelessly.’,
-    ‘ct.hero_p’: ‘We\’re in Nazaré, facing the sea. Book a table or just drop by for a cocktail.’,
+    'ct.hero_h1': 'Show up shamelessly.',
+    'ct.hero_p': 'We\'re in Nazaré, facing the sea. Book a table or just drop by for a cocktail.',
     'ct.address': 'Address',
     'ct.email': 'Email',
     'ct.hours': 'Hours',
@@ -132,9 +206,8 @@
       });
     });
 
-    // i18n disabled temporarily — always PT
-    // var lang = localStorage.getItem('sv_lang');
-    // if (lang && lang !== 'pt') { applyLang(lang); }
+    var lang = localStorage.getItem('sv_lang');
+    if (lang && lang !== 'pt') { applyLang(lang); }
   });
 
   window.svI18n = { toggle: toggle, applyLang: applyLang };
