@@ -349,7 +349,16 @@ O nome vem do antigo <strong>"Muro da Pouca Vergonha"</strong>, onde os encontro
       });
     });
   }
-  document.addEventListener("DOMContentLoaded", init);
+  document.addEventListener("DOMContentLoaded", function() {
+    init();
+    if (new URLSearchParams(window.location.search).get('reserve') === '1') {
+      history.replaceState(null, '', window.location.pathname);
+      loadUmaiWidget().then(function(widget) {
+        widget.config({ apiKey: UMAI_API_KEY, widgetType: "reservation" });
+        widget.openWidget();
+      });
+    }
+  });
   </script>
 </body>
 </html>
