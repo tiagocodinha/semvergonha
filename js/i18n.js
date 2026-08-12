@@ -100,6 +100,7 @@
     'fd.b_pedras2': 'Pedras Lemon Sparkling Water <em>25cl</em>',
     'fd.b_tonica': 'Tonic Water',
     'fd.b_tonica_d': 'Mango · Peach · Lemon',
+    'fd.b_icetea': 'Iced Tea <em>33cl</em>',
     'fd.b_limonada': 'Lemonade',
     'fd.b_sumo': 'Fresh Orange Juice',
     'fd.b_cafe': 'Espresso',
