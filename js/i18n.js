@@ -45,7 +45,7 @@
     'fd.sidebar_classicos': 'Classics',
 
     'fd.ck_ff_d': 'Gin · St-Germain · Raspberry · Lime',
-    'fd.ck_bv_d': 'Bacardí · Giffard · Vanilla · Passion Fruit · Lime · Sparkling Foam',
+    'fd.ck_bv_d': 'Bacardí · Giffard · Vanilla · Passion Fruit · Lime · Sugar Syrup · Sparkling Foam',
     'fd.ck_ml_d': 'Patrón Silver · Limoncello · Chilli · Mango · Lime · Agave',
     'fd.ck_mm_d': 'Grey Goose · Ginger Beer · Lime · Ginger Foam',
     'fd.ck_im_d': 'Grey Goose · Green Apple · Lime · Sugar Syrup · Mint',
