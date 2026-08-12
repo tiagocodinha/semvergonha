@@ -77,7 +77,7 @@
     'fd.p5d': 'Seaweed · Smoked Butter',
     'fd.p6': 'Black Pork Skewer',
     'fd.p7': 'Grilled Steak',
-    'fd.p7d': 'Meat Jus',
+    'fd.p7d': 'Beef Jus',
     'fd.p8d': 'Brioche · Shrimp · Confit Garlic · Togarashi',
 
     'fd.si1': 'Double-Fried Potatoes',
