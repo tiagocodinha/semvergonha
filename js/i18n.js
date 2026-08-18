@@ -188,7 +188,7 @@
     'ck.third_h': 'Third-party cookies',
     'ck.third_p': 'We use Google Tag Manager and Google Analytics to understand how visitors interact with our website. These services may set their own cookies. For more information, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google\'s Privacy Policy</a>.',
     'ck.contact_h': 'Contact',
-    'ck.contact_p': 'For questions about our cookie policy, contact us at <a href="mailto:geral@semvergonharestaurant.com">geral@semvergonharestaurant.com</a>.',
+    'ck.contact_p': 'For questions about our cookie policy, contact us at <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>.',
 
     'ct.hero_label': 'Contacts',
     'ct.hero_h1': 'Show up shamelessly.',
