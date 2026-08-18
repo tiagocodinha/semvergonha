@@ -210,12 +210,12 @@
             <span>Todos os dias</span>
           </div>
           <div class="footer__col">
-            <strong>Contacto</strong>
-            <a href="tel:+351936437156">936 437 156</a>
+            <strong data-i18n="footer.contact">Contacto</strong>
+            <a href="tel:+351936437156">936 437 156 <small data-i18n="footer.phone_note">(Chamada para a rede móvel nacional)</small></a>
             <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>
           </div>
           <div class="footer__col">
-            <strong>Segue-nos</strong>
+            <strong data-i18n="footer.follow">Segue-nos</strong>
             <div class="footer__social">
               <a href="https://instagram.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
               <a href="https://facebook.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -225,7 +225,8 @@
         </div>
         <div class="footer__bottom">
           <a href="https://maps.app.goo.gl/fssxMec2yd6R4byP6" target="_blank" rel="noopener">Av. da República 6, 2450-104 Nazaré</a>
-          <span>&copy; 2026 Sem Vergonha. Todos os direitos reservados.</span>
+          <span data-i18n="footer.rights">&copy; 2026 Sem Vergonha. Todos os direitos reservados.</span>
+          <a href="../cookies/" data-i18n="footer.cookies">Política de Cookies</a>
         </div>
       </div>
     </div>
@@ -304,5 +305,18 @@
   }
   document.addEventListener("DOMContentLoaded", init);
   </script>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__title" data-i18n="ck.banner_title">Cookies</div>
+      <p class="cookie-banner__text" data-i18n="ck.banner_text">Utilizamos cookies para melhorar a sua experiência e analisar o tráfego do website. <a href="../cookies/">Saiba mais</a></p>
+      <div class="cookie-banner__buttons">
+        <button class="cookie-banner__btn cookie-banner__btn--accept" data-i18n="ck.accept">Aceitar</button>
+        <button class="cookie-banner__btn cookie-banner__btn--reject" data-i18n="ck.reject">Rejeitar</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/cookies.js"></script>
 </body>
 </html>
