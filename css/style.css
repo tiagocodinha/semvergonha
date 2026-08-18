@@ -1106,6 +1106,7 @@ a.contacts__card--link:hover .contacts__icon { color: var(--brown-d); }
   display: block; font-size: 0.85rem; color: rgba(255,255,255,0.6);
   line-height: 1.7; transition: color 0.3s;
 }
+.footer__col a[href] { cursor: pointer; }
 .footer__col a:hover { color: #fff; }
 .footer__col a small { font-size: 0.65em; opacity: 0.6; }
 .footer__social { display: flex; gap: 16px; align-items: center; }
