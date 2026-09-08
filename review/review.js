@@ -9,7 +9,7 @@
   // 2. Clica em "Escrever uma avaliação"
   // 3. Copia o URL completo
   // Exemplo: https://search.google.com/local/writereview?placeid=XXXXX
-  var GOOGLE_REVIEW_URL = 'COLOCAR_URL_GOOGLE_AQUI';
+  var GOOGLE_REVIEW_URL = 'https://g.page/r/Cb24nnV3W48CEAE/review';
   // ================================================================
 
   // ── Token extraction ──
