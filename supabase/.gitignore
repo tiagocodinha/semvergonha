@@ -1,0 +1,6 @@
+# Artefactos locais da Supabase CLI
+.branches
+.temp
+node_modules
+deno.lock
+.env

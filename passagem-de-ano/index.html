@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Passagem de Ano | Sem Vergonha</title>
+  <meta name="description" content="Lista de interesse para a Passagem de Ano no Sem Vergonha.">
+
+  <!-- ==========================================================
+       PAGINA INVISIVEL
+       - noindex/nofollow/noarchive  -> fora dos motores de busca
+       - sem Open Graph              -> sem pre-visualizacao em redes
+       - fora do sitemap.xml
+       - sem links a apontar para aqui em nenhuma outra pagina
+       ========================================================== -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/passagem-de-ano/pda.css">
+</head>
+<body>
+
+  <main class="pda">
+    <!-- Marca de agua "2027" -->
+    <span class="pda__year" aria-hidden="true">2027</span>
+    <span class="pda__glow" aria-hidden="true"></span>
+
+    <div class="pda__inner">
+
+      <!-- ─────────── Idioma ─────────── -->
+      <div class="pda__langbar">
+        <button type="button" class="pda-lang" id="langBtn" aria-label="Change language to English">
+          <svg class="pda-lang__globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18" stroke-linecap="round"/>
+          </svg>
+          <span id="langCode">EN</span>
+        </button>
+      </div>
+
+      <!-- ─────────── Cabecalho ─────────── -->
+      <header class="pda__head">
+        <img src="/assets/semvergonha_logo.png" alt="Sem Vergonha" class="pda__logo" width="220" height="66">
+
+        <span class="pda__eyebrow" data-i18n="eyebrow">Passagem de Ano</span>
+
+        <h1 class="pda__title" data-i18n="title">Entra em 2027.<br><em>Sem Vergonha.</em></h1>
+
+        <!-- Duas linhas no computador. No telemovel a segunda frase nao cabe
+             numa linha com letra legivel, por isso quebra num ponto escolhido
+             (o <br class="pda-br-m"> so existe abaixo dos 520px). O espaco
+             antes do <br> e preciso: com display:none as palavras colavam-se. -->
+        <p class="pda__lead" data-i18n="lead">Estamos a preparar a despedida de 2026.<br>Junta-te à lista para em breve <br class="pda-br-m">ficares a saber de tudo.</p>
+      </header>
+
+      <!-- Onda decorativa -->
+      <div class="pda__wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,20 C60,35 120,5 180,20 C240,35 300,5 360,20 C420,35 480,5 540,20 C600,35 660,5 720,20 C780,35 840,5 900,20 C960,35 1020,5 1080,20 C1140,35 1200,5 1260,20 C1320,35 1380,5 1440,20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- ─────────── Formulario ─────────── -->
+      <section class="pda__card" id="card">
+
+        <form class="pda-form" id="pdaForm" novalidate>
+
+          <div class="pda-form__grid">
+            <label class="pda-field">
+              <span data-i18n="f_first">Primeiro nome</span>
+              <input type="text" name="firstName" autocomplete="given-name" maxlength="60" required>
+            </label>
+
+            <label class="pda-field">
+              <span data-i18n="f_last">Último nome</span>
+              <input type="text" name="lastName" autocomplete="family-name" maxlength="60" required>
+            </label>
+
+            <div class="pda-field pda-field--phone">
+              <span data-i18n="f_phone">Telemóvel</span>
+              <div class="pda-phone">
+                <!-- Indicativo: lista completa, com pesquisa por país,
+                     código ISO ou número. Preenchida por pda.js. -->
+                <div class="pda-combo" id="ccWrap">
+                  <input type="text" class="pda-combo__input" id="ccInput"
+                         role="combobox" aria-expanded="false" aria-controls="ccList"
+                         aria-autocomplete="list" aria-label="Indicativo do país"
+                         autocomplete="off" spellcheck="false" placeholder="Pesquisar" data-i18n-ph="ph_search">
+                  <svg class="pda-combo__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  <input type="hidden" name="phoneCode" id="phoneCode" value="+351">
+                  <ul class="pda-combo__list" id="ccList" role="listbox" aria-label="Indicativos" hidden></ul>
+                </div>
+                <input type="tel" name="phoneNumber" autocomplete="tel-national" inputmode="tel" maxlength="20" placeholder="912 345 678" data-i18n-ph="ph_phone" required>
+              </div>
+            </div>
+
+            <label class="pda-field pda-field--full">
+              <span data-i18n="f_email">Email</span>
+              <input type="email" name="email" autocomplete="email" inputmode="email" maxlength="160" required>
+            </label>
+
+            <div class="pda-field">
+              <span data-i18n="f_birth">Data de nascimento</span>
+              <!-- Calendario proprio (pda.js): o input nativo type=date
+                   traz o calendario do browser, que nao segue a marca. -->
+              <div class="pda-date" id="dateWrap">
+                <button type="button" class="pda-date__trigger" id="dateBtn"
+                        aria-haspopup="dialog" aria-expanded="false">
+                  <span id="dateLabel" class="is-empty" data-i18n="ph_date">dd / mm / aaaa</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>
+                </button>
+                <input type="hidden" name="birthDate" id="birthDate">
+
+                <div class="pda-cal" id="cal" hidden role="dialog" aria-label="Escolher data de nascimento">
+                  <div class="pda-cal__head">
+                    <button type="button" class="pda-cal__nav" id="calPrev" aria-label="Mês anterior">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <div class="pda-cal__pickers">
+                      <select id="calMonth" aria-label="Mês"></select>
+                      <select id="calYear" aria-label="Ano"></select>
+                    </div>
+                    <button type="button" class="pda-cal__nav" id="calNext" aria-label="Mês seguinte">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                  </div>
+                  <div class="pda-cal__dows" id="calDows" aria-hidden="true"></div>
+                  <div class="pda-cal__grid" id="calGrid"></div>
+                </div>
+              </div>
+            </div>
+
+            <label class="pda-field">
+              <span data-i18n="f_party">Número de pessoas</span>
+              <select name="partySize" required>
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="12+">+12</option>
+              </select>
+            </label>
+          </div>
+
+          <p class="pda-form__err" id="pdaErr" hidden role="alert"></p>
+
+          <button type="submit" class="pda-btn" id="pdaBtn">
+            <span class="pda-btn__label" data-i18n="cta">Tenho interesse</span>
+            <span class="pda-btn__spin" aria-hidden="true"></span>
+          </button>
+
+          <p class="pda-note" data-i18n="note">A inscrição nesta lista não constitui uma reserva.</p>
+
+          <p class="pda-privacy" data-i18n="privacy">
+            Usamos o teu nome, contacto e data de nascimento apenas para te
+            falarmos da Passagem de Ano no Sem Vergonha. Não partilhamos nada com
+            terceiros e podes pedir a remoção a qualquer momento para
+            <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>.
+            <!-- O site nao tem pagina de politica de privacidade dedicada,
+                 so a de cookies. Quando existir, trocar o href e o texto. -->
+            <a href="/cookies/">Política de Cookies</a>.
+          </p>
+        </form>
+
+        <!-- ─────────── Sucesso ─────────── -->
+        <div class="pda-done" id="pdaDone" hidden>
+          <div class="pda-done__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h2 data-i18n="done_h">Já estás na lista.<br>Em breve, contamos-te tudo!</h2>
+          <p data-i18n="note">A inscrição nesta lista não constitui uma reserva.</p>
+        </div>
+      </section>
+
+      <footer class="pda__foot">
+        <span data-i18n="foot">Sem Vergonha · Av. da República 6, Nazaré</span>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="/passagem-de-ano/pda.js"></script>
+</body>
+</html>
