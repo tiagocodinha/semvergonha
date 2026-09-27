@@ -190,6 +190,25 @@
      nenhum outro parte. */
   var inFlight = false;
 
+  /**
+   * Identificador desta submissao. Acompanha o pedido e e unico na
+   * base de dados, por isso se o mesmo clique chegar duas vezes (ou a
+   * rede repetir), so entra uma linha. Inscricoes diferentes — mesmo
+   * com o mesmo email — trazem ids diferentes e criam linhas proprias.
+   */
+  var submissionId = newId();
+
+  function newId() {
+    try {
+      if (window.crypto && crypto.randomUUID) { return crypto.randomUUID(); }
+    } catch (e) {}
+    /* Reserva para contextos sem crypto.randomUUID (http antigo). */
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0;
+      return (c === 'x' ? r : ((r & 0x3) | 0x8)).toString(16);
+    });
+  }
+
   function $(id) { return document.getElementById(id); }
 
   /**
@@ -623,12 +642,13 @@
     var birthDate = String(d.get('birthDate') || '').trim();
     var party     = String(d.get('partySize') || '');
 
-    if (!firstName || !lastName || !phoneRaw || !email || !birthDate) {
+    if (!firstName || !lastName || !phoneRaw || !email || !birthDate || !party) {
       return bad(!firstName ? 'firstName'
                : !lastName  ? 'lastName'
                : !phoneRaw  ? 'phoneNumber'
                : !email     ? 'email'
-               : 'birthDate', MSG('required'));
+               : !birthDate ? 'birthDate'
+               : 'partySize', MSG('required'));
     }
 
     if (firstName.length < 2 || !RE_NAME.test(firstName)) { return bad('firstName', MSG('name')); }
@@ -655,6 +675,7 @@
     }
 
     return {
+      submissionId: submissionId,
       firstName: firstName,
       lastName: lastName,
       phoneCode: phoneCode,

@@ -4,14 +4,18 @@
 -- Tabela propria, separada do merch. Sem policies de RLS:
 -- so a service_role (a Edge Function nye-waitlist) escreve aqui.
 --
--- Duplicados: o email e UNICO. A funcao faz upsert, por isso dois
--- envios do mesmo email (duplo clique, retry de rede, ou a pessoa a
--- inscrever-se outra vez) atualizam a mesma linha em vez de criarem
--- outra. O created_at guarda a primeira inscricao.
+-- Duplicados: cada submissao e uma linha, mesmo com o mesmo email —
+-- a mesma pessoa pode inscrever-se mais do que uma vez e todas ficam
+-- registadas. O que impede o duplo clique de criar duas linhas e o
+-- submission_id, gerado no browser por cada preenchimento: se o mesmo
+-- pedido chegar duas vezes, traz o mesmo id e a segunda e ignorada.
 -- ============================================================
 
 create table if not exists public.nye_waitlist (
   id                  uuid primary key default gen_random_uuid(),
+
+  -- Identificador da submissao (idempotencia do clique)
+  submission_id       uuid not null default gen_random_uuid(),
 
   first_name          text not null check (length(btrim(first_name)) between 2 and 60),
   last_name           text not null check (length(btrim(last_name))  between 2 and 60),
@@ -35,9 +39,13 @@ create table if not exists public.nye_waitlist (
   updated_at          timestamptz not null default now()
 );
 
--- Email unico → e isto que impede linhas duplicadas.
--- A funcao grava sempre em minusculas.
-create unique index if not exists nye_waitlist_email_key
+-- Unico o submission_id, nao o email: e ele que impede o duplo clique
+-- sem impedir a mesma pessoa de se inscrever outra vez.
+create unique index if not exists nye_waitlist_submission_id_key
+  on public.nye_waitlist (submission_id);
+
+-- O email repete-se a vontade; indexado so para procurar.
+create index if not exists nye_waitlist_email_idx
   on public.nye_waitlist (email);
 
 create index if not exists nye_waitlist_created_idx
@@ -61,7 +69,9 @@ select
   birth_date                                        as nascimento,
   date_part('year', age(birth_date))::int           as idade,
   case when party_size_more then '+12'
-       else party_size::text end                    as pessoas
+       else party_size::text end                    as pessoas,
+  count(*) over (partition by email)                as inscricoes_deste_email,
+  row_number() over (partition by email order by created_at) as n_da_pessoa
 from public.nye_waitlist
 order by created_at asc;
 

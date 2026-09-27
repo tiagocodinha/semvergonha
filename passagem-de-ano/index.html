@@ -138,8 +138,10 @@
             <label class="pda-field">
               <span data-i18n="f_party">Número de pessoas</span>
               <select name="partySize" required>
+                <!-- Arranca em branco: obriga a uma escolha consciente. -->
+                <option value="" selected disabled hidden></option>
                 <option value="1">1</option>
-                <option value="2" selected>2</option>
+                <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
