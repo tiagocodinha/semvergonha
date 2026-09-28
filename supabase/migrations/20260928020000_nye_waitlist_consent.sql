@@ -17,8 +17,15 @@ comment on column public.nye_waitlist.consent_text is
   'Frase de consentimento exata aceite pela pessoa, tal como lhe foi apresentada. Prova do art. 7.º/1 do RGPD.';
 
 
--- A lista de trabalho mostra o consentimento e a data em que foi dado
-create or replace view public.nye_waitlist_lista as
+-- A lista de trabalho mostra o consentimento e a data em que foi dado.
+--
+-- Tem de ser drop + create, nao "create or replace": o Postgres so
+-- deixa ACRESCENTAR colunas no fim de uma vista existente, e aqui a
+-- coluna nova entra a meio. Largar a vista nao perde dados nenhuns —
+-- uma vista e so uma consulta guardada.
+drop view if exists public.nye_waitlist_lista;
+
+create view public.nye_waitlist_lista as
 select
   created_at                                        as inscrito_em,
   first_name || ' ' || last_name                    as nome,

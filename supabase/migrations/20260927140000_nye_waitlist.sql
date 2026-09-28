@@ -73,6 +73,7 @@ select
   date_part('year', age(birth_date))::int           as idade,
   case when party_size_more then '+12'
        else party_size::text end                    as pessoas,
+  consent_text                                      as consentiu_com,
   count(*) over (partition by email)                as inscricoes_deste_email,
   row_number() over (partition by email order by created_at) as n_da_pessoa
 from public.nye_waitlist
