@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Merch | Sem Vergonha</title>
+  <meta name="description" content="Merch oficial do Sem Vergonha.">
+
+  <!-- ==========================================================
+       PAGINA INVISIVEL
+       - noindex/nofollow/noarchive  -> fora dos motores de busca
+       - sem entrada no sitemap.xml
+       - sem links a apontar para aqui em nenhuma outra pagina
+       ========================================================== -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+  <!-- Sem Open Graph de proposito: evita pre-visualizacoes em redes sociais -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/merchsemvergonha2026/merch.css">
+</head>
+<body>
+
+  <!-- ============================ NAV ============================ -->
+  <nav class="nav" id="nav">
+    <a href="/" class="nav__logo">
+      <img src="/assets/semvergonha_logo.png" alt="Sem Vergonha" class="nav__logo-img">
+    </a>
+    <div class="nav__links">
+      <a href="/food-drinks/">FOOD &amp; DRINKS</a>
+      <a href="/merchsemvergonha2026/" class="nav__link--active">MERCH</a>
+      <a href="/contactos/" data-i18n="nav.contacts">CONTACTOS</a>
+    </div>
+    <div class="nav__actions">
+      <a href="#" class="nav__cta umai-reserve" id="umai-reservation-button" data-i18n="reserve">Reservar Mesa</a>
+      <button class="lang-toggle" aria-label="Language">EN</button>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ========================= MOBILE MENU ========================= -->
+  <div class="mob-menu" id="mobMenu">
+    <div class="mob-menu__inner">
+      <a href="/food-drinks/">FOOD &amp; DRINKS</a>
+      <a href="/merchsemvergonha2026/">MERCH</a>
+      <a href="/contactos/" data-i18n="nav.contacts">CONTACTOS</a>
+      <a href="#" class="mob-menu__cta umai-reserve" data-i18n="reserve">Reservar Mesa</a>
+      <button class="lang-toggle">EN</button>
+    </div>
+  </div>
+
+  <!-- ============================ HERO ============================
+       Assente no .page-hero do site (o mesmo do /contactos/): foto de
+       fundo, camada escura por cima, texto branco.
+       O original assets/merch.jpg tem 10 MB — pesado demais para
+       telemovel. Estas versoes vao de 61 KB (webp 640) a 367 KB.
+       ================================================================ -->
+  <header class="page-hero mhero">
+    <picture>
+      <source type="image/webp"
+              srcset="/assets/merch-cover-640.webp 640w,
+                      /assets/merch-cover-1000.webp 1000w,
+                      /assets/merch-cover-1600.webp 1600w"
+              sizes="100vw">
+      <img src="/assets/merch-cover-1000.jpg"
+           srcset="/assets/merch-cover-640.jpg 640w,
+                   /assets/merch-cover-1000.jpg 1000w,
+                   /assets/merch-cover-1600.jpg 1600w"
+           sizes="100vw" class="page-hero__bg" fetchpriority="high"
+           alt="T-shirt do Sem Vergonha vista de costas, com a ilustração «A vergonha da vizinha é sempre melhor que a minha»">
+    </picture>
+    <div class="page-hero__overlay mhero__overlay"></div>
+
+    <div class="page-hero__content mhero__content">
+      <span class="label label--light" data-i18n="merch.hero_label">Loja Oficial</span>
+      <h1 data-i18n="merch.hero_h1">Veste<br>Sem Vergonha.</h1>
+      <p data-i18n="merch.hero_p">Para quem gosta de dar nas vistas e tem pouca vontade de se explicar.</p>
+      <div class="mhero__actions">
+        <a href="#produtos" class="mbtn mbtn--light" data-i18n="merch.hero_cta">Ver coleção</a>
+      </div>
+      <ul class="mhero__pills">
+        <li data-i18n="merch.pill2">Edição limitada</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider wave-divider--white">
+    <svg viewBox="0 0 2880 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C120,35 240,5 360,20 C480,35 600,5 720,20 C840,35 960,5 1080,20 C1200,35 1320,5 1440,20 C1560,35 1680,5 1800,20 C1920,35 2040,5 2160,20 C2280,35 2400,5 2520,20 C2640,35 2760,5 2880,20" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,28 C120,43 240,13 360,28 C480,43 600,13 720,28 C840,43 960,13 1080,28 C1200,43 1320,13 1440,28 C1560,43 1680,13 1800,28 C1920,43 2040,13 2160,28 C2280,43 2400,13 2520,28 C2640,43 2760,13 2880,28" fill="none" stroke="var(--brown)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ========================== PRODUTOS ========================== -->
+  <section class="section section--white" id="produtos">
+    <div class="wrap">
+      <div class="section__header section__header--center" data-r>
+        <span class="label" data-i18n="merch.prod_label">T-Shirts</span>
+        <h2 data-i18n="merch.prod_h2">A coleção.</h2>
+        <p data-i18n="merch.prod_p">Há coisas que ficam à mesa. Outras vestem-se.<br>Leva um pouco da nossa vergonha contigo.</p>
+      </div>
+
+      <!-- Grelha preenchida por merch.js a partir do catalogo -->
+      <div class="mgrid" id="mgrid" data-r></div>
+
+      <p class="mgrid__note" data-i18n="merch.prod_note">Preços com IVA incluído. Stock limitado — quando acabar, acabou.</p>
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider wave-divider--beige">
+    <svg viewBox="0 0 2880 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C120,35 240,5 360,20 C480,35 600,5 720,20 C840,35 960,5 1080,20 C1200,35 1320,5 1440,20 C1560,35 1680,5 1800,20 C1920,35 2040,5 2160,20 C2280,35 2400,5 2520,20 C2640,35 2760,5 2880,20" fill="none" stroke="var(--brown)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M0,28 C120,43 240,13 360,28 C480,43 600,13 720,28 C840,43 960,13 1080,28 C1200,43 1320,13 1440,28 C1560,43 1680,13 1800,28 C1920,43 2040,13 2160,28 C2280,43 2400,13 2520,28 C2640,43 2760,13 2880,28" fill="none" stroke="var(--brown)" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ============================= FAQ ============================= -->
+  <section class="section section--beige" id="faq">
+    <div class="wrap">
+      <div class="section__header section__header--center" data-r>
+        <span class="label" data-i18n="merch.faq_label">Antes de comprar</span>
+        <h2 data-i18n="merch.faq_h2">Perguntas rápidas.</h2>
+      </div>
+
+      <div class="mfaq" data-r>
+        <details class="mfaq__item">
+          <summary data-i18n="merch.faq_q1">Como recebo a minha t-shirt?</summary>
+          <p data-i18n="merch.faq_a1">Escolhes no checkout: levantamento no restaurante (Av. da República 6, Nazaré), sem custos, ou envio por correio para Portugal Continental.</p>
+        </details>
+        <details class="mfaq__item">
+          <summary data-i18n="merch.faq_q2">Quanto tempo demora?</summary>
+          <p data-i18n="merch.faq_a2">Levantamento: avisamos-te por email assim que estiver pronta, normalmente em 2 a 3 dias úteis. Envio: 3 a 5 dias úteis depois da confirmação do pagamento.</p>
+        </details>
+        <details class="mfaq__item">
+          <summary data-i18n="merch.faq_q3">Posso trocar o tamanho?</summary>
+          <p data-i18n="merch.faq_a3">Sim. Tens 14 dias para trocar, desde que a peça venha sem uso e com a etiqueta. Fala connosco por email e tratamos disso.</p>
+        </details>
+        <details class="mfaq__item">
+          <summary data-i18n="merch.faq_q4">O pagamento é seguro?</summary>
+          <p data-i18n="merch.faq_a4">É. O pagamento é processado pela Paybyrd, com ambiente certificado PCI-DSS. Nunca vemos nem guardamos os dados do teu cartão.</p>
+        </details>
+        <details class="mfaq__item">
+          <summary data-i18n="merch.faq_q5">Preciso de fatura com NIF?</summary>
+          <p data-i18n="merch.faq_a5">Podes indicar o NIF no checkout, no campo opcional. A fatura segue por email.</p>
+        </details>
+      </div>
+
+      <p class="mfaq__contact" data-i18n="merch.faq_contact">Ficou alguma dúvida? Escreve-nos para <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a></p>
+    </div>
+  </section>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__inner">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <img src="/assets/semvergonha_logo.png" alt="Sem Vergonha" class="footer__logo-img">
+            <p class="footer__tagline" data-i18n="footer.tagline">Restaurante &amp; Cocktail Bar</p>
+          </div>
+        </div>
+        <div class="footer__grid">
+          <div class="footer__col">
+            <strong data-i18n="footer.hours">Horário</strong>
+            <span>12h30 — 02h00</span>
+            <span data-i18n="footer.everyday">Todos os dias</span>
+          </div>
+          <div class="footer__col">
+            <strong data-i18n="footer.contact">Contacto</strong>
+            <a href="tel:+351936437156">936 437 156 <small data-i18n="footer.phone_note">(Chamada para a rede móvel nacional)</small></a>
+            <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>
+          </div>
+          <div class="footer__col">
+            <strong data-i18n="footer.follow">Segue-nos</strong>
+            <div class="footer__social">
+              <a href="https://instagram.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+              <a href="https://facebook.com/semvergonharestaurant" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+              <a href="https://tiktok.com/@semvergonharestaurant" target="_blank" rel="noopener" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <a href="https://maps.app.goo.gl/fssxMec2yd6R4byP6" target="_blank" rel="noopener">Av. da República 6, 2450-104 Nazaré</a>
+          <span data-i18n="footer.rights">&copy; 2026 Sem Vergonha. Todos os direitos reservados.</span>
+          <span class="footer__legal">
+            <a href="/politica-privacidade/" data-i18n="footer.privacy">Privacidade</a>
+            <i aria-hidden="true">·</i>
+            <a href="/cookies/" data-i18n="footer.cookies_short">Cookies</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SHEET DE COMPRA (2 passos) ==================== -->
+  <div class="msheet" id="msheet" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="msheetTitle">
+    <div class="msheet__backdrop" data-close></div>
+
+    <div class="msheet__panel" role="document">
+      <button class="msheet__close" data-close aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Indicador de passos -->
+      <div class="msteps">
+        <span class="msteps__dot is-on"></span>
+        <span class="msteps__bar"><i id="stepsBar"></i></span>
+        <span class="msteps__dot" id="stepDot2"></span>
+      </div>
+
+      <!-- --------- PASSO 1 - Produto --------- -->
+      <div class="msheet__step" id="step1">
+        <div class="mprod">
+          <div class="mprod__media" id="sheetMedia"></div>
+
+          <div class="mprod__info">
+            <h2 class="mprod__name" id="msheetTitle"></h2>
+            <p class="mprod__desc" id="sheetDesc"></p>
+            <div class="mprod__price" id="sheetPrice"></div>
+
+            <div class="mfield">
+              <span class="mfield__label" data-i18n="merch.color">Cor</span>
+              <div class="mchips mchips--color" id="sheetColors"></div>
+            </div>
+
+            <div class="mfield">
+              <div class="mfield__row">
+                <span class="mfield__label">
+                  <span data-i18n="merch.sizes">Tamanhos</span> ·
+                  <em id="activeColorName"></em>
+                </span>
+                <button type="button" class="mlink" id="sizeGuideBtn" data-i18n="merch.size_guide">Guia de tamanhos</button>
+              </div>
+              <div class="msizes" id="sheetSizes"></div>
+              <p class="mfield__hint" data-i18n="merch.sizes_hint">Muda de cor para juntar outros tamanhos à mesma encomenda.</p>
+              <p class="mfield__err" id="sizeErr" hidden data-i18n="merch.size_err">Escolhe pelo menos um tamanho.</p>
+            </div>
+
+            <div class="msizetable" id="sizeTable" hidden>
+              <table>
+                <thead>
+                  <tr><th data-i18n="merch.st_size">Tam.</th><th data-i18n="merch.st_chest">Peito (cm)</th><th data-i18n="merch.st_len">Comprimento (cm)</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>S</td><td>48</td><td>70</td></tr>
+                  <tr><td>M</td><td>51</td><td>72</td></tr>
+                  <tr><td>L</td><td>54</td><td>74</td></tr>
+                  <tr><td>XL</td><td>57</td><td>76</td></tr>
+                  <tr><td>XXL</td><td>60</td><td>78</td></tr>
+                </tbody>
+              </table>
+              <p data-i18n="merch.st_note">Medidas da peça deitada, com tolerância de 2 cm. Corte unissexo.</p>
+            </div>
+
+            <div class="msel" id="sheetSelection" hidden>
+              <span class="mfield__label" data-i18n="merch.sel">A tua seleção</span>
+              <ul class="msel__lines" id="selLines"></ul>
+              <div class="msel__total">
+                <span id="selCount"></span>
+                <b id="selSubtotal"></b>
+              </div>
+            </div>
+
+            <button type="button" class="mbtn mbtn--fill mbtn--block" id="toStep2" data-i18n="merch.continue">Continuar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- --------- PASSO 2 - Dados & pagamento --------- -->
+      <div class="msheet__step" id="step2" hidden>
+        <button type="button" class="mback" id="backTo1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          <span data-i18n="merch.back">Voltar</span>
+        </button>
+
+        <h2 class="mstep__title" data-i18n="merch.checkout_h">Os teus dados</h2>
+
+        <form class="mform" id="mform" novalidate>
+          <div class="mform__grid">
+            <label class="minput minput--full">
+              <span data-i18n="merch.f_name">Nome completo *</span>
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <label class="minput">
+              <span data-i18n="merch.f_email">Email *</span>
+              <input type="email" name="email" autocomplete="email" inputmode="email" required>
+            </label>
+            <label class="minput">
+              <span data-i18n="merch.f_phone">Telemóvel *</span>
+              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" required>
+            </label>
+          </div>
+
+          <fieldset class="mdelivery">
+            <legend data-i18n="merch.f_delivery">Entrega</legend>
+            <div class="mdelivery__opts">
+              <label class="mdelivery__opt">
+                <input type="radio" name="delivery" value="pickup" checked>
+                <span class="mdelivery__box">
+                  <strong data-i18n="merch.del_pickup">Levantar no restaurante</strong>
+                  <small data-i18n="merch.del_pickup_d">Av. da República 6, Nazaré · Grátis</small>
+                </span>
+              </label>
+              <label class="mdelivery__opt">
+                <input type="radio" name="delivery" value="shipping">
+                <span class="mdelivery__box">
+                  <strong data-i18n="merch.del_ship">Envio por correio</strong>
+                  <small id="shipCost"></small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="mform__grid" id="shipFields" hidden>
+            <label class="minput minput--full">
+              <span data-i18n="merch.f_addr">Morada *</span>
+              <input type="text" name="address" autocomplete="street-address">
+            </label>
+            <label class="minput">
+              <span data-i18n="merch.f_zip">Código Postal *</span>
+              <input type="text" name="postalCode" autocomplete="postal-code" placeholder="2450-104">
+            </label>
+            <label class="minput">
+              <span data-i18n="merch.f_city">Localidade *</span>
+              <input type="text" name="city" autocomplete="address-level2">
+            </label>
+          </div>
+
+          <div class="mform__grid">
+            <label class="minput">
+              <span data-i18n="merch.f_vat">NIF (opcional)</span>
+              <input type="text" name="vat" inputmode="numeric" maxlength="9">
+            </label>
+            <label class="minput">
+              <span data-i18n="merch.f_notes">Notas (opcional)</span>
+              <input type="text" name="notes" maxlength="200">
+            </label>
+          </div>
+
+          <!-- Resumo -->
+          <div class="msum">
+            <div id="sumItems"></div>
+            <div class="msum__line msum__line--sub"><span data-i18n="merch.sum_subtotal">Subtotal</span><b id="sumSubtotal"></b></div>
+            <div class="msum__line"><span data-i18n="merch.sum_ship">Portes</span><b id="sumShip"></b></div>
+            <div class="msum__line msum__line--total"><span data-i18n="merch.sum_total">Total</span><b id="sumTotal"></b></div>
+          </div>
+
+          <label class="mcheck">
+            <input type="checkbox" name="terms" required>
+            <span data-i18n="merch.f_terms">Confirmo que esta encomenda implica uma obrigação de pagamento e que li a <a href="/politica-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+          </label>
+
+          <p class="mform__err" id="formErr" hidden></p>
+
+          <button type="submit" class="mbtn mbtn--fill mbtn--block mbtn--pay" id="payBtn">
+            <span class="mbtn__label" id="payLabel" data-i18n="merch.pay">Pagar</span>
+            <span class="mbtn__spin" aria-hidden="true"></span>
+          </button>
+
+          <p class="mform__secure">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span data-i18n="merch.secure">Pagamento seguro processado pela Paybyrd. Multibanco, MB WAY e cartão.</span>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ESTADO POS-PAGAMENTO ==================== -->
+  <div class="mresult" id="mresult" hidden>
+    <div class="mresult__card">
+      <div class="mresult__icon" id="resultIcon"></div>
+      <h2 id="resultTitle"></h2>
+      <p id="resultText"></p>
+      <p class="mresult__ref" id="resultRef" hidden></p>
+      <a href="/merchsemvergonha2026/" class="mbtn mbtn--fill" data-i18n="merch.res_back">Voltar à loja</a>
+    </div>
+  </div>
+
+  <script src="/merchsemvergonha2026/merch.js"></script>
+
+  <!-- ==================== RESERVA DE MESA (UMAI) ====================
+       Mesmo bloco que index.html / contactos/ / food-drinks/.
+       Fica aqui em vez de num ficheiro partilhado para nao mexer
+       em nenhuma outra pagina do site.
+       ================================================================ -->
+  <script type="text/javascript">
+  var UMAI_API_KEY = "0bf29084-b7e0-4c90-8654-06c53f4949cb";
+  var UMAI_SCRIPT_URL = "https://widget.letsumai.com/dist/embed.min.js";
+  var umaiScriptPromise = null;
+  var umaiIsOpening = false;
+
+  function loadUmaiWidget() {
+    if (window.umaiWidget) {
+      return Promise.resolve(window.umaiWidget);
+    }
+
+    if (umaiScriptPromise) {
+      return umaiScriptPromise;
+    }
+
+    umaiScriptPromise = new Promise(function(resolve, reject) {
+      var script = document.createElement("script");
+      script.src = UMAI_SCRIPT_URL;
+      script.async = true;
+      script.setAttribute("data-api-key", UMAI_API_KEY);
+      script.setAttribute("data-widget-type", "reservation");
+
+      script.onload = function() {
+        if (window.umaiWidget) {
+          resolve(window.umaiWidget);
+        } else {
+          umaiScriptPromise = null;
+          reject(new Error("O widget da UMAI não foi inicializado."));
+        }
+      };
+
+      script.onerror = function() {
+        umaiScriptPromise = null;
+        reject(new Error("Não foi possível carregar o widget da UMAI."));
+      };
+
+      document.head.appendChild(script);
+    });
+
+    return umaiScriptPromise;
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".umai-reserve").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (umaiIsOpening) {
+          return false;
+        }
+
+        umaiIsOpening = true;
+
+        loadUmaiWidget()
+          .then(function (widget) {
+            widget.config({ apiKey: UMAI_API_KEY, widgetType: "reservation" });
+            widget.openWidget();
+            umaiIsOpening = false;
+          })
+          .catch(function (error) {
+            console.error(error);
+            umaiIsOpening = false;
+          });
+
+        return false;
+      });
+    });
+  });
+  </script>
+</body>
+</html>

@@ -34,6 +34,9 @@ create table if not exists public.nye_waitlist (
   party_size          integer not null check (party_size between 1 and 12),
   party_size_more     boolean not null default false,
 
+  -- Prova de consentimento (art. 7.º/1 do RGPD): a frase exata aceite
+  consent_text        text,
+
   -- data e hora da inscricao
   created_at          timestamptz not null default now(),
   updated_at          timestamptz not null default now()

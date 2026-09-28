@@ -162,6 +162,76 @@
     'ck.banner_text': 'We use cookies to improve your experience and analyse website traffic. <a href="cookies/">Learn more</a>',
     'ck.accept': 'Accept',
     'ck.reject': 'Reject',
+
+    'footer.privacy': 'Privacy',
+    'footer.cookies_short': 'Cookies',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    'pp.title': 'Privacy Policy',
+    'pp.updated': 'Last updated: 28 September 2026',
+    'pp.intro': 'This policy applies to the Sem Vergonha website and to the services made available through it.',
+    'pp.toc': 'On this page',
+    'pp.toc1': 'Controller',
+    'pp.toc2': 'Data and purposes',
+    'pp.toc3': 'Providers and recipients',
+    'pp.toc4': 'Retention',
+    'pp.toc5': 'Rights',
+    'pp.toc6': 'Cookies',
+
+    'pp.h1': 'Controller',
+    'pp.p1': '<strong>Palato Elegante \u2014 Restaura\u00e7\u00e3o e Bebidas, Lda.</strong>, tax no. 519303849, with registered office at Rua Artur Feliciano, Edif\u00edcio Camar\u00e3o, Loja 11, 2450-027 Famalic\u00e3o, Nazar\u00e9, is the controller of personal data. For privacy matters, contact <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>.',
+
+    'pp.h2': 'Data and purposes',
+    'pp.p2': 'We process identification and contact data, information on bookings, sign-ups, orders and invoicing, content you send us, and technical website usage data, depending on the service used:',
+    'pp.f1': '<strong>Bookings, purchases and events:</strong> to manage requests, waiting lists, bookings, payments and orders and to send the necessary communications, on the basis of pre-contractual steps or performance of the contract.',
+    'pp.f2': '<strong>Invoicing:</strong> to comply with legal obligations.',
+    'pp.f3': '<strong>Contacts and reviews:</strong> to respond and improve the service, on the basis of our legitimate interest in providing support and monitoring customer satisfaction.',
+    'pp.f4': '<strong>Promotions and news:</strong> to send communications through the authorised channels, subject to optional consent, which you may withdraw at any time.',
+    'pp.f5': '<strong>Website operation and security:</strong> on the basis of our legitimate interest in providing and protecting the service. Statistics through non-essential cookies depend on consent.',
+    'pp.p2b': 'Mandatory fields are identified in the forms. Without the necessary data, we may not be able to handle the request. Refusing promotional communications does not prevent bookings, purchases or sign-ups.',
+
+    'pp.h3': 'Providers and recipients',
+    'pp.p3': 'Data may be processed, to the extent necessary, by providers of hosting, data and customer management, bookings, payments, deliveries, communications and statistics, as well as by our accountant and by authorities where there is a legal obligation.',
+    'pp.p3b': 'Where transfers outside the European Economic Area take place, they must be covered by an adequacy decision or by appropriate safeguards provided for in the GDPR. You may request information about the applicable safeguards through the contact above.',
+
+    'pp.h4': 'Retention',
+    'pp.th_data': 'Data',
+    'pp.th_time': 'Period',
+    'pp.c1a': 'Bookings and associated operational contacts',
+    'pp.c1b': '12 months after the visit or cancellation',
+    'pp.c2a': 'Waiting lists and sign-ups without a purchase',
+    'pp.c2b': 'Up to 6 months after the event; if cancelled, after the cancellation',
+    'pp.c3a': 'General email enquiries',
+    'pp.c3b': '12 months after resolution',
+    'pp.c4a': 'Invoices and tax documents',
+    'pp.c4b': '10 subsequent calendar years, under the applicable law',
+    'pp.c5a': 'Contacts for promotions',
+    'pp.c5b': 'Until consent is withdrawn or 24 months are completed without relevant interaction by the data subject, such as a new sign-up, request or purchase',
+    'pp.p4': 'The remaining data is kept only for the period necessary for the purpose: orders, during their performance and the applicable warranty and complaint periods; identifiable reviews, until the analysis and any follow-up are concluded, after which they are deleted or anonymised. Sending promotions does not, in itself, renew the retention period.',
+    'pp.p4b': 'Data strictly necessary to comply with legal obligations, to defend rights, or to evidence consent and respect for objections may be retained for the period necessary for those purposes.',
+
+    'pp.h5': 'Rights',
+    'pp.p5': 'You may request access, rectification, erasure, restriction and portability of your data, where applicable, and object to processing based on legitimate interest, including direct marketing. You may withdraw consent without affecting processing carried out previously.',
+    'pp.p5b': 'Exercise your rights through <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>. We reply, as a rule, within one month, subject to the extensions provided for by law. You may also lodge a complaint with the <a href="https://www.cnpd.pt" target="_blank" rel="noopener">Comiss\u00e3o Nacional de Prote\u00e7\u00e3o de Dados</a>.',
+
+    'pp.h6': 'Cookies',
+    'pp.p6': 'Non-essential cookies, including statistics cookies, are only used with consent. You can accept, reject or change your choices in the website\u2019s cookie management mechanism, where you will find information about their purposes and duration. See the <a href="../cookies/">Cookie Policy</a>.',
+
+    'pp.p7': 'This policy may be updated; the version in force is identified by the date above.',
+
     'ck.title': 'Cookie Policy',
     'ck.updated': 'Last updated: August 2026',
     'ck.what_h': 'What are cookies?',

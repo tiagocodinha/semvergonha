@@ -132,13 +132,15 @@
     ph_date: 'dd / mm / yyyy',
     cta:     "I'm interested",
     note:    'Joining this list is not a reservation.',
-    privacy: 'We use your name, contact details and date of birth only to tell you ' +
-             'about New Year\'s Eve at Sem Vergonha. We share nothing with third ' +
-             'parties and you can ask to be removed at any time at ' +
-             '<a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>. ' +
-             '<a href="/cookies/">Cookie Policy</a>.',
+    consent: 'I want to be contacted about this event, to get more information and to follow my sign-up.',
+    privacy: 'If you have any questions, just ask: ' +
+             '<a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a><br>' +
+             'We handle your data as set out in our ' +
+             '<a href="/politica-privacidade/">Privacy Policy</a>.',
     done_h:  "You're on the list.<br>We'll tell you everything soon!",
-    foot:    'Sem Vergonha · Av. da República 6, Nazaré'
+    foot:    'Sem Vergonha · Av. da República 6, Nazaré',
+    foot_privacy: 'Privacy',
+    foot_cookies: 'Cookies'
   };
 
   var PH_EN = { ph_search: 'Search', ph_phone: '87 123 4567' };
@@ -152,6 +154,7 @@
     birth:    'Verifica a data de nascimento.',
     birthFut: 'A data de nascimento não pode ser no futuro.',
     party:    'Indica o número de pessoas.',
+    consent:  'Precisas de aceitar para te podermos contactar.',
     network:  'Não conseguimos guardar a tua inscrição. Verifica a ligação e tenta outra vez.',
     generic:  'Algo correu mal ao guardar a tua inscrição. Tenta novamente daqui a pouco.',
     noResults: 'Sem resultados'
@@ -166,6 +169,7 @@
     birth:    'Please check your date of birth.',
     birthFut: 'Your date of birth cannot be in the future.',
     party:    'Please choose the number of people.',
+    consent:  'You need to accept so we can contact you.',
     network:  'We could not save your sign-up. Please check your connection and try again.',
     generic:  'Something went wrong saving your sign-up. Please try again in a moment.',
     noResults: 'No results'
@@ -674,8 +678,19 @@
       return bad('partySize', MSG('party'));
     }
 
+    /* Consentimento: sem ele não há fundamento para contactar. */
+    if (!$('pdaConsent').checked) {
+      $('pdaConsent').closest('.pda-consent').classList.add('is-bad');
+      showError(MSG('consent'));
+      return null;
+    }
+
     return {
       submissionId: submissionId,
+      /* Guardamos a frase exata que foi aceite, na língua em que
+         foi mostrada — é isto que demonstra o consentimento. */
+      consent: true,
+      consentText: $('consentText').textContent.trim(),
       firstName: firstName,
       lastName: lastName,
       phoneCode: phoneCode,
@@ -778,6 +793,14 @@
           errBox.hidden = true;
         }
       });
+    });
+
+    $('pdaConsent').addEventListener('change', function () {
+      var caixa = this.closest('.pda-consent');
+      if (this.checked && caixa.classList.contains('is-bad')) {
+        caixa.classList.remove('is-bad');
+        errBox.hidden = true;
+      }
     });
   }
 

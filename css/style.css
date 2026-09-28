@@ -1116,6 +1116,12 @@ a.contacts__card--link:hover .contacts__icon { color: var(--brown-d); }
 }
 .footer__social a:hover { color: #fff; }
 .footer__social svg { display: block; }
+/* Links legais no rodape (Privacidade · Cookies) */
+.footer__legal { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; }
+.footer__legal a { transition: color 0.3s; }
+.footer__legal a:hover { color: rgba(255,255,255,0.75); }
+.footer__legal i { font-style: normal; opacity: 0.45; }
+
 .footer__bottom {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 0.68rem; color: rgba(255,255,255,0.3);

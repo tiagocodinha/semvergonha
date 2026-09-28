@@ -157,6 +157,17 @@
             </label>
           </div>
 
+          <!-- Consentimento: tem de dizer o que a pessoa autoriza, em
+               concreto. Nunca pre-marcado, e guardamos a frase exata
+               que foi aceite (art. 7.º do RGPD). -->
+          <label class="pda-consent">
+            <input type="checkbox" name="consent" id="pdaConsent">
+            <span class="pda-consent__box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <span class="pda-consent__text" id="consentText" data-i18n="consent">Quero ser contactado sobre este evento para receber mais informações e acompanhar a minha inscrição.</span>
+          </label>
+
           <p class="pda-form__err" id="pdaErr" hidden role="alert"></p>
 
           <button type="submit" class="pda-btn" id="pdaBtn">
@@ -167,13 +178,10 @@
           <p class="pda-note" data-i18n="note">A inscrição nesta lista não constitui uma reserva.</p>
 
           <p class="pda-privacy" data-i18n="privacy">
-            Usamos o teu nome, contacto e data de nascimento apenas para te
-            falarmos da Passagem de Ano no Sem Vergonha. Não partilhamos nada com
-            terceiros e podes pedir a remoção a qualquer momento para
-            <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a>.
-            <!-- O site nao tem pagina de politica de privacidade dedicada,
-                 so a de cookies. Quando existir, trocar o href e o texto. -->
-            <a href="/cookies/">Política de Cookies</a>.
+            Se tiveres alguma dúvida, é só dizer:
+            <a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a><br>
+            Tratamos os teus dados como explicamos na
+            <a href="/politica-privacidade/">Política de Privacidade</a>.
           </p>
         </form>
 
@@ -189,6 +197,11 @@
 
       <footer class="pda__foot">
         <span data-i18n="foot">Sem Vergonha · Av. da República 6, Nazaré</span>
+        <span class="pda__foot-legal">
+          <a href="/politica-privacidade/" data-i18n="foot_privacy">Privacidade</a>
+          <i aria-hidden="true">·</i>
+          <a href="/cookies/" data-i18n="foot_cookies">Cookies</a>
+        </span>
       </footer>
 
     </div>

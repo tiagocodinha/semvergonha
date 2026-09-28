@@ -1,0 +1,6 @@
+# O codigo das Supabase Edge Functions nao faz parte do site estatico.
+# Sem isto, os .ts ficariam acessiveis em semvergonharestaurant.com/supabase/...
+supabase
+
+# Guia interno do merch — nao deve ser servido publicamente.
+merchsemvergonha2026/SETUP.md

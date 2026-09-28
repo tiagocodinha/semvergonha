@@ -126,6 +126,18 @@ Deno.serve(async (req) => {
     return json({ error: "bad_party_size" }, 400, origin);
   }
 
+  // ── Consentimento ───────────────────────────────────────────
+  // A lista assenta em consentimento (art. 6.º/1/a). Sem ele nao ha
+  // fundamento para tratar os dados, por isso recusamos. Guardamos a
+  // frase exata que foi aceite — e isso que o demonstra (art. 7.º/1).
+  if (body.consent !== true) {
+    return json({ error: "consent_required" }, 400, origin);
+  }
+  const consentText = str(body.consentText, 400);
+  if (consentText.length < 20) {
+    return json({ error: "bad_consent_text" }, 400, origin);
+  }
+
   // ── Identificador da submissao ──────────────────────────────
   // Gerado no browser por cada preenchimento do formulario. E o que
   // impede o duplo clique de criar duas linhas — e nao o email, que
@@ -157,6 +169,7 @@ Deno.serve(async (req) => {
       birth_date: birthDate,
       party_size: partySize,
       party_size_more: partySizeMore,
+      consent_text: consentText,
       updated_at: new Date().toISOString(),
     }, { onConflict: "submission_id", ignoreDuplicates: true });
 

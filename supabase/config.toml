@@ -1,0 +1,19 @@
+project_id = "vwhjxgbmyvqslgojmdbt"
+
+# Estas duas funcoes sao chamadas por quem nao tem sessao Supabase:
+# a merch-order pela pagina publica, a merch-webhook pela Paybyrd.
+# Por isso nao pode haver verificacao de JWT. A protecao e outra:
+#   - merch-order  → lista de origens permitidas em _shared/cors.ts
+#                    e validacao integral do pedido no servidor
+#   - merch-webhook → segredo partilhado no header x-api-key, e
+#                     confirmacao do estado direto na API da Paybyrd
+
+[functions.merch-order]
+verify_jwt = false
+
+[functions.merch-webhook]
+verify_jwt = false
+
+# Chamada pela pagina /passagem-de-ano/, que tambem e publica.
+[functions.nye-waitlist]
+verify_jwt = false

@@ -477,6 +477,61 @@ a { color: inherit; }
 }
 
 
+/* ══════════════════════ CONSENTIMENTO ══════════════════════ */
+
+.pda-consent {
+  display: flex; align-items: flex-start; gap: 12px;
+  cursor: pointer;
+  padding: 14px 16px;
+  background: rgba(246, 237, 228, 0.04);
+  border: 1px solid var(--pda-line);
+  border-radius: 12px;
+  transition: border-color 0.25s, background 0.25s;
+}
+.pda-consent:hover { border-color: var(--pda-line-2); }
+
+/* A caixa nativa fica escondida mas continua a ser ela a funcionar
+   (teclado, leitores de ecrã); o quadrado visível é o span. */
+.pda-consent input {
+  position: absolute; opacity: 0;
+  width: 1px; height: 1px; margin: 0; pointer-events: none;
+}
+
+.pda-consent__box {
+  flex: none; display: grid; place-items: center;
+  width: 22px; height: 22px; margin-top: 1px;
+  border: 1.5px solid rgba(246, 237, 228, 0.3);
+  border-radius: 6px;
+  background: rgba(246, 237, 228, 0.05);
+  color: var(--pda-ink);
+  transition: background 0.2s var(--pda-ease), border-color 0.2s var(--pda-ease);
+}
+.pda-consent__box svg {
+  width: 13px; height: 13px;
+  opacity: 0; transform: scale(0.6);
+  transition: opacity 0.2s var(--pda-ease), transform 0.2s var(--pda-ease);
+}
+
+.pda-consent input:checked + .pda-consent__box {
+  background: linear-gradient(96deg, var(--pda-gold) 0%, var(--pda-gold-l) 100%);
+  border-color: var(--pda-gold);
+}
+.pda-consent input:checked + .pda-consent__box svg { opacity: 1; transform: none; }
+
+.pda-consent input:focus-visible + .pda-consent__box {
+  outline: 2px solid var(--pda-gold-l); outline-offset: 3px;
+}
+
+.pda-consent__text {
+  font-size: 0.78rem; line-height: 1.6;
+  color: rgba(246, 237, 228, 0.66);
+}
+
+/* Estado de erro */
+.pda-consent.is-bad { border-color: var(--pda-err); background: rgba(224, 138, 118, 0.07); }
+.pda-consent.is-bad .pda-consent__box { border-color: var(--pda-err); }
+
+
 /* ══════════════════════════ BOTAO ══════════════════════════ */
 
 .pda-btn {
@@ -638,3 +693,14 @@ a { color: inherit; }
   .pda-btn:hover { transform: none; }
   .pda-btn__spin { animation-duration: 1.6s; }
 }
+
+/* Links legais no rodapé */
+.pda__foot { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.pda__foot-legal { display: inline-flex; align-items: center; gap: 9px; }
+.pda__foot-legal a {
+  color: rgba(246, 237, 228, 0.42);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.pda__foot-legal a:hover { color: var(--pda-gold); }
+.pda__foot-legal i { font-style: normal; opacity: 0.4; }
