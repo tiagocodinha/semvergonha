@@ -8,9 +8,6 @@
   var GOOGLE_REVIEW_URL =
     'https://g.page/r/Cb24nnV3W48CEAE/review';
 
-  var GOOGLE_MAPS_URL =
-    'https://www.google.com/maps/search/?api=1&query=Sem%20Vergonha%20Nazar%C3%A9';
-
   var GESTIO_REVIEW_EVENT_URL =
     'https://vfhbvpmyceptkgwbcthr.supabase.co/functions/v1/review-event';
 
@@ -407,23 +404,32 @@
 
   if (googleBtn) {
 
-    googleBtn.addEventListener('click', function (e) {
-      e.preventDefault();
+    googleBtn.href = GOOGLE_REVIEW_URL;
 
-      trackGoogleReviewClick();
+    googleBtn.addEventListener(
+      'click',
+      function (e) {
 
-      var isMobile =
-        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (
+          !GOOGLE_REVIEW_URL ||
+          GOOGLE_REVIEW_URL ===
+            'COLOCAR_URL_GOOGLE_AQUI'
+        ) {
+          e.preventDefault();
 
-      if (isMobile) {
-        // Tenta abrir a ficha do Sem Vergonha no Google Maps
-        window.location.href = GOOGLE_MAPS_URL;
-      } else {
-        // No computador abre diretamente o formulário de review
-        window.location.href = GOOGLE_REVIEW_URL;
+          console.warn(
+            '[SV Review] Google Review URL not configured.'
+          );
+
+          return;
+        }
+
+        // Registar clique no GestIO antes de sair.
+        trackGoogleReviewClick();
+
+        this.href = GOOGLE_REVIEW_URL;
       }
-    });
-
+    );
   }
 
   // ================================================================
