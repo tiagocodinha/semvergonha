@@ -5,11 +5,21 @@
   // CONFIGURAÇÃO
   // ================================================================
 
+  // Link direto para escrever uma review no Google.
+  // Utilizado em desktop.
   var GOOGLE_REVIEW_URL =
     'https://g.page/r/Cb24nnV3W48CEAE/review';
 
+  // Link para abrir a ficha do Sem Vergonha no Google Maps.
+  // Utilizado em dispositivos móveis para tentar abrir diretamente
+  // a aplicação Google Maps.
+  var GOOGLE_MAPS_URL =
+    'https://www.google.com/maps/search/?api=1&query=Sem%20Vergonha%20Nazar%C3%A9';
+
+  // Endpoint GestIO / Supabase para tracking das reviews.
   var GESTIO_REVIEW_EVENT_URL =
     'https://vfhbvpmyceptkgwbcthr.supabase.co/functions/v1/review-event';
+
 
   // ================================================================
   // TOKEN
@@ -19,18 +29,27 @@
 
   function extractToken() {
     var path = window.location.pathname;
+
+    // Remove barras finais e divide o URL.
     var parts = path.replace(/\/+$/, '').split('/');
 
-    // URL: /review/ABC123
-    // parts = ['', 'review', 'ABC123']
+    // Exemplo:
+    // /review/ABC123
+    //
+    // parts:
+    // ['', 'review', 'ABC123']
     var token = parts.length >= 3 ? parts[2] : null;
 
-    if (!token || token === 'review' || token === 'index.html') {
+    if (
+      !token ||
+      token === 'review' ||
+      token === 'index.html'
+    ) {
       return null;
     }
 
     // Validação básica no browser.
-    // A validação real é feita pelo GestIO.
+    // A validação autoritativa é feita pelo GestIO/Supabase.
     if (!/^[A-Za-z0-9_-]{3,64}$/.test(token)) {
       return null;
     }
@@ -38,11 +57,17 @@
     return token;
   }
 
+
   // ================================================================
   // TRACKING → GESTIO
   // ================================================================
 
-  function trackToGestio(eventName, extraData, useKeepalive) {
+  function trackToGestio(
+    eventName,
+    extraData,
+    useKeepalive
+  ) {
+    // Sem token não existe pedido de review identificável.
     if (!reviewToken) {
       return;
     }
@@ -52,22 +77,34 @@
       event: eventName
     };
 
+    // Adiciona dados opcionais ao payload.
     if (extraData) {
-      Object.keys(extraData).forEach(function (key) {
-        payload[key] = extraData[key];
-      });
+      Object.keys(extraData).forEach(
+        function (key) {
+          payload[key] = extraData[key];
+        }
+      );
     }
 
     try {
-      fetch(GESTIO_REVIEW_EVENT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload),
-        mode: 'cors',
-        keepalive: useKeepalive === true
-      }).catch(function (error) {
+      fetch(
+        GESTIO_REVIEW_EVENT_URL,
+        {
+          method: 'POST',
+
+          headers: {
+            'Content-Type': 'application/json'
+          },
+
+          body: JSON.stringify(payload),
+
+          mode: 'cors',
+
+          // Especialmente útil quando o utilizador
+          // vai sair imediatamente da página.
+          keepalive: useKeepalive === true
+        }
+      ).catch(function (error) {
         console.debug(
           '[SV Review] GestIO tracking failed:',
           eventName,
@@ -83,47 +120,66 @@
     }
   }
 
+
   // ================================================================
   // ANALYTICS
   // ================================================================
 
   function trackReviewPageOpen() {
-    console.debug('[SV Review] page_open');
+    console.debug(
+      '[SV Review] page_open'
+    );
 
     // GestIO
-    trackToGestio('review_page_open');
+    trackToGestio(
+      'review_page_open'
+    );
 
-    // GA4 / GTM
-    if (typeof window.dataLayer !== 'undefined') {
+    // GA4 / Google Tag Manager
+    //
+    // O token NÃO é enviado para Analytics.
+    if (
+      typeof window.dataLayer !== 'undefined'
+    ) {
       window.dataLayer.push({
         event: 'review_page_open'
       });
     }
   }
 
+
   function trackGoogleReviewClick() {
-    console.debug('[SV Review] google_click');
+    console.debug(
+      '[SV Review] google_click'
+    );
 
     // GestIO
-    // keepalive porque o browser vai sair para o Google.
+    //
+    // keepalive = true porque o utilizador
+    // vai sair da página logo a seguir.
     trackToGestio(
       'review_google_click',
       null,
       true
     );
 
-    // GA4 / GTM
-    if (typeof window.dataLayer !== 'undefined') {
+    // GA4 / Google Tag Manager
+    if (
+      typeof window.dataLayer !== 'undefined'
+    ) {
       window.dataLayer.push({
         event: 'review_google_click'
       });
     }
   }
 
+
   function trackStarRating(stars) {
     console.debug(
       '[SV Review] star_rating',
-      { stars: stars }
+      {
+        stars: stars
+      }
     );
 
     // GestIO
@@ -134,8 +190,10 @@
       }
     );
 
-    // GA4 / GTM
-    if (typeof window.dataLayer !== 'undefined') {
+    // GA4 / Google Tag Manager
+    if (
+      typeof window.dataLayer !== 'undefined'
+    ) {
       window.dataLayer.push({
         event: 'review_star_rating',
         review_stars: stars
@@ -143,7 +201,11 @@
     }
   }
 
-  function trackFeedbackSubmit(stars, text) {
+
+  function trackFeedbackSubmit(
+    stars,
+    text
+  ) {
     console.debug(
       '[SV Review] feedback_submit',
       {
@@ -153,6 +215,9 @@
     );
 
     // GestIO
+    //
+    // O texto real do feedback vai apenas
+    // para o GestIO/Supabase.
     trackToGestio(
       'review_feedback_submitted',
       {
@@ -161,9 +226,13 @@
       }
     );
 
-    // GA4 / GTM
-    // Não enviamos o texto do feedback.
-    if (typeof window.dataLayer !== 'undefined') {
+    // GA4 / Google Tag Manager
+    //
+    // Nunca enviamos o texto do feedback
+    // para Analytics.
+    if (
+      typeof window.dataLayer !== 'undefined'
+    ) {
       window.dataLayer.push({
         event: 'review_feedback_submit',
         review_stars: stars
@@ -171,47 +240,82 @@
     }
   }
 
+
   // ================================================================
   // REVIEW FLOW
   // ================================================================
 
   var selectedStars = 0;
 
+
+  // ================================================================
+  // ELEMENTOS
+  // ================================================================
+
   var starButtons =
-    document.querySelectorAll('.review-star');
+    document.querySelectorAll(
+      '.review-star'
+    );
 
   var starsHint =
-    document.getElementById('starsHint');
+    document.getElementById(
+      'starsHint'
+    );
 
   var googleCta =
-    document.getElementById('googleCta');
+    document.getElementById(
+      'googleCta'
+    );
 
   var googleBtn =
-    document.getElementById('googleBtn');
+    document.getElementById(
+      'googleBtn'
+    );
 
   var ctaMessage =
-    document.getElementById('ctaMessage');
+    document.getElementById(
+      'ctaMessage'
+    );
 
   var feedbackWrap =
-    document.getElementById('feedbackWrap');
+    document.getElementById(
+      'feedbackWrap'
+    );
 
   var feedbackMessage =
-    document.getElementById('feedbackMessage');
+    document.getElementById(
+      'feedbackMessage'
+    );
 
   var feedbackForm =
-    document.getElementById('feedbackForm');
+    document.getElementById(
+      'feedbackForm'
+    );
 
   var feedbackThanks =
-    document.getElementById('feedbackThanks');
+    document.getElementById(
+      'feedbackThanks'
+    );
 
   var feedbackText =
-    document.getElementById('feedbackText');
+    document.getElementById(
+      'feedbackText'
+    );
 
   var starRating =
-    document.getElementById('starRating');
+    document.getElementById(
+      'starRating'
+    );
 
   var page =
-    document.getElementById('reviewPage');
+    document.getElementById(
+      'reviewPage'
+    );
+
+
+  // ================================================================
+  // LABELS DAS ESTRELAS
+  // ================================================================
 
   var starLabels = [
     '',
@@ -222,80 +326,142 @@
     'Excelente!'
   ];
 
+
   // ================================================================
   // ESTRELAS
   // ================================================================
 
-  starButtons.forEach(function (btn) {
+  starButtons.forEach(
+    function (btn) {
 
-    btn.addEventListener(
-      'mouseenter',
-      function () {
-        var hoverStar = parseInt(
-          this.getAttribute('data-star'),
-          10
-        );
+      // --------------------------------------------------------------
+      // HOVER
+      // --------------------------------------------------------------
 
-        highlightStars(
-          hoverStar,
+      btn.addEventListener(
+        'mouseenter',
+        function () {
+          var hoverStar =
+            parseInt(
+              this.getAttribute(
+                'data-star'
+              ),
+              10
+            );
+
+          if (
+            hoverStar >= 1 &&
+            hoverStar <= 5
+          ) {
+            highlightStars(
+              hoverStar,
+              'hover'
+            );
+          }
+        }
+      );
+
+
+      // --------------------------------------------------------------
+      // SAÍDA DO HOVER
+      // --------------------------------------------------------------
+
+      btn.addEventListener(
+        'mouseleave',
+        function () {
+          clearHoverStars();
+
+          if (selectedStars > 0) {
+            highlightStars(
+              selectedStars,
+              'active'
+            );
+          }
+        }
+      );
+
+
+      // --------------------------------------------------------------
+      // CLIQUE
+      // --------------------------------------------------------------
+
+      btn.addEventListener(
+        'click',
+        function () {
+          var star =
+            parseInt(
+              this.getAttribute(
+                'data-star'
+              ),
+              10
+            );
+
+          if (
+            star >= 1 &&
+            star <= 5
+          ) {
+            selectStars(
+              star
+            );
+          }
+        }
+      );
+
+    }
+  );
+
+
+  // ================================================================
+  // HIGHLIGHT DAS ESTRELAS
+  // ================================================================
+
+  function highlightStars(
+    upTo,
+    className
+  ) {
+    starButtons.forEach(
+      function (btn) {
+        var star =
+          parseInt(
+            btn.getAttribute(
+              'data-star'
+            ),
+            10
+          );
+
+        btn.classList.remove(
+          'active',
           'hover'
         );
-      }
-    );
 
-    btn.addEventListener(
-      'mouseleave',
-      function () {
-        clearHoverStars();
-
-        if (selectedStars > 0) {
-          highlightStars(
-            selectedStars,
-            'active'
+        if (star <= upTo) {
+          btn.classList.add(
+            className
           );
         }
       }
     );
-
-    btn.addEventListener(
-      'click',
-      function () {
-        var star = parseInt(
-          this.getAttribute('data-star'),
-          10
-        );
-
-        if (star >= 1 && star <= 5) {
-          selectStars(star);
-        }
-      }
-    );
-
-  });
-
-  function highlightStars(upTo, className) {
-    starButtons.forEach(function (btn) {
-      var s = parseInt(
-        btn.getAttribute('data-star'),
-        10
-      );
-
-      btn.classList.remove(
-        'active',
-        'hover'
-      );
-
-      if (s <= upTo) {
-        btn.classList.add(className);
-      }
-    });
   }
+
+
+  // ================================================================
+  // LIMPAR HOVER
+  // ================================================================
 
   function clearHoverStars() {
-    starButtons.forEach(function (btn) {
-      btn.classList.remove('hover');
-    });
+    starButtons.forEach(
+      function (btn) {
+        btn.classList.remove(
+          'hover'
+        );
+      }
+    );
   }
+
+
+  // ================================================================
+  // SELECIONAR ESTRELAS
+  // ================================================================
 
   function selectStars(stars) {
     selectedStars = stars;
@@ -305,16 +471,30 @@
       'active'
     );
 
+
+    // --------------------------------------------------------------
+    // LABEL
+    // --------------------------------------------------------------
+
     if (starsHint) {
       starsHint.textContent =
         starLabels[stars] || '';
     }
 
-    // Registar no GestIO
-    trackStarRating(stars);
 
-    // Mantém o comportamento original:
-    // bloquear estrelas após a escolha.
+    // --------------------------------------------------------------
+    // TRACKING GESTIO
+    // --------------------------------------------------------------
+
+    trackStarRating(
+      stars
+    );
+
+
+    // --------------------------------------------------------------
+    // BLOQUEAR ESTRELAS DEPOIS DA ESCOLHA
+    // --------------------------------------------------------------
+
     if (starRating) {
       starRating.classList.add(
         'review-stars--locked'
@@ -327,16 +507,29 @@
       );
     }
 
-    // ============================================================
-    // LÓGICA ORIGINAL
-    // ============================================================
+
+    // --------------------------------------------------------------
+    // FLUXO DA REVIEW
+    // --------------------------------------------------------------
+    //
+    // 4–5 estrelas
+    // → Google
+    //
+    // 1–3 estrelas
+    // → feedback privado
+    // --------------------------------------------------------------
 
     if (stars >= 4) {
-      showGoogleCta(stars);
+      showGoogleCta(
+        stars
+      );
     } else {
-      showPrivateFeedback(stars);
+      showPrivateFeedback(
+        stars
+      );
     }
   }
+
 
   // ================================================================
   // 4–5 ESTRELAS → GOOGLE
@@ -344,24 +537,31 @@
 
   function showGoogleCta(stars) {
 
+    // Esconder feedback privado.
     if (feedbackWrap) {
       feedbackWrap.hidden = true;
     }
+
 
     var messages = {
       4: 'Boa! Partilha a tua experiência no Google.',
       5: 'Adoramos ouvir isso! Deixa-nos uma review no Google.'
     };
 
+
     if (ctaMessage) {
       ctaMessage.textContent =
-        messages[stars] || messages[4];
+        messages[stars] ||
+        messages[4];
     }
 
+
+    // Mostrar botão Google.
     if (googleCta) {
       googleCta.hidden = false;
     }
   }
+
 
   // ================================================================
   // 1–3 ESTRELAS → FEEDBACK PRIVADO
@@ -369,34 +569,49 @@
 
   function showPrivateFeedback(stars) {
 
-    // Mantém Google escondido.
+    // Esconder botão Google.
     if (googleCta) {
       googleCta.hidden = true;
     }
 
+
+    // Esconder mensagem de agradecimento,
+    // caso estivesse visível.
     if (feedbackThanks) {
       feedbackThanks.hidden = true;
     }
 
+
+    // Mostrar formulário.
     if (feedbackForm) {
       feedbackForm.style.display = '';
     }
 
+
     var messages = {
-      1: 'Lamentamos que a experiência não tenha sido a melhor.',
-      2: 'Queremos melhorar. Conta-nos o que aconteceu.',
-      3: 'Obrigado! Queremos perceber como podemos fazer melhor.'
+      1:
+        'Lamentamos que a experiência não tenha sido a melhor.',
+
+      2:
+        'Queremos melhorar. Conta-nos o que aconteceu.',
+
+      3:
+        'Obrigado! Queremos perceber como podemos fazer melhor.'
     };
+
 
     if (feedbackMessage) {
       feedbackMessage.textContent =
-        messages[stars] || messages[3];
+        messages[stars] ||
+        messages[3];
     }
+
 
     if (feedbackWrap) {
       feedbackWrap.hidden = false;
     }
   }
+
 
   // ================================================================
   // GOOGLE BUTTON
@@ -404,33 +619,53 @@
 
   if (googleBtn) {
 
-    googleBtn.href = GOOGLE_REVIEW_URL;
-
     googleBtn.addEventListener(
       'click',
-      function (e) {
+      function (event) {
 
-        if (
-          !GOOGLE_REVIEW_URL ||
-          GOOGLE_REVIEW_URL ===
-            'COLOCAR_URL_GOOGLE_AQUI'
-        ) {
-          e.preventDefault();
+        // Vamos controlar manualmente
+        // para escolher desktop/mobile.
+        event.preventDefault();
 
-          console.warn(
-            '[SV Review] Google Review URL not configured.'
-          );
 
-          return;
-        }
+        // ------------------------------------------------------------
+        // TRACKING
+        // ------------------------------------------------------------
 
-        // Registar clique no GestIO antes de sair.
         trackGoogleReviewClick();
 
-        this.href = GOOGLE_REVIEW_URL;
+
+        // ------------------------------------------------------------
+        // DETETAR MOBILE
+        // ------------------------------------------------------------
+
+        var isMobile =
+          /Android|iPhone|iPad|iPod/i.test(
+            navigator.userAgent
+          );
+
+
+        // ------------------------------------------------------------
+        // MOBILE → GOOGLE MAPS
+        // ------------------------------------------------------------
+
+        if (isMobile) {
+          window.location.href =
+            GOOGLE_MAPS_URL;
+        }
+
+        // ------------------------------------------------------------
+        // DESKTOP → FORMULÁRIO DIRETO
+        // ------------------------------------------------------------
+
+        else {
+          window.location.href =
+            GOOGLE_REVIEW_URL;
+        }
       }
     );
   }
+
 
   // ================================================================
   // FEEDBACK PRIVADO
@@ -440,20 +675,44 @@
 
     feedbackForm.addEventListener(
       'submit',
-      function (e) {
+      function (event) {
 
-        e.preventDefault();
+        event.preventDefault();
 
-        var text = feedbackText
-          ? feedbackText.value.trim()
-          : '';
 
-        // Limite também no cliente.
-        text = text.slice(0, 2000);
+        // ------------------------------------------------------------
+        // OBTER TEXTO
+        // ------------------------------------------------------------
+
+        var text =
+          feedbackText
+            ? feedbackText.value.trim()
+            : '';
+
+
+        // ------------------------------------------------------------
+        // LIMITE LOCAL
+        // ------------------------------------------------------------
+
+        text =
+          text.slice(
+            0,
+            2000
+          );
+
+
+        // ------------------------------------------------------------
+        // SEM TEXTO
+        // ------------------------------------------------------------
 
         if (!text) {
           return;
         }
+
+
+        // ------------------------------------------------------------
+        // FEEDBACK PRIVADO APENAS 1–3
+        // ------------------------------------------------------------
 
         if (
           selectedStars < 1 ||
@@ -462,46 +721,67 @@
           return;
         }
 
-        // Enviar rating + texto para GestIO.
+
+        // ------------------------------------------------------------
+        // ENVIAR PARA GESTIO
+        // ------------------------------------------------------------
+
         trackFeedbackSubmit(
           selectedStars,
           text
         );
 
+
         console.debug(
           '[SV Review] feedback_text',
           {
-            stars: selectedStars,
-            length: text.length
+            stars:
+              selectedStars,
+
+            length:
+              text.length
           }
         );
 
-        if (feedbackForm) {
-          feedbackForm.style.display =
-            'none';
-        }
+
+        // ------------------------------------------------------------
+        // ESCONDER FORMULÁRIO
+        // ------------------------------------------------------------
+
+        feedbackForm.style.display =
+          'none';
+
+
+        // ------------------------------------------------------------
+        // MOSTRAR AGRADECIMENTO
+        // ------------------------------------------------------------
 
         if (feedbackThanks) {
-          feedbackThanks.hidden = false;
+          feedbackThanks.hidden =
+            false;
         }
       }
     );
   }
 
+
   // ================================================================
-  // ANIMAÇÃO
+  // ANIMAÇÃO DA PÁGINA
   // ================================================================
 
   if (page) {
     requestAnimationFrame(
       function () {
-        page.classList.add('loaded');
+        page.classList.add(
+          'loaded'
+        );
       }
     );
   }
 
+
   // ================================================================
-  // PAGE OPEN
+  // TRACK PAGE OPEN
   // ================================================================
 
   trackReviewPageOpen();
