@@ -93,4 +93,97 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   revealEls.forEach(function (el) { revealObs.observe(el); });
 
+  // ── FOOD GALLERY ARROWS ──
+  document.querySelectorAll('.food-gallery').forEach(function (g) {
+    var track = g.querySelector('.food-gallery__track');
+    if (!track) return;
+    function arrow(dir, label) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'food-gallery__arrow food-gallery__arrow--' + (dir < 0 ? 'prev' : 'next');
+      b.setAttribute('aria-label', label);
+      b.textContent = dir < 0 ? '‹' : '›';
+      b.addEventListener('click', function () {
+        var item = track.querySelector('.food-gallery__item');
+        var step = item ? item.offsetWidth + 16 : track.clientWidth / 2;
+        track.scrollBy({ left: dir * step, behavior: 'smooth' });
+      });
+      g.appendChild(b);
+      return b;
+    }
+    var prev = arrow(-1, 'Anterior'), next = arrow(1, 'Seguinte');
+    function update() {
+      prev.hidden = track.scrollLeft < 8;
+      next.hidden = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+    }
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+
+  // ── ALLERGEN TOOLTIP ──
+  // Hover no desktop, toque no telemóvel. O nome vem da legenda da página,
+  // por isso já está traduzido e acompanha a mudança de idioma.
+  var tip = null, tipTimer = null, tipFor = null;
+
+  function allergenName(icon) {
+    var m = icon.className.match(/\ba(\d+)\b/);
+    if (!m) return '';
+    var ref = document.querySelector('.allergen-legend .a' + m[1]);
+    var label = ref && ref.parentNode.querySelector('[data-i18n]');
+    return label ? label.textContent.trim() : '';
+  }
+
+  function hideTip() {
+    clearTimeout(tipTimer);
+    if (tip) tip.classList.remove('show');
+    tipFor = null;
+  }
+
+  function showTip(icon, autoHide) {
+    var name = allergenName(icon);
+    if (!name) return;
+    if (!tip) {
+      tip = document.createElement('div');
+      tip.className = 'allergen-tip';
+      tip.setAttribute('role', 'tooltip');
+      document.body.appendChild(tip);
+    }
+    clearTimeout(tipTimer);
+    tip.textContent = name;
+    var r = icon.getBoundingClientRect();
+    tip.style.left = '0px';
+    var w = tip.offsetWidth;
+    var x = r.left + r.width / 2 - w / 2;
+    x = Math.max(8, Math.min(x, document.documentElement.clientWidth - w - 8));
+    tip.style.left = x + 'px';
+    tip.style.top = (r.top - tip.offsetHeight - 8) + 'px';
+    tip.classList.add('show');
+    tipFor = icon;
+    if (autoHide) tipTimer = setTimeout(hideTip, 2500);
+  }
+
+  document.querySelectorAll('.menu__allergens .a').forEach(function (icon) {
+    icon.setAttribute('tabindex', '0');
+    icon.setAttribute('role', 'img');
+  });
+
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+  document.addEventListener('mouseover', function (e) {
+    if (!canHover) return;
+    var icon = e.target.closest && e.target.closest('.menu__allergens .a');
+    if (icon) showTip(icon); else if (tipFor) hideTip();
+  });
+  document.addEventListener('focusin', function (e) {
+    var icon = e.target.closest && e.target.closest('.menu__allergens .a');
+    if (icon) showTip(icon);
+  });
+  document.addEventListener('focusout', hideTip);
+  document.addEventListener('click', function (e) {
+    var icon = e.target.closest && e.target.closest('.menu__allergens .a');
+    if (!icon) { hideTip(); return; }
+    if (tipFor === icon) hideTip(); else showTip(icon, true);
+  });
+  window.addEventListener('scroll', hideTip, { passive: true });
+
 })();
