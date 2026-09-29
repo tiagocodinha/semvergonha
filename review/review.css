@@ -1,8 +1,6 @@
 /* ============================================
-   SEM VERGONHA — Review Page
-   Standalone styles, does NOT affect main site
+   SEM VERGONHA — REVIEW PAGE
    ============================================ */
-
 
 :root {
   --rv-brown: #755c55;
@@ -13,7 +11,6 @@
   --rv-beige-d: #ede0d3;
 
   --rv-white: #fffaf6;
-  --rv-black: #2c2320;
 
   --rv-text: #3d3330;
   --rv-text2: #7a6b63;
@@ -31,19 +28,12 @@
     'Segoe UI',
     sans-serif;
 
-  --rv-display:
-    'Bebas Neue',
-    Impact,
-    sans-serif;
-
   --rv-ease:
     cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 
-/* ============================================
-   RESET
-   ============================================ */
+/* RESET */
 
 *,
 *::before,
@@ -53,76 +43,46 @@
   box-sizing: border-box;
 }
 
-
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 body {
   font-family: var(--rv-sans);
-
-  background:
-    var(--rv-white);
-
-  color:
-    var(--rv-text);
-
-  overflow-x:
-    hidden;
-
-  min-height:
-    100vh;
-
-  min-height:
-    100dvh;
+  background: var(--rv-white);
+  color: var(--rv-text);
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
-
-
-::selection {
-  background:
-    var(--rv-brown);
-
-  color:
-    var(--rv-beige);
-}
-
 
 img {
-  display:
-    block;
+  display: block;
+  max-width: 100%;
+}
 
-  max-width:
-    100%;
+button,
+textarea {
+  font: inherit;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 
-/* ============================================
-   PAGE LAYOUT
-   ============================================ */
+/* PAGE */
 
 .review-page {
-  display:
-    flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  flex-direction:
-    column;
+  min-height: 100vh;
+  min-height: 100dvh;
 
-  align-items:
-    center;
-
-  justify-content:
-    center;
-
-  min-height:
-    100vh;
-
-  min-height:
-    100dvh;
-
-  position:
-    relative;
+  position: relative;
 
   padding:
     env(safe-area-inset-top, 0)
@@ -130,215 +90,250 @@ img {
     calc(env(safe-area-inset-bottom, 0) + 16px);
 }
 
+.review-active {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
 
 .review-container {
-  display:
-    flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  flex-direction:
-    column;
+  text-align: center;
 
-  align-items:
-    center;
+  max-width: 420px;
+  width: 100%;
 
-  text-align:
-    center;
+  flex: 1;
 
-  max-width:
-    420px;
+  justify-content: center;
 
-  width:
-    100%;
-
-  flex:
-    1;
-
-  justify-content:
-    center;
-
-  padding:
-    32px 0 24px;
+  padding: 32px 0 24px;
 }
 
 
-/* ============================================
-   DECORATIVE WAVE
-   ============================================ */
+/* WAVE */
 
 .review-wave {
-  position:
-    fixed;
+  position: fixed;
 
-  top:
-    0;
+  top: 0;
+  left: 0;
+  right: 0;
 
-  left:
-    0;
+  overflow: hidden;
 
-  right:
-    0;
+  line-height: 0;
 
-  overflow:
-    hidden;
+  padding: 16px 0 8px;
 
-  line-height:
-    0;
+  color: var(--rv-beige-d);
 
-  padding:
-    16px 0 8px;
+  pointer-events: none;
 
-  color:
-    var(--rv-beige-d);
-
-  pointer-events:
-    none;
-
-  z-index:
-    0;
+  z-index: 0;
 }
 
-
 .review-wave svg {
-  width:
-    200%;
-
-  height:
-    28px;
+  width: 200%;
+  height: 28px;
 
   animation:
     rv-waveFlow 20s linear infinite;
 }
 
-
 @keyframes rv-waveFlow {
   from {
-    transform:
-      translateX(0);
+    transform: translateX(0);
   }
 
   to {
-    transform:
-      translateX(-50%);
+    transform: translateX(-50%);
   }
 }
 
 
-/* ============================================
-   LOGO
-   ============================================ */
+/* PAGE STATES */
+
+.review-state {
+  width: 100%;
+  max-width: 420px;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 48px 24px;
+
+  position: relative;
+  z-index: 1;
+}
+
+.review-state-logo {
+  width: auto;
+  height: 48px;
+
+  opacity: 0.85;
+
+  margin-bottom: 32px;
+}
+
+.review-state h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+
+  color: var(--rv-text);
+
+  margin-bottom: 12px;
+}
+
+.review-state p {
+  max-width: 300px;
+
+  font-size: 0.88rem;
+
+  line-height: 1.7;
+
+  color: var(--rv-text2);
+}
+
+.review-state-check {
+  width: 52px;
+  height: 52px;
+
+  color: var(--rv-brown);
+
+  margin-bottom: 20px;
+}
+
+.review-state-button {
+  border: 0;
+
+  margin-top: 24px;
+
+  padding: 14px 24px;
+
+  border-radius: 12px;
+
+  background: var(--rv-brown);
+
+  color: var(--rv-white);
+
+  font-size: 0.76rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+}
+
+.review-loader {
+  width: 28px;
+  height: 28px;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  border: 2px solid var(--rv-beige-d);
+  border-top-color: var(--rv-brown);
+
+  animation:
+    rv-spin 0.8s linear infinite;
+}
+
+@keyframes rv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* LOGO */
 
 .review-logo {
-  margin-bottom:
-    32px;
+  margin-bottom: 32px;
 }
-
 
 .review-logo img {
-  height:
-    48px;
+  height: 48px;
+  width: auto;
 
-  width:
-    auto;
-
-  opacity:
-    0.85;
+  opacity: 0.85;
 }
 
 
-/* ============================================
-   EYEBROW
-   ============================================ */
+/* EYEBROW */
 
 .review-eyebrow {
-  display:
-    inline-block;
+  display: inline-block;
 
-  font-size:
-    0.62rem;
+  font-size: 0.62rem;
 
-  font-weight:
-    600;
+  font-weight: 600;
 
-  letter-spacing:
-    0.35em;
+  letter-spacing: 0.35em;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 
-  color:
-    var(--rv-brown-l);
+  color: var(--rv-brown-l);
 
-  margin-bottom:
-    16px;
+  margin-bottom: 16px;
 }
 
 
-/* ============================================
-   HEADLINE
-   ============================================ */
+/* HEADLINE */
 
 .review-headline {
-  font-family:
-    var(--rv-sans);
+  font-size: clamp(1.75rem, 6.5vw, 2.4rem);
 
-  font-size:
-    clamp(1.75rem, 6.5vw, 2.4rem);
+  font-weight: 700;
 
-  font-weight:
-    700;
+  line-height: 1.2;
 
-  line-height:
-    1.2;
+  color: var(--rv-text);
 
-  color:
-    var(--rv-text);
+  margin-bottom: 20px;
 
-  margin-bottom:
-    20px;
-
-  letter-spacing:
-    -0.01em;
+  letter-spacing: -0.01em;
 }
 
 
-/* ============================================
-   BODY
-   ============================================ */
+/* BODY */
 
 .review-body {
-  font-size:
-    0.88rem;
+  font-size: 0.88rem;
 
-  line-height:
-    1.7;
+  line-height: 1.7;
 
-  color:
-    var(--rv-text2);
+  color: var(--rv-text2);
 
-  margin-bottom:
-    36px;
+  margin-bottom: 36px;
 
-  max-width:
-    320px;
+  max-width: 320px;
 }
 
 
-/* ============================================
-   GENERAL STAR RATING
-   ============================================ */
+/* GENERAL STARS */
 
 .review-stars {
-  display:
-    flex;
+  display: flex;
 
-  gap:
-    8px;
+  gap: 8px;
 
-  margin-bottom:
-    12px;
+  margin-bottom: 12px;
 
-  max-height:
-    60px;
+  max-height: 60px;
 
   transition:
     opacity 0.4s var(--rv-ease),
@@ -346,96 +341,62 @@ img {
     margin 0.5s var(--rv-ease);
 }
 
-
 .review-star {
-  width:
-    44px;
+  width: 44px;
+  height: 44px;
 
-  height:
-    44px;
+  padding: 6px;
 
-  padding:
-    6px;
+  background: none;
 
-  background:
-    none;
+  border: none;
 
-  border:
-    none;
+  cursor: pointer;
 
-  cursor:
-    pointer;
-
-  color:
-    var(--rv-beige-d);
+  color: var(--rv-beige-d);
 
   transition:
     color 0.25s var(--rv-ease),
     transform 0.25s var(--rv-ease);
 
-  -webkit-tap-highlight-color:
-    transparent;
+  -webkit-tap-highlight-color: transparent;
 }
-
 
 .review-star svg {
-  width:
-    100%;
+  width: 100%;
+  height: 100%;
 
-  height:
-    100%;
-
-  fill:
-    currentColor;
-
-  stroke:
-    none;
+  fill: currentColor;
 }
-
 
 .review-star:hover,
 .review-star:focus-visible {
-  transform:
-    scale(1.15);
+  transform: scale(1.15);
 }
-
 
 .review-star:focus-visible {
-  outline:
-    2px solid var(--rv-brown);
+  outline: 2px solid var(--rv-brown);
+  outline-offset: 2px;
 
-  outline-offset:
-    2px;
-
-  border-radius:
-    4px;
+  border-radius: 4px;
 }
-
 
 .review-star.active {
-  color:
-    var(--rv-gold);
+  color: var(--rv-gold);
 }
-
 
 .review-star.hover {
-  color:
-    var(--rv-gold-l);
+  color: var(--rv-gold-l);
 }
 
-
 .review-stars-hint {
-  font-size:
-    0.72rem;
+  font-size: 0.72rem;
 
-  color:
-    var(--rv-text3);
+  color: var(--rv-text3);
 
-  margin-bottom:
-    8px;
+  margin-bottom: 8px;
 
-  min-height:
-    1.4em;
+  min-height: 1.4em;
 
   transition:
     opacity 0.5s var(--rv-ease),
@@ -444,25 +405,18 @@ img {
 }
 
 
-/* ============================================
-   LOCK GENERAL STARS AFTER SELECTION
-   ============================================ */
+/* LOCK GENERAL STARS */
 
 .review-stars--locked {
-  opacity:
-    0;
+  opacity: 0;
 
-  max-height:
-    0;
+  max-height: 0;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  margin:
-    0;
+  margin: 0;
 
-  pointer-events:
-    none;
+  pointer-events: none;
 
   transition:
     opacity 0.4s var(--rv-ease),
@@ -470,19 +424,14 @@ img {
     margin 0.5s 0.1s var(--rv-ease);
 }
 
-
 .review-stars-hint--locked {
-  opacity:
-    0;
+  opacity: 0;
 
-  max-height:
-    0;
+  max-height: 0;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  margin:
-    0;
+  margin: 0;
 
   transition:
     opacity 0.3s var(--rv-ease),
@@ -491,243 +440,145 @@ img {
 }
 
 
-/* ============================================
-   GOOGLE CTA
-   ============================================ */
+/* GOOGLE CTA */
 
 .review-cta-wrap {
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  align-items:
-    center;
+  align-items: center;
 
-  gap:
-    16px;
+  gap: 16px;
 
-  width:
-    100%;
+  width: 100%;
+  max-width: 320px;
 
-  max-width:
-    320px;
+  margin-top: 12px;
 
-  margin-top:
-    12px;
+  animation:
+    rv-fadeUp 0.5s var(--rv-ease) forwards;
 }
-
-
-.review-cta-wrap[hidden] {
-  display:
-    none;
-}
-
 
 .review-cta-message {
-  font-size:
-    0.88rem;
+  font-size: 0.88rem;
 
-  color:
-    var(--rv-text2);
+  color: var(--rv-text2);
 
-  line-height:
-    1.6;
+  line-height: 1.6;
 }
 
-
 .review-cta {
-  display:
-    inline-flex;
+  display: inline-flex;
 
-  align-items:
-    center;
+  align-items: center;
+  justify-content: center;
 
-  justify-content:
-    center;
+  gap: 10px;
 
-  gap:
-    10px;
+  width: 100%;
 
-  width:
-    100%;
+  font-size: 0.78rem;
 
-  font-family:
-    var(--rv-sans);
+  font-weight: 600;
 
-  font-size:
-    0.78rem;
+  letter-spacing: 0.1em;
 
-  font-weight:
-    600;
+  text-transform: uppercase;
 
-  letter-spacing:
-    0.1em;
+  text-decoration: none;
 
-  text-transform:
-    uppercase;
+  color: var(--rv-white);
 
-  text-decoration:
-    none;
+  background: var(--rv-brown);
 
-  color:
-    var(--rv-white);
+  padding: 18px 32px;
 
-  background:
-    var(--rv-brown);
+  border-radius: 12px;
 
-  padding:
-    18px 32px;
-
-  border-radius:
-    12px;
-
-  border:
-    none;
-
-  cursor:
-    pointer;
+  min-height: 56px;
 
   transition:
     all 0.4s var(--rv-ease);
-
-  min-height:
-    56px;
-
-  -webkit-tap-highlight-color:
-    transparent;
 }
 
-
 .review-cta:hover {
-  background:
-    var(--rv-brown-d);
+  background: var(--rv-brown-d);
 
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 
   box-shadow:
     0 8px 32px rgba(94, 73, 64, 0.3);
 }
 
-
 .review-cta:focus-visible {
-  outline:
-    2px solid var(--rv-brown);
-
-  outline-offset:
-    3px;
+  outline: 2px solid var(--rv-brown);
+  outline-offset: 3px;
 }
-
-
-.review-cta:active {
-  transform:
-    translateY(0);
-}
-
 
 .review-cta-icon {
-  width:
-    18px;
+  width: 18px;
+  height: 18px;
 
-  height:
-    18px;
-
-  flex-shrink:
-    0;
+  flex-shrink: 0;
 }
-
 
 .review-cta-sub {
-  font-size:
-    0.72rem;
+  font-size: 0.72rem;
 
-  color:
-    var(--rv-text3);
+  color: var(--rv-text3);
 }
 
 
-/* ============================================
-   PRIVATE FEEDBACK — 1–3 STARS
-   ============================================ */
+/* PRIVATE FEEDBACK */
 
 .review-feedback-wrap {
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  align-items:
-    center;
+  align-items: center;
 
-  gap:
-    16px;
+  gap: 16px;
 
-  width:
-    100%;
+  width: 100%;
+  max-width: 360px;
 
-  max-width:
-    360px;
+  margin-top: 12px;
 
-  margin-top:
-    12px;
+  animation:
+    rv-fadeUp 0.5s var(--rv-ease) forwards;
 }
-
-
-.review-feedback-wrap[hidden] {
-  display:
-    none;
-}
-
 
 .review-feedback-message {
-  font-size:
-    0.88rem;
+  font-size: 0.88rem;
 
-  color:
-    var(--rv-text2);
+  color: var(--rv-text2);
 
-  line-height:
-    1.6;
+  line-height: 1.6;
 
-  max-width:
-    340px;
+  max-width: 340px;
 }
-
 
 .review-feedback-form {
-  width:
-    100%;
+  width: 100%;
 
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  gap:
-    16px;
+  gap: 16px;
 }
 
 
-/* ============================================
-   DETAILED RATINGS
-   ============================================ */
+/* DETAILED RATINGS */
 
 .review-detail-ratings {
-  width:
-    100%;
+  width: 100%;
 
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
-
-  gap:
-    0;
+  flex-direction: column;
 
   background:
     rgba(246, 237, 228, 0.45);
@@ -735,776 +586,492 @@ img {
   border:
     1px solid var(--rv-beige-d);
 
-  border-radius:
-    14px;
+  border-radius: 14px;
 
-  padding:
-    14px 16px 6px;
+  padding: 14px 16px 6px;
 }
-
 
 .review-detail-heading {
-  text-align:
-    left;
+  text-align: left;
 
-  padding-bottom:
-    8px;
+  padding-bottom: 10px;
 }
-
 
 .review-detail-title {
-  font-size:
-    0.82rem;
+  font-size: 0.82rem;
 
-  font-weight:
-    600;
+  font-weight: 600;
 
-  color:
-    var(--rv-text);
+  color: var(--rv-text);
 }
-
 
 .review-detail-subtitle {
-  font-size:
-    0.7rem;
+  font-size: 0.7rem;
 
-  color:
-    var(--rv-text3);
+  color: var(--rv-text3);
 
-  margin-top:
-    2px;
+  margin-top: 2px;
 }
 
-
 .review-detail-row {
-  width:
-    100%;
+  width: 100%;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
+  justify-content: space-between;
 
-  justify-content:
-    space-between;
+  gap: 14px;
 
-  gap:
-    14px;
-
-  min-height:
-    52px;
+  min-height: 54px;
 
   border-top:
     1px solid var(--rv-beige-d);
 }
 
-
 .review-detail-label {
-  font-size:
-    0.84rem;
+  font-size: 0.84rem;
 
-  font-weight:
-    500;
+  font-weight: 500;
 
-  color:
-    var(--rv-text);
+  color: var(--rv-text);
 
-  text-align:
-    left;
+  text-align: left;
 
-  flex-shrink:
-    0;
+  flex-shrink: 0;
 }
-
 
 .review-detail-stars {
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
+  justify-content: flex-end;
 
-  justify-content:
-    flex-end;
-
-  gap:
-    1px;
+  gap: 1px;
 }
 
-
 .review-detail-star {
-  appearance:
-    none;
+  appearance: none;
+  -webkit-appearance: none;
 
-  -webkit-appearance:
-    none;
+  border: 0;
 
-  border:
-    0;
+  background: transparent;
 
-  background:
-    transparent;
+  padding: 2px;
 
-  padding:
-    2px;
+  font-family: Arial, sans-serif;
 
-  margin:
-    0;
+  font-size: 1.65rem;
 
-  font-family:
-    Arial,
-    sans-serif;
+  line-height: 1;
 
-  font-size:
-    1.65rem;
+  color: var(--rv-beige-d);
 
-  line-height:
-    1;
-
-  color:
-    var(--rv-beige-d);
-
-  cursor:
-    pointer;
+  cursor: pointer;
 
   transition:
     color 0.2s var(--rv-ease),
     transform 0.2s var(--rv-ease);
 
-  -webkit-tap-highlight-color:
-    transparent;
+  -webkit-tap-highlight-color: transparent;
 }
-
 
 .review-detail-star.active {
-  color:
-    var(--rv-gold);
+  color: var(--rv-gold);
 }
-
 
 .review-detail-star:hover {
-  transform:
-    scale(1.1);
+  transform: scale(1.1);
 }
-
 
 .review-detail-star:focus-visible {
-  outline:
-    2px solid var(--rv-brown);
+  outline: 2px solid var(--rv-brown);
+  outline-offset: 1px;
 
-  outline-offset:
-    1px;
-
-  border-radius:
-    4px;
+  border-radius: 4px;
 }
 
 
-/* ============================================
-   DETAIL VALIDATION
-   ============================================ */
+/* FEEDBACK ERROR */
 
 .review-feedback-error {
-  width:
-    100%;
+  width: 100%;
 
-  padding:
-    10px 12px;
+  padding: 10px 12px;
 
-  font-size:
-    0.72rem;
-
-  line-height:
-    1.5;
-
-  color:
-    var(--rv-error);
-
-  background:
-    rgba(156, 85, 75, 0.07);
+  border-radius: 10px;
 
   border:
     1px solid rgba(156, 85, 75, 0.18);
 
-  border-radius:
-    10px;
+  background:
+    rgba(156, 85, 75, 0.07);
 
-  text-align:
-    left;
+  color: var(--rv-error);
+
+  font-size: 0.72rem;
+
+  line-height: 1.5;
+
+  text-align: left;
 }
 
 
-.review-feedback-error[hidden] {
-  display:
-    none;
-}
-
-
-/* ============================================
-   OPTIONAL COMMENT
-   ============================================ */
+/* COMMENT */
 
 .review-feedback-comment {
-  width:
-    100%;
+  width: 100%;
 
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  gap:
-    8px;
+  gap: 8px;
 }
-
 
 .review-feedback-label {
-  font-size:
-    0.72rem;
+  font-size: 0.72rem;
 
-  font-weight:
-    600;
+  font-weight: 600;
 
-  letter-spacing:
-    0.05em;
+  letter-spacing: 0.05em;
 
-  text-transform:
-    uppercase;
+  text-transform: uppercase;
 
-  color:
-    var(--rv-text2);
+  color: var(--rv-text2);
 
-  text-align:
-    left;
+  text-align: left;
 }
-
 
 .review-feedback-optional {
-  display:
-    inline-block;
+  margin-left: 4px;
 
-  margin-left:
-    4px;
+  font-weight: 400;
 
-  font-weight:
-    400;
+  text-transform: none;
 
-  letter-spacing:
-    0;
+  letter-spacing: 0;
 
-  text-transform:
-    none;
-
-  color:
-    var(--rv-text3);
+  color: var(--rv-text3);
 }
 
-
 .review-feedback-textarea {
-  font-family:
-    var(--rv-sans);
+  width: 100%;
 
-  font-size:
-    0.88rem;
+  min-height: 90px;
 
-  padding:
-    14px 16px;
+  padding: 14px 16px;
 
   border:
     1.5px solid var(--rv-beige-d);
 
-  border-radius:
-    12px;
+  border-radius: 12px;
 
-  background:
-    var(--rv-beige);
+  background: var(--rv-beige);
 
-  color:
-    var(--rv-text);
+  color: var(--rv-text);
 
-  resize:
-    vertical;
+  font-family: var(--rv-sans);
 
-  min-height:
-    90px;
+  font-size: 0.88rem;
 
-  outline:
-    none;
+  resize: vertical;
+
+  outline: none;
 
   transition:
     border-color 0.3s;
-
-  width:
-    100%;
 }
-
 
 .review-feedback-textarea:focus {
-  border-color:
-    var(--rv-brown-l);
+  border-color: var(--rv-brown-l);
 }
-
 
 .review-feedback-textarea::placeholder {
-  color:
-    var(--rv-text3);
+  color: var(--rv-text3);
 }
 
 
-/* ============================================
-   FEEDBACK SUBMIT
-   ============================================ */
+/* SUBMIT */
 
 .review-feedback-submit {
-  font-family:
-    var(--rv-sans);
+  min-height: 52px;
 
-  font-size:
-    0.78rem;
+  padding: 16px 32px;
 
-  font-weight:
-    600;
+  border: none;
 
-  letter-spacing:
-    0.1em;
+  border-radius: 12px;
 
-  text-transform:
-    uppercase;
+  background: var(--rv-brown);
 
-  color:
-    var(--rv-white);
+  color: var(--rv-white);
 
-  background:
-    var(--rv-brown);
+  font-size: 0.78rem;
 
-  padding:
-    16px 32px;
+  font-weight: 600;
 
-  border-radius:
-    12px;
+  letter-spacing: 0.1em;
 
-  border:
-    none;
+  text-transform: uppercase;
 
-  cursor:
-    pointer;
+  cursor: pointer;
 
   transition:
     all 0.4s var(--rv-ease);
-
-  min-height:
-    52px;
-
-  -webkit-tap-highlight-color:
-    transparent;
 }
 
-
 .review-feedback-submit:hover {
-  background:
-    var(--rv-brown-d);
+  background: var(--rv-brown-d);
 
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 
   box-shadow:
     0 8px 32px rgba(94, 73, 64, 0.3);
 }
 
-
 .review-feedback-submit:focus-visible {
-  outline:
-    2px solid var(--rv-brown);
+  outline: 2px solid var(--rv-brown);
+  outline-offset: 3px;
+}
 
-  outline-offset:
-    3px;
+.review-feedback-submit:disabled {
+  opacity: 0.6;
+
+  cursor: wait;
+
+  transform: none;
 }
 
 
-.review-feedback-submit:active {
-  transform:
-    translateY(0);
-}
-
-
-/* ============================================
-   FEEDBACK THANK YOU
-   ============================================ */
+/* THANKS */
 
 .review-feedback-thanks {
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  align-items:
-    center;
+  align-items: center;
 
-  gap:
-    16px;
+  gap: 16px;
 
-  padding:
-    24px 0;
+  padding: 24px 0;
 }
-
-
-.review-feedback-thanks[hidden] {
-  display:
-    none;
-}
-
 
 .review-feedback-check {
-  width:
-    48px;
+  width: 48px;
+  height: 48px;
 
-  height:
-    48px;
-
-  color:
-    var(--rv-brown);
+  color: var(--rv-brown);
 }
-
 
 .review-feedback-thanks p {
-  font-size:
-    0.88rem;
+  font-size: 0.88rem;
 
-  color:
-    var(--rv-text2);
+  line-height: 1.6;
 
-  line-height:
-    1.6;
+  color: var(--rv-text2);
 }
 
 
-/* ============================================
-   FOOTER
-   ============================================ */
+/* FOOTER */
 
 .review-footer {
-  display:
-    flex;
+  display: flex;
 
-  flex-direction:
-    column;
+  flex-direction: column;
 
-  align-items:
-    center;
+  align-items: center;
 
-  gap:
-    4px;
+  gap: 4px;
 
-  padding:
-    24px 0 8px;
+  padding: 24px 0 8px;
 
-  font-size:
-    0.68rem;
+  font-size: 0.68rem;
 
-  color:
-    var(--rv-text3);
+  color: var(--rv-text3);
 
-  text-align:
-    center;
+  text-align: center;
 }
-
 
 .review-footer-brand {
-  font-weight:
-    500;
+  font-size: 0.6rem;
 
-  letter-spacing:
-    0.08em;
+  font-weight: 500;
 
-  text-transform:
-    uppercase;
+  letter-spacing: 0.08em;
 
-  font-size:
-    0.6rem;
+  text-transform: uppercase;
 
-  color:
-    var(--rv-brown-l);
+  color: var(--rv-brown-l);
 }
 
 
-/* ============================================
-   ANIMATIONS
-   ============================================ */
+/* ANIMATIONS */
 
 [data-animate] {
-  opacity:
-    0;
+  opacity: 0;
 
-  transform:
-    translateY(16px);
+  transform: translateY(16px);
 }
-
 
 .review-page.loaded [data-animate] {
   animation:
     rv-fadeUp 0.7s var(--rv-ease) forwards;
 }
 
-
 .review-page.loaded
 .review-logo[data-animate] {
-  animation-delay:
-    0.1s;
+  animation-delay: 0.1s;
 }
-
 
 .review-page.loaded
 .review-eyebrow[data-animate] {
-  animation-delay:
-    0.2s;
+  animation-delay: 0.2s;
 }
-
 
 .review-page.loaded
 .review-headline[data-animate] {
-  animation-delay:
-    0.3s;
+  animation-delay: 0.3s;
 }
-
 
 .review-page.loaded
 .review-body[data-animate] {
-  animation-delay:
-    0.4s;
+  animation-delay: 0.4s;
 }
-
 
 .review-page.loaded
 #starRating[data-animate] {
-  animation-delay:
-    0.5s;
+  animation-delay: 0.5s;
 }
-
 
 .review-page.loaded
 #starsHint[data-animate] {
-  animation-delay:
-    0.55s;
+  animation-delay: 0.55s;
 }
-
 
 .review-page.loaded
 .review-footer[data-animate] {
-  animation-delay:
-    0.6s;
+  animation-delay: 0.6s;
 }
-
-
-.review-cta-wrap,
-.review-feedback-wrap {
-  animation:
-    rv-fadeUp 0.5s var(--rv-ease) forwards;
-}
-
 
 @keyframes rv-fadeUp {
   from {
-    opacity:
-      0;
+    opacity: 0;
 
-    transform:
-      translateY(16px);
+    transform: translateY(16px);
   }
 
   to {
-    opacity:
-      1;
+    opacity: 1;
 
-    transform:
-      translateY(0);
+    transform: translateY(0);
   }
 }
 
 
-/* ============================================
-   REDUCED MOTION
-   ============================================ */
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
 
-  [data-animate],
-  .review-page.loaded [data-animate] {
-    animation:
-      none !important;
-
-    opacity:
-      1;
-
-    transform:
-      none;
-  }
-
-
-  .review-wave svg {
-    animation:
-      none;
-  }
-
-
-  .review-cta-wrap,
-  .review-feedback-wrap {
-    animation:
-      none !important;
-
-    opacity:
-      1;
-
-    transform:
-      none;
-  }
-
-
-  .review-star,
-  .review-detail-star {
-    transition:
-      none;
-  }
-
-
-  .review-cta,
-  .review-feedback-submit {
-    transition:
-      none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 
 }
 
 
-/* ============================================
-   RESPONSIVE — SMALL PHONES
-   ============================================ */
+/* SMALL PHONES */
 
 @media (max-width: 390px) {
 
   .review-headline {
-    font-size:
-      1.6rem;
+    font-size: 1.6rem;
   }
 
-
-  .review-logo img {
-    height:
-      40px;
+  .review-logo img,
+  .review-state-logo {
+    height: 40px;
   }
-
 
   .review-star {
-    width:
-      40px;
-
-    height:
-      40px;
+    width: 40px;
+    height: 40px;
   }
-
 
   .review-detail-ratings {
-    padding-left:
-      12px;
-
-    padding-right:
-      12px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
-
 
   .review-detail-row {
-    gap:
-      8px;
+    gap: 8px;
   }
 
-
   .review-detail-star {
-    font-size:
-      1.45rem;
+    font-size: 1.45rem;
 
-    padding:
-      1px;
+    padding: 1px;
   }
 
 }
 
 
-/* ============================================
-   SHORT PHONES
-   ============================================ */
+/* SHORT PHONES */
 
 @media (max-height: 680px) {
 
   .review-logo {
-    margin-bottom:
-      20px;
+    margin-bottom: 20px;
   }
-
 
   .review-body {
-    margin-bottom:
-      24px;
+    margin-bottom: 24px;
   }
 
-
   .review-container {
-    padding:
-      20px 0 16px;
+    padding: 20px 0 16px;
   }
 
 }
 
 
-/* ============================================
-   DESKTOP
-   ============================================ */
+/* DESKTOP */
 
 @media (min-width: 768px) {
 
   .review-page {
-    padding:
-      40px 32px;
+    padding: 40px 32px;
   }
-
 
   .review-logo img {
-    height:
-      56px;
+    height: 56px;
   }
-
 
   .review-headline {
-    font-size:
-      2.6rem;
+    font-size: 2.6rem;
   }
-
 
   .review-body {
-    font-size:
-      0.92rem;
+    font-size: 0.92rem;
 
-    max-width:
-      380px;
+    max-width: 380px;
   }
-
 
   .review-star {
-    width:
-      48px;
-
-    height:
-      48px;
+    width: 48px;
+    height: 48px;
   }
 
-
   .review-cta {
-    width:
-      auto;
+    width: auto;
 
-    min-width:
-      280px;
+    min-width: 280px;
   }
 
 }

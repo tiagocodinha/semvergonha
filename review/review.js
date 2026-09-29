@@ -14,14 +14,129 @@
     'https://vfhbvpmyceptkgwbcthr.supabase.co/functions/v1/review-event';
 
 
+  var GESTIO_REVIEW_ACCESS_URL =
+    'https://vfhbvpmyceptkgwbcthr.supabase.co/functions/v1/review-access';
+
+
 
   // ================================================================
-  // TOKEN
+  // STATE
   // ================================================================
 
   var reviewToken =
     extractToken();
 
+
+  var reviewIsActive =
+    false;
+
+
+  var selectedStars =
+    0;
+
+
+  var detailRatings = {
+    food: 0,
+    service: 0,
+    atmosphere: 0
+  };
+
+
+
+  // ================================================================
+  // DOM
+  // ================================================================
+
+  var page =
+    document.getElementById('reviewPage');
+
+
+  var reviewLoading =
+    document.getElementById('reviewLoading');
+
+
+  var reviewInvalid =
+    document.getElementById('reviewInvalid');
+
+
+  var reviewExpired =
+    document.getElementById('reviewExpired');
+
+
+  var reviewCompleted =
+    document.getElementById('reviewCompleted');
+
+
+  var reviewUnavailable =
+    document.getElementById('reviewUnavailable');
+
+
+  var reviewContent =
+    document.getElementById('reviewContent');
+
+
+  var starButtons =
+    document.querySelectorAll('.review-star');
+
+
+  var starsHint =
+    document.getElementById('starsHint');
+
+
+  var starRating =
+    document.getElementById('starRating');
+
+
+  var googleCta =
+    document.getElementById('googleCta');
+
+
+  var googleBtn =
+    document.getElementById('googleBtn');
+
+
+  var ctaMessage =
+    document.getElementById('ctaMessage');
+
+
+  var feedbackWrap =
+    document.getElementById('feedbackWrap');
+
+
+  var feedbackMessage =
+    document.getElementById('feedbackMessage');
+
+
+  var feedbackForm =
+    document.getElementById('feedbackForm');
+
+
+  var feedbackSubmit =
+    document.getElementById('feedbackSubmit');
+
+
+  var feedbackThanks =
+    document.getElementById('feedbackThanks');
+
+
+  var feedbackText =
+    document.getElementById('feedbackText');
+
+
+  var feedbackError =
+    document.getElementById('feedbackError');
+
+
+  var detailRatingGroups =
+    document.querySelectorAll(
+      '[data-rating-group]'
+    );
+
+
+
+  // ================================================================
+  // TOKEN
+  // ================================================================
 
   function extractToken() {
 
@@ -35,31 +150,39 @@
         .split('/');
 
 
-    // Exemplo:
-    // /review/ABC123
-    //
-    // ['', 'review', 'ABC123']
+    var reviewIndex =
+      parts.lastIndexOf('review');
+
+
+    if (
+      reviewIndex === -1 ||
+      !parts[reviewIndex + 1]
+    ) {
+      return null;
+    }
+
 
     var token =
-      parts.length >= 3
-        ? parts[2]
-        : null;
+      parts[reviewIndex + 1];
 
 
     if (
       !token ||
-      token === 'review' ||
       token === 'index.html'
     ) {
       return null;
     }
 
 
-    // Validação básica no browser.
-    // A validação autoritativa é feita pelo GestIO.
+    /*
+     * Isto valida apenas o formato.
+     *
+     * O servidor é que decide se
+     * o token existe ou não.
+     */
 
     if (
-      !/^[A-Za-z0-9_-]{3,64}$/.test(token)
+      !/^[A-Za-z0-9_-]{3,128}$/.test(token)
     ) {
       return null;
     }
@@ -71,23 +194,341 @@
 
 
   // ================================================================
-  // TRACKING → GESTIO
+  // REVIEW ACCESS
   // ================================================================
 
-  function trackToGestio(
+  async function checkReviewAccess() {
+
+    if (!reviewToken) {
+
+      showReviewState(
+        'invalid'
+      );
+
+      return false;
+    }
+
+
+    try {
+
+      var response =
+        await fetch(
+          GESTIO_REVIEW_ACCESS_URL,
+          {
+            method: 'POST',
+
+            headers: {
+              'Content-Type':
+                'application/json'
+            },
+
+            body:
+              JSON.stringify({
+                token: reviewToken
+              }),
+
+            mode:
+              'cors',
+
+            cache:
+              'no-store'
+          }
+        );
+
+
+      /*
+       * TOKEN NÃO EXISTE
+       */
+
+      if (
+        response.status === 404
+      ) {
+
+        showReviewState(
+          'invalid'
+        );
+
+        return false;
+      }
+
+
+      /*
+       * ERRO TÉCNICO
+       */
+
+      if (!response.ok) {
+
+        showReviewState(
+          'unavailable'
+        );
+
+        return false;
+      }
+
+
+      var data =
+        await response.json();
+
+
+      /*
+       * ACTIVE
+       */
+
+      if (
+        data.status === 'active'
+      ) {
+
+        reviewIsActive =
+          true;
+
+
+        showReviewState(
+          'active'
+        );
+
+
+        return true;
+      }
+
+
+      /*
+       * COMPLETED
+       */
+
+      if (
+        data.status === 'completed'
+      ) {
+
+        reviewIsActive =
+          false;
+
+
+        showReviewState(
+          'completed'
+        );
+
+
+        return false;
+      }
+
+
+      /*
+       * EXPIRED
+       */
+
+      if (
+        data.status === 'expired'
+      ) {
+
+        reviewIsActive =
+          false;
+
+
+        showReviewState(
+          'expired'
+        );
+
+
+        return false;
+      }
+
+
+      showReviewState(
+        'invalid'
+      );
+
+
+      return false;
+
+    } catch (error) {
+
+      console.debug(
+        '[SV Review] review-access failed:',
+        error
+      );
+
+
+      showReviewState(
+        'unavailable'
+      );
+
+
+      return false;
+    }
+
+  }
+
+
+
+  // ================================================================
+  // PAGE STATE
+  // ================================================================
+
+  function showReviewState(
+    state
+  ) {
+
+    reviewLoading.hidden =
+      true;
+
+
+    reviewInvalid.hidden =
+      true;
+
+
+    reviewExpired.hidden =
+      true;
+
+
+    reviewCompleted.hidden =
+      true;
+
+
+    reviewUnavailable.hidden =
+      true;
+
+
+    reviewContent.hidden =
+      true;
+
+
+    if (
+      state === 'active'
+    ) {
+
+      reviewContent.hidden =
+        false;
+
+
+      requestAnimationFrame(
+        function () {
+
+          page.classList.add(
+            'loaded'
+          );
+
+        }
+      );
+
+
+      return;
+    }
+
+
+    /*
+     * Ao sair da review ativa
+     * removemos a classe de animação.
+     */
+
+    page.classList.remove(
+      'loaded'
+    );
+
+
+    if (
+      state === 'invalid'
+    ) {
+
+      reviewInvalid.hidden =
+        false;
+
+
+      return;
+    }
+
+
+    if (
+      state === 'expired'
+    ) {
+
+      reviewExpired.hidden =
+        false;
+
+
+      return;
+    }
+
+
+    if (
+      state === 'completed'
+    ) {
+
+      reviewCompleted.hidden =
+        false;
+
+
+      return;
+    }
+
+
+    reviewUnavailable.hidden =
+      false;
+  }
+
+
+
+  // ================================================================
+  // SERVER ERROR BODY
+  // ================================================================
+
+  async function readErrorData(
+    response
+  ) {
+
+    try {
+
+      return await response.json();
+
+    } catch (error) {
+
+      return null;
+
+    }
+
+  }
+
+
+
+  // ================================================================
+  // GESTIO EVENTS
+  // ================================================================
+
+  async function sendGestioEvent(
     eventName,
     extraData,
     useKeepalive
   ) {
 
-    if (!reviewToken) {
-      return;
+    if (
+      !reviewToken ||
+      !reviewIsActive
+    ) {
+
+      var inactiveError =
+        new Error(
+          'Review is not active'
+        );
+
+
+      inactiveError.status =
+        409;
+
+
+      inactiveError.data = {
+        status: 'completed'
+      };
+
+
+      throw inactiveError;
     }
 
 
     var payload = {
-      token: reviewToken,
-      event: eventName
+      token:
+        reviewToken,
+
+      event:
+        eventName
     };
 
 
@@ -95,22 +536,24 @@
 
       Object
         .keys(extraData)
-        .forEach(function (key) {
+        .forEach(
+          function (key) {
 
-          payload[key] =
-            extraData[key];
+            payload[key] =
+              extraData[key];
 
-        });
+          }
+        );
 
     }
 
 
-    try {
-
-      fetch(
+    var response =
+      await fetch(
         GESTIO_REVIEW_EVENT_URL,
         {
-          method: 'POST',
+          method:
+            'POST',
 
           headers: {
             'Content-Type':
@@ -126,44 +569,109 @@
           keepalive:
             useKeepalive === true
         }
-      )
-      .catch(function (error) {
-
-        console.debug(
-          '[SV Review] GestIO tracking failed:',
-          eventName,
-          error
-        );
-
-      });
-
-    } catch (error) {
-
-      console.debug(
-        '[SV Review] GestIO tracking error:',
-        eventName,
-        error
       );
 
+
+    if (!response.ok) {
+
+      var errorData =
+        await readErrorData(
+          response
+        );
+
+
+      var error =
+        new Error(
+          'GestIO event failed'
+        );
+
+
+      error.status =
+        response.status;
+
+
+      error.data =
+        errorData;
+
+
+      throw error;
     }
 
+
+    return response;
   }
 
 
 
   // ================================================================
-  // ANALYTICS
+  // HANDLE COMPLETED / EXPIRED CONFLICTS
+  // ================================================================
+
+  function handleReviewConflict(
+    error
+  ) {
+
+    if (
+      !error ||
+      error.status !== 409
+    ) {
+
+      return false;
+    }
+
+
+    reviewIsActive =
+      false;
+
+
+    if (
+      error.data &&
+      error.data.status === 'expired'
+    ) {
+
+      showReviewState(
+        'expired'
+      );
+
+
+      return true;
+    }
+
+
+    showReviewState(
+      'completed'
+    );
+
+
+    return true;
+  }
+
+
+
+  // ================================================================
+  // PAGE OPEN
   // ================================================================
 
   function trackReviewPageOpen() {
 
-    console.debug(
-      '[SV Review] page_open'
-    );
-
-
-    trackToGestio(
+    sendGestioEvent(
       'review_page_open'
+    )
+    .catch(
+      function (error) {
+
+        /*
+         * A página acabou de ser validada.
+         *
+         * Se entretanto ficou concluída
+         * ou expirou, mostramos o estado.
+         */
+
+        handleReviewConflict(
+          error
+        );
+
+      }
     );
 
 
@@ -183,52 +691,28 @@
 
 
 
-  function trackGoogleReviewClick() {
+  // ================================================================
+  // GENERAL RATING TRACKING
+  // ================================================================
 
-    console.debug(
-      '[SV Review] google_click'
-    );
+  function trackStarRating(
+    stars
+  ) {
 
-
-    // keepalive porque vamos sair da página.
-
-    trackToGestio(
-      'review_google_click',
-      null,
-      true
-    );
-
-
-    if (
-      typeof window.dataLayer !==
-      'undefined'
-    ) {
-
-      window.dataLayer.push({
-        event:
-          'review_google_click'
-      });
-
-    }
-
-  }
-
-
-
-  function trackStarRating(stars) {
-
-    console.debug(
-      '[SV Review] star_rating',
-      {
-        stars: stars
-      }
-    );
-
-
-    trackToGestio(
+    sendGestioEvent(
       'review_rating_selected',
       {
-        rating: stars
+        rating:
+          stars
+      }
+    )
+    .catch(
+      function (error) {
+
+        handleReviewConflict(
+          error
+        );
+
       }
     );
 
@@ -239,11 +723,13 @@
     ) {
 
       window.dataLayer.push({
+
         event:
           'review_star_rating',
 
         review_stars:
           stars
+
       });
 
     }
@@ -252,7 +738,11 @@
 
 
 
-  function trackFeedbackSubmit(
+  // ================================================================
+  // DETAILED FEEDBACK REQUEST
+  // ================================================================
+
+  function sendDetailedFeedback(
     overallRating,
     foodRating,
     serviceRating,
@@ -260,28 +750,7 @@
     text
   ) {
 
-    console.debug(
-      '[SV Review] feedback_submit',
-      {
-        rating:
-          overallRating,
-
-        food_rating:
-          foodRating,
-
-        service_rating:
-          serviceRating,
-
-        atmosphere_rating:
-          atmosphereRating,
-
-        has_feedback:
-          !!text
-      }
-    );
-
-
-    var gestioData = {
+    var payload = {
 
       rating:
         overallRating,
@@ -300,178 +769,27 @@
 
     /*
      * O comentário é opcional.
-     *
-     * Se estiver vazio, não enviamos a propriedade
-     * `feedback`.
      */
 
     if (text) {
 
-      gestioData.feedback =
+      payload.feedback =
         text;
 
     }
 
 
-    trackToGestio(
+    return sendGestioEvent(
       'review_feedback_submitted',
-      gestioData
+      payload
     );
-
-
-    /*
-     * GA4 / GTM
-     *
-     * Não enviamos:
-     * - token
-     * - comentário
-     * - dados pessoais
-     */
-
-    if (
-      typeof window.dataLayer !==
-      'undefined'
-    ) {
-
-      window.dataLayer.push({
-
-        event:
-          'review_feedback_submit',
-
-        review_stars:
-          overallRating,
-
-        food_rating:
-          foodRating,
-
-        service_rating:
-          serviceRating,
-
-        atmosphere_rating:
-          atmosphereRating
-
-      });
-
-    }
 
   }
 
 
 
   // ================================================================
-  // REVIEW STATE
-  // ================================================================
-
-  var selectedStars =
-    0;
-
-
-  var detailRatings = {
-
-    food:
-      0,
-
-    service:
-      0,
-
-    atmosphere:
-      0
-
-  };
-
-
-
-  // ================================================================
-  // ELEMENTOS
-  // ================================================================
-
-  var starButtons =
-    document.querySelectorAll(
-      '.review-star'
-    );
-
-
-  var starsHint =
-    document.getElementById(
-      'starsHint'
-    );
-
-
-  var googleCta =
-    document.getElementById(
-      'googleCta'
-    );
-
-
-  var googleBtn =
-    document.getElementById(
-      'googleBtn'
-    );
-
-
-  var ctaMessage =
-    document.getElementById(
-      'ctaMessage'
-    );
-
-
-  var feedbackWrap =
-    document.getElementById(
-      'feedbackWrap'
-    );
-
-
-  var feedbackMessage =
-    document.getElementById(
-      'feedbackMessage'
-    );
-
-
-  var feedbackForm =
-    document.getElementById(
-      'feedbackForm'
-    );
-
-
-  var feedbackThanks =
-    document.getElementById(
-      'feedbackThanks'
-    );
-
-
-  var feedbackText =
-    document.getElementById(
-      'feedbackText'
-    );
-
-
-  var feedbackError =
-    document.getElementById(
-      'feedbackError'
-    );
-
-
-  var starRating =
-    document.getElementById(
-      'starRating'
-    );
-
-
-  var page =
-    document.getElementById(
-      'reviewPage'
-    );
-
-
-  var detailRatingGroups =
-    document.querySelectorAll(
-      '[data-rating-group]'
-    );
-
-
-
-  // ================================================================
-  // GENERAL STAR LABELS
+  // STAR LABELS
   // ================================================================
 
   var starLabels = [
@@ -493,15 +811,19 @@
     function (button) {
 
 
-      // --------------------------------------------------------------
-      // HOVER
-      // --------------------------------------------------------------
-
       button.addEventListener(
         'mouseenter',
         function () {
 
-          var hoverStar =
+          if (
+            !reviewIsActive ||
+            selectedStars > 0
+          ) {
+            return;
+          }
+
+
+          var value =
             parseInt(
               this.getAttribute(
                 'data-star'
@@ -510,38 +832,32 @@
             );
 
 
-          if (
-            hoverStar >= 1 &&
-            hoverStar <= 5
-          ) {
-
-            highlightStars(
-              hoverStar,
-              'hover'
-            );
-
-          }
+          highlightGeneralStars(
+            value,
+            'hover'
+          );
 
         }
       );
 
 
-      // --------------------------------------------------------------
-      // LEAVE
-      // --------------------------------------------------------------
-
       button.addEventListener(
         'mouseleave',
         function () {
 
-          clearHoverStars();
+          if (!reviewIsActive) {
+            return;
+          }
+
+
+          clearGeneralHover();
 
 
           if (
             selectedStars > 0
           ) {
 
-            highlightStars(
+            highlightGeneralStars(
               selectedStars,
               'active'
             );
@@ -552,15 +868,28 @@
       );
 
 
-      // --------------------------------------------------------------
-      // CLICK
-      // --------------------------------------------------------------
-
       button.addEventListener(
         'click',
         function () {
 
-          var star =
+          if (!reviewIsActive) {
+            return;
+          }
+
+
+          /*
+           * Só pode escolher uma vez
+           * nesta página.
+           */
+
+          if (
+            selectedStars > 0
+          ) {
+            return;
+          }
+
+
+          var value =
             parseInt(
               this.getAttribute(
                 'data-star'
@@ -570,12 +899,12 @@
 
 
           if (
-            star >= 1 &&
-            star <= 5
+            value >= 1 &&
+            value <= 5
           ) {
 
-            selectStars(
-              star
+            selectGeneralRating(
+              value
             );
 
           }
@@ -589,10 +918,10 @@
 
 
   // ================================================================
-  // GENERAL STAR HIGHLIGHT
+  // GENERAL STAR VISUALS
   // ================================================================
 
-  function highlightStars(
+  function highlightGeneralStars(
     upTo,
     className
   ) {
@@ -600,7 +929,7 @@
     starButtons.forEach(
       function (button) {
 
-        var star =
+        var value =
           parseInt(
             button.getAttribute(
               'data-star'
@@ -616,7 +945,7 @@
 
 
         if (
-          star <= upTo
+          value <= upTo
         ) {
 
           button.classList.add(
@@ -632,7 +961,7 @@
 
 
 
-  function clearHoverStars() {
+  function clearGeneralHover() {
 
     starButtons.forEach(
       function (button) {
@@ -652,13 +981,15 @@
   // SELECT GENERAL RATING
   // ================================================================
 
-  function selectStars(stars) {
+  function selectGeneralRating(
+    stars
+  ) {
 
     selectedStars =
       stars;
 
 
-    highlightStars(
+    highlightGeneralStars(
       stars,
       'active'
     );
@@ -672,14 +1003,19 @@
     }
 
 
-    // Guardar nota geral no GestIO imediatamente.
+    /*
+     * Guardar imediatamente a
+     * nota geral no GestIO.
+     */
 
     trackStarRating(
       stars
     );
 
 
-    // Bloquear estrelas gerais depois da escolha.
+    /*
+     * Esconder estrelas gerais.
+     */
 
     if (starRating) {
 
@@ -699,9 +1035,9 @@
     }
 
 
-    // ============================================================
-    // 4–5 → GOOGLE
-    // ============================================================
+    /*
+     * 4–5 → Google
+     */
 
     if (
       stars >= 4
@@ -714,9 +1050,9 @@
     }
 
 
-    // ============================================================
-    // 1–3 → DETAILED FEEDBACK
-    // ============================================================
+    /*
+     * 1–3 → feedback detalhado
+     */
 
     else {
 
@@ -731,10 +1067,12 @@
 
 
   // ================================================================
-  // GOOGLE FLOW — 4–5
+  // GOOGLE CTA
   // ================================================================
 
-  function showGoogleCta(stars) {
+  function showGoogleCta(
+    stars
+  ) {
 
     if (feedbackWrap) {
 
@@ -776,10 +1114,12 @@
 
 
   // ================================================================
-  // PRIVATE FEEDBACK — 1–3
+  // PRIVATE FEEDBACK
   // ================================================================
 
-  function showPrivateFeedback(stars) {
+  function showPrivateFeedback(
+    stars
+  ) {
 
     if (googleCta) {
 
@@ -819,7 +1159,7 @@
         'Lamentamos que a experiência não tenha sido a melhor.',
 
       2:
-        'Queremos melhorar. Conta-nos o que podemos fazer melhor.',
+        'Queremos melhorar. Ajuda-nos a perceber onde podemos melhorar.',
 
       3:
         'Obrigado! Ajuda-nos a perceber onde podemos melhorar.'
@@ -873,6 +1213,11 @@
             'click',
             function () {
 
+              if (!reviewIsActive) {
+                return;
+              }
+
+
               var value =
                 parseInt(
                   this.getAttribute(
@@ -886,23 +1231,13 @@
                 value < 1 ||
                 value > 5
               ) {
-
                 return;
-
               }
 
-
-              /*
-               * Guardar valor localmente.
-               */
 
               detailRatings[groupName] =
                 value;
 
-
-              /*
-               * Atualizar estrelas desta categoria.
-               */
 
               buttons.forEach(
                 function (starButton) {
@@ -925,11 +1260,6 @@
               );
 
 
-              /*
-               * Assim que o utilizador interage,
-               * escondemos eventual erro.
-               */
-
               if (feedbackError) {
 
                 feedbackError.hidden =
@@ -949,138 +1279,30 @@
 
 
   // ================================================================
-  // GOOGLE BUTTON
-  // ================================================================
-
-  if (googleBtn) {
-
-
-    /*
-     * Fallback normal.
-     */
-
-    googleBtn.href =
-      GOOGLE_REVIEW_URL;
-
-
-
-    googleBtn.addEventListener(
-      'click',
-      function (event) {
-
-
-        // ------------------------------------------------------------
-        // TRACK CLICK
-        // ------------------------------------------------------------
-
-        trackGoogleReviewClick();
-
-
-
-        // ------------------------------------------------------------
-        // ANDROID DETECTION
-        // ------------------------------------------------------------
-
-        var isAndroid =
-          /Android/i.test(
-            navigator.userAgent
-          );
-
-
-
-        // ------------------------------------------------------------
-        // ANDROID
-        //
-        // Tenta sair do browser interno do WhatsApp
-        // e abrir diretamente no Chrome.
-        // ------------------------------------------------------------
-
-        if (isAndroid) {
-
-          event.preventDefault();
-
-
-          var chromeIntent =
-
-            'intent://g.page/r/Cb24nnV3W48CEAE/review' +
-
-            '#Intent;' +
-
-            'scheme=https;' +
-
-            'package=com.android.chrome;' +
-
-            'action=android.intent.action.VIEW;' +
-
-            'category=android.intent.category.BROWSABLE;' +
-
-            'S.browser_fallback_url=' +
-
-            encodeURIComponent(
-              GOOGLE_REVIEW_URL
-            ) +
-
-            ';end';
-
-
-          window.location.href =
-            chromeIntent;
-
-
-          return;
-
-        }
-
-
-
-        // ------------------------------------------------------------
-        // IPHONE / IPAD / DESKTOP / OUTROS
-        //
-        // Mantém o comportamento normal.
-        // ------------------------------------------------------------
-
-        googleBtn.href =
-          GOOGLE_REVIEW_URL;
-
-      }
-    );
-
-  }
-
-
-
-  // ================================================================
-  // SUBMIT DETAILED FEEDBACK
+  // FEEDBACK SUBMIT
   // ================================================================
 
   if (feedbackForm) {
 
     feedbackForm.addEventListener(
       'submit',
-      function (event) {
+      async function (event) {
 
         event.preventDefault();
 
 
+        if (!reviewIsActive) {
+          return;
+        }
 
-        // ------------------------------------------------------------
-        // O FLUXO DE FEEDBACK SÓ É VÁLIDO PARA 1–3
-        // ------------------------------------------------------------
 
         if (
           selectedStars < 1 ||
           selectedStars > 3
         ) {
-
           return;
-
         }
 
-
-
-        // ------------------------------------------------------------
-        // OBTER RATINGS
-        // ------------------------------------------------------------
 
         var foodRating =
           detailRatings.food;
@@ -1094,10 +1316,10 @@
           detailRatings.atmosphere;
 
 
-
-        // ------------------------------------------------------------
-        // AS TRÊS CATEGORIAS SÃO OBRIGATÓRIAS
-        // ------------------------------------------------------------
+        /*
+         * As três avaliações são
+         * obrigatórias.
+         */
 
         if (
           foodRating < 1 ||
@@ -1105,23 +1327,21 @@
           atmosphereRating < 1
         ) {
 
-          if (feedbackError) {
+          feedbackError.textContent =
+            'Avalia Comida, Serviço e Ambiente antes de enviar.';
 
-            feedbackError.hidden =
-              false;
 
-          }
+          feedbackError.hidden =
+            false;
 
 
           return;
-
         }
 
 
-
-        // ------------------------------------------------------------
-        // COMMENT IS OPTIONAL
-        // ------------------------------------------------------------
+        /*
+         * Comentário opcional.
+         */
 
         var text =
           feedbackText
@@ -1131,64 +1351,318 @@
             : '';
 
 
-
-        // ------------------------------------------------------------
-        // SEND TO GESTIO
-        // ------------------------------------------------------------
-
-        trackFeedbackSubmit(
-
-          selectedStars,
-
-          foodRating,
-
-          serviceRating,
-
-          atmosphereRating,
-
-          text
-
-        );
+        feedbackError.hidden =
+          true;
 
 
-
-        // ------------------------------------------------------------
-        // UI SUCCESS
-        // ------------------------------------------------------------
-
-        feedbackForm.style.display =
-          'none';
+        feedbackSubmit.disabled =
+          true;
 
 
-        if (feedbackThanks) {
+        var originalButtonText =
+          feedbackSubmit.textContent;
+
+
+        feedbackSubmit.textContent =
+          'A ENVIAR...';
+
+
+        try {
+
+          await sendDetailedFeedback(
+
+            selectedStars,
+
+            foodRating,
+
+            serviceRating,
+
+            atmosphereRating,
+
+            text
+
+          );
+
+
+          /*
+           * O backend confirmou que
+           * foi guardado e concluído.
+           */
+
+          reviewIsActive =
+            false;
+
+
+          feedbackForm.style.display =
+            'none';
+
 
           feedbackThanks.hidden =
             false;
 
+
+          /*
+           * Analytics sem:
+           * - token
+           * - comentário
+           * - PII
+           */
+
+          if (
+            typeof window.dataLayer !==
+            'undefined'
+          ) {
+
+            window.dataLayer.push({
+
+              event:
+                'review_feedback_submit',
+
+              review_stars:
+                selectedStars,
+
+              food_rating:
+                foodRating,
+
+              service_rating:
+                serviceRating,
+
+              atmosphere_rating:
+                atmosphereRating
+
+            });
+
+          }
+
+
+        } catch (error) {
+
+          /*
+           * Se o servidor disser que
+           * entretanto ficou concluído
+           * ou expirou, mostramos
+           * o estado correto.
+           */
+
+          if (
+            handleReviewConflict(
+              error
+            )
+          ) {
+
+            return;
+          }
+
+
+          /*
+           * Erro técnico real.
+           */
+
+          console.debug(
+            '[SV Review] feedback submit failed:',
+            error
+          );
+
+
+          feedbackError.textContent =
+            'Não foi possível enviar o feedback. Tenta novamente.';
+
+
+          feedbackError.hidden =
+            false;
+
+
+          feedbackSubmit.disabled =
+            false;
+
+
+          feedbackSubmit.textContent =
+            originalButtonText;
+
+        }
+
+      }
+    );
+
+  }
+
+
+
+  // ================================================================
+  // GOOGLE NAVIGATION
+  // ================================================================
+
+  function navigateToGoogleReview() {
+
+    var isAndroid =
+      /Android/i.test(
+        navigator.userAgent
+      );
+
+
+    /*
+     * ANDROID
+     *
+     * Tenta sair do browser interno
+     * do WhatsApp e abrir Chrome.
+     */
+
+    if (isAndroid) {
+
+      var chromeIntent =
+
+        'intent://g.page/r/Cb24nnV3W48CEAE/review' +
+
+        '#Intent;' +
+
+        'scheme=https;' +
+
+        'package=com.android.chrome;' +
+
+        'action=android.intent.action.VIEW;' +
+
+        'category=android.intent.category.BROWSABLE;' +
+
+        'S.browser_fallback_url=' +
+
+        encodeURIComponent(
+          GOOGLE_REVIEW_URL
+        ) +
+
+        ';end';
+
+
+      window.location.href =
+        chromeIntent;
+
+
+      return;
+    }
+
+
+    /*
+     * iPhone / desktop / outros.
+     */
+
+    window.location.href =
+      GOOGLE_REVIEW_URL;
+  }
+
+
+
+  // ================================================================
+  // GOOGLE CLICK
+  // ================================================================
+
+  if (googleBtn) {
+
+    googleBtn.href =
+      GOOGLE_REVIEW_URL;
+
+
+    googleBtn.addEventListener(
+      'click',
+      async function (event) {
+
+        /*
+         * Controlamos nós a navegação
+         * para só sair depois de o servidor
+         * registar o clique.
+         */
+
+        event.preventDefault();
+
+
+        if (!reviewIsActive) {
+          return;
         }
 
 
-        console.debug(
-          '[SV Review] detailed_feedback_sent',
-          {
+        googleBtn.setAttribute(
+          'aria-disabled',
+          'true'
+        );
 
-            rating:
-              selectedStars,
 
-            food:
-              foodRating,
+        try {
 
-            service:
-              serviceRating,
+          await sendGestioEvent(
+            'review_google_click',
+            null,
+            true
+          );
 
-            atmosphere:
-              atmosphereRating,
 
-            hasText:
-              !!text
+          /*
+           * Servidor confirmou:
+           * completed_at + google_click
+           */
+
+          reviewIsActive =
+            false;
+
+
+          /*
+           * Analytics.
+           */
+
+          if (
+            typeof window.dataLayer !==
+            'undefined'
+          ) {
+
+            window.dataLayer.push({
+              event:
+                'review_google_click'
+            });
 
           }
-        );
+
+
+          navigateToGoogleReview();
+
+
+        } catch (error) {
+
+          /*
+           * Já concluído / expirado.
+           */
+
+          if (
+            handleReviewConflict(
+              error
+            )
+          ) {
+
+            return;
+          }
+
+
+          /*
+           * Erro técnico.
+           *
+           * Como não conseguimos confirmar
+           * o clique no GestIO, mostramos
+           * erro em vez de fingir que ficou
+           * concluído.
+           */
+
+          console.debug(
+            '[SV Review] Google click failed:',
+            error
+          );
+
+
+          googleBtn.removeAttribute(
+            'aria-disabled'
+          );
+
+
+          showReviewState(
+            'unavailable'
+          );
+
+        }
 
       }
     );
@@ -1198,30 +1672,32 @@
 
 
   // ================================================================
-  // PAGE ANIMATION
+  // INIT
   // ================================================================
 
-  if (page) {
+  async function initReview() {
 
-    requestAnimationFrame(
-      function () {
+    var accessGranted =
+      await checkReviewAccess();
 
-        page.classList.add(
-          'loaded'
-        );
 
-      }
-    );
+    if (!accessGranted) {
+      return;
+    }
+
+
+    /*
+     * Só contamos page_open depois
+     * de confirmar que o token é real,
+     * ativo e ainda não expirou.
+     */
+
+    trackReviewPageOpen();
 
   }
 
 
-
-  // ================================================================
-  // PAGE OPEN
-  // ================================================================
-
-  trackReviewPageOpen();
+  initReview();
 
 
 })();
