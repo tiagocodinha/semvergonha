@@ -1,19 +1,25 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/review/:token",
-      "destination": "/review/index.html"
-    }
-  ],
-  "headers": [
+      "src": "/review(?:/.*)?",
+      "headers": {
+        "X-Robots-Tag": "noindex, nofollow, noarchive"
+      },
+      "continue": true
+    },
     {
-      "source": "/review/:path*",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive"
-        }
-      ]
+      "handle": "filesystem"
+    },
+    {
+      "src": "/review/([^/]+)/?",
+      "dest": "/review/index.html"
+    },
+    {
+      "src": "/.*",
+      "status": 302,
+      "headers": {
+        "Location": "https://www.semvergonharestaurant.com/"
+      }
     }
   ]
 }
