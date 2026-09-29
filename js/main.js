@@ -175,8 +175,9 @@
     if (icon) showTip(icon); else if (tipFor) hideTip();
   });
   document.addEventListener('focusin', function (e) {
+    // Só para teclado: num toque o foco abria a etiqueta e o click logo a seguir fechava-a
     var icon = e.target.closest && e.target.closest('.menu__allergens .a');
-    if (icon) showTip(icon);
+    if (icon && icon.matches(':focus-visible')) showTip(icon);
   });
   document.addEventListener('focusout', hideTip);
   document.addEventListener('click', function (e) {
