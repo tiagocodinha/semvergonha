@@ -9,6 +9,9 @@
   var CM_BASE = 'https://www.covermanager.com/reservation/module_restaurant/' + CM_SLUG + '/';
   var CM_RESIZER = 'https://www.covermanager.com/js/iframeResizer/iframeResizer.min.js';
 
+  // Corta os últimos px do iframe (rodapé "CoverManager means Hospitality").
+  var CROP_BOTTOM = 50;
+
   var overlay = null;
   var iframe = null;
   var closeBtn = null;
@@ -46,7 +49,8 @@
       '.sv-res__close{position:sticky;top:0;float:right;z-index:2;display:flex;align-items:center;justify-content:center;width:38px;height:38px;margin:10px 10px -48px 0;border:0;border-radius:50%;background:#755c55;color:#f6ede4;cursor:pointer;padding:0;box-shadow:0 2px 8px rgba(0,0,0,.25);transition:background .2s,transform .25s;}' +
       '.sv-res__close svg{display:block;width:16px;height:16px;}' +
       '.sv-res__close:hover,.sv-res__close:focus-visible{background:#5e4940;transform:rotate(90deg);outline:none;}' +
-      '.sv-res__frame{display:block;width:100%;height:550px;min-height:550px;border:0;}' +
+      '.sv-res__crop{overflow:hidden;}' +
+      '.sv-res__frame{display:block;width:100%;height:550px;min-height:550px;border:0;margin-bottom:-' + CROP_BOTTOM + 'px;}' +
       '@media(max-width:600px){.sv-res{padding:0;}.sv-res__box{max-width:none;height:100%;border-radius:0;}}';
     var style = document.createElement('style');
     style.id = 'sv-reservas-css';
@@ -81,7 +85,10 @@
     iframe.setAttribute('frameborder', '0');
 
     box.appendChild(closeBtn);
-    box.appendChild(iframe);
+    var crop = document.createElement('div');
+    crop.className = 'sv-res__crop';
+    crop.appendChild(iframe);
+    box.appendChild(crop);
     overlay.appendChild(box);
     document.body.appendChild(overlay);
 
