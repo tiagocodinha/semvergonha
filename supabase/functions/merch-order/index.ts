@@ -271,7 +271,9 @@ Deno.serve(async (req) => {
     categories: ["Merch"],
   }));
   if (shipping > 0) {
-    cart.push({ description: "Portes de envio", amount: shipping, type: "Shipping" });
+    // "Shipping" nao e um type valido na Paybyrd — so aceita
+    // "Product" e "Physical". Os portes vao como linha normal.
+    cart.push({ description: "Portes de envio", amount: shipping, type: "Product" });
   }
 
   const payload = {
@@ -290,17 +292,19 @@ Deno.serve(async (req) => {
       shippingCity: addr?.city,
       shippingCountry: addr ? "PRT" : undefined,
     },
-    ShoppingCart: cart,
+    // A documentacao da Paybyrd mostra ShoppingCart como lista, mas a
+    // API rejeita-a: tem de ser um objeto com a lista dentro de "items".
+    ShoppingCart: { items: cart },
     orderOptions: {
       redirectUrl,
       culture,
       checkoutVersion: 2,
       expiresIn: "01:00:00",
     },
-    paymentOptions: {
-      maxAttempts: 3,
-      allowedPaymentMethods: ["CARD", "MBWAY", "SIBS_MULTIBANCO"],
-    },
+    // Sem paymentOptions de proposito: assim a Paybyrd oferece os
+    // metodos que a conta tiver ativos. Fixar a lista aqui fazia a
+    // encomenda rebentar com "No payment methods are available"
+    // sempre que a configuracao da conta nao batesse certo.
     metadata: {
       orderRef,
       delivery,
