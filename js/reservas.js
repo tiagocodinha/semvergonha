@@ -14,6 +14,7 @@
   var closeBtn = null;
   var lastFocus = null;
   var resizerPromise = null;
+  var pending = false;
 
   function currentLang() {
     var lang = 'pt';
@@ -39,7 +40,8 @@
     if (document.getElementById('sv-reservas-css')) return;
     var css =
       '.sv-res{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.6);}' +
-      '.sv-res.is-open{display:flex;}' +
+      '.sv-res.is-open{display:flex;animation:svResIn .25s ease;}' +
+      '@keyframes svResIn{from{opacity:0}to{opacity:1}}' +
       '.sv-res__box{position:relative;width:100%;max-width:640px;max-height:100%;overflow:auto;background:#fff;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.4);-webkit-overflow-scrolling:touch;}' +
       '.sv-res__close{position:sticky;top:0;float:right;z-index:2;display:flex;align-items:center;justify-content:center;width:38px;height:38px;margin:10px 10px -48px 0;border:0;border-radius:50%;background:#755c55;color:#f6ede4;cursor:pointer;padding:0;box-shadow:0 2px 8px rgba(0,0,0,.25);transition:background .2s,transform .25s;}' +
       '.sv-res__close svg{display:block;width:16px;height:16px;}' +
@@ -92,26 +94,48 @@
     });
   }
 
-  function open() {
-    build();
-
-    var src = CM_BASE + currentLang();
-    if (iframe.getAttribute('data-src') !== src) {
-      iframe.setAttribute('data-src', src);
-      iframe.src = src;
-      loadResizer().then(function () {
-        if (window.iFrameResize) window.iFrameResize({}, iframe);
-      });
-    }
-
-    lastFocus = document.activeElement;
+  function show() {
+    pending = false;
+    lastFocus = lastFocus || document.activeElement;
     overlay.classList.add('is-open');
     document.documentElement.style.overflow = 'hidden';
     closeBtn.focus();
   }
 
+  function open() {
+    build();
+    lastFocus = document.activeElement;
+
+    var src = CM_BASE + currentLang();
+    if (iframe.getAttribute('data-src') === src) {
+      show();
+      return;
+    }
+
+    // Só mostra o popup (cruz incluída) quando o iframe terminar de carregar.
+    pending = true;
+    var done = false;
+    function ready() {
+      if (done) return;
+      done = true;
+      clearTimeout(timer);
+      iframe.removeEventListener('load', ready);
+      // pequena folga para o iFrameResize ajustar a altura
+      setTimeout(function () { if (pending) show(); }, 200);
+    }
+    var timer = setTimeout(ready, 8000);
+    iframe.addEventListener('load', ready);
+
+    iframe.setAttribute('data-src', src);
+    iframe.src = src;
+    loadResizer().then(function () {
+      if (window.iFrameResize) window.iFrameResize({}, iframe);
+    });
+  }
+
   function close() {
     if (!overlay) return;
+    pending = false;
     overlay.classList.remove('is-open');
     document.documentElement.style.overflow = '';
     if (lastFocus && lastFocus.focus) lastFocus.focus();
