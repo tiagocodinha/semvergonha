@@ -328,7 +328,7 @@ Deno.serve(async (req) => {
     const text = await pbRes.text();
     pbBody = text ? JSON.parse(text) : {};
 
-    if (!pbRes.ok || !pbBody.checkoutUrl) {
+    if (!pbRes.ok || !pbBody.checkoutKey || !pbBody.orderId) {
       console.error("paybyrd_create_failed", pbRes.status, text.slice(0, 900));
       await db.from("merch_orders")
         .update({ status: "failed", raw_paybyrd: pbBody, updated_at: new Date().toISOString() })
@@ -352,5 +352,14 @@ Deno.serve(async (req) => {
     })
     .eq("order_ref", orderRef);
 
-  return json({ orderRef, checkoutUrl: pbBody.checkoutUrl }, 200, origin);
+  // O campo checkoutUrl que a Paybyrd devolve e um link curto
+  // (link.paybyrd.com/...) que, ao redirecionar, perde o orderId — e o
+  // checkout precisa dos DOIS parametros, senao mostra "Encomenda nao
+  // encontrada". Montamos o URL com ambos, como manda a documentacao
+  // do checkout embebido.
+  const checkoutUrl = "https://chk.paybyrd.com/?checkoutKey=" +
+    encodeURIComponent(String(pbBody.checkoutKey)) +
+    "&orderId=" + encodeURIComponent(String(pbBody.orderId));
+
+  return json({ orderRef, checkoutUrl }, 200, origin);
 });
