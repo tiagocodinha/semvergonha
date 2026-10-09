@@ -133,6 +133,7 @@
     cta:     "I'm interested",
     note:    'Joining this list is not a reservation.',
     consent: 'I want to be contacted about this event, to get more information and to follow my sign-up.',
+    marketing: 'I want to receive news, promotions and future events from Sem Vergonha.',
     privacy: 'If you have any questions, just ask: ' +
              '<a href="mailto:hey@semvergonharestaurant.com">hey@semvergonharestaurant.com</a><br>' +
              'We handle your data as set out in our ' +
@@ -691,6 +692,8 @@
          foi mostrada — é isto que demonstra o consentimento. */
       consent: true,
       consentText: $('consentText').textContent.trim(),
+      marketing: $('pdaMarketing').checked,
+      marketingText: $('pdaMarketing').checked ? $('marketingText').textContent.trim() : null,
       firstName: firstName,
       lastName: lastName,
       phoneCode: phoneCode,

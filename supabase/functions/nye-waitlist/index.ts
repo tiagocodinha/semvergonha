@@ -138,6 +138,9 @@ Deno.serve(async (req) => {
     return json({ error: "bad_consent_text" }, 400, origin);
   }
 
+  const marketing = body.marketing === true;
+  const marketingText = marketing ? str(body.marketingText ?? "", 400) : null;
+
   // ── Identificador da submissao ──────────────────────────────
   // Gerado no browser por cada preenchimento do formulario. E o que
   // impede o duplo clique de criar duas linhas — e nao o email, que
@@ -170,6 +173,8 @@ Deno.serve(async (req) => {
       party_size: partySize,
       party_size_more: partySizeMore,
       consent_text: consentText,
+      marketing_consent: marketing,
+      marketing_text: marketingText,
       updated_at: new Date().toISOString(),
     }, { onConflict: "submission_id", ignoreDuplicates: true });
 
