@@ -1294,3 +1294,11 @@ a.contacts__card--link:hover .contacts__icon { color: var(--brown-d); }
   .group-menus__card:hover { transform: none; box-shadow: none; }
   .contacts__card:hover { transform: none; }
 }
+
+.hr-dot {
+  font-style: normal;
+  font-size: 0.45em;
+  vertical-align: middle;
+  margin: 0 0.35em;
+  opacity: 0.7;
+}
