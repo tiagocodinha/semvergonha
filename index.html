@@ -63,12 +63,20 @@
       "latitude": 39.6015,
       "longitude": -9.0712
     },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      "opens": "12:30",
-      "closes": "02:00"
-    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"],
+        "opens": "12:30",
+        "closes": "00:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Friday","Saturday"],
+        "opens": "12:30",
+        "closes": "02:00"
+      }
+    ],
     "sameAs": [
       "https://instagram.com/semvergonharestaurant",
       "https://facebook.com/semvergonharestaurant",
@@ -123,7 +131,7 @@
         </a>
         <span class="mob-menu__hours">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          12h30 às 02h00
+          <span data-i18n="hours.mob">Dom–Qui 12h30 às 00h00 · Sex–Sáb 12h30 às 02h00</span>
         </span>
       </div>
     </div>
@@ -258,7 +266,7 @@ O nome vem do antigo <strong>"Muro da Pouca Vergonha"</strong>, onde os encontro
             <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/><polyline points="24 10 24 24 34 30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <span data-i18n="info.hours">Horário</span>
-          <strong>12h30 — 02h00</strong>
+          <strong data-i18n="hours.both">Dom–Qui 12h30 — 00h00<br>Sex–Sáb 12h30 — 02h00</strong>
         </div>
       </div>
     </div>
@@ -277,8 +285,8 @@ O nome vem do antigo <strong>"Muro da Pouca Vergonha"</strong>, onde os encontro
         <div class="footer__grid">
           <div class="footer__col">
             <strong data-i18n="footer.hours">Horário</strong>
-            <span>12h30 — 02h00</span>
-            <span data-i18n="footer.everyday">Todos os dias</span>
+            <span data-i18n="hours.weekdays">Dom–Qui: 12h30 — 00h00</span>
+            <span data-i18n="hours.weekend">Sex–Sáb: 12h30 — 02h00</span>
           </div>
           <div class="footer__col">
             <strong data-i18n="footer.contact">Contacto</strong>

@@ -8,7 +8,10 @@
     'footer.hours': 'Hours',
     'footer.contact': 'Contact',
     'footer.follow': 'Follow us',
-    'footer.everyday': 'Every day',
+    'hours.weekdays': 'Sun–Thu: 12h30 — 00h00',
+    'hours.weekend': 'Fri–Sat: 12h30 — 02h00',
+    'hours.both': 'Sun–Thu 12h30 — 00h00<br>Fri–Sat 12h30 — 02h00',
+    'hours.mob': 'Sun–Thu 12h30 to 00h00 · Fri–Sat 12h30 to 02h00',
     'footer.rights': '&copy; 2026 Sem Vergonha. All rights reserved.',
     'footer.tagline': 'Restaurant & Cocktail Bar',
     'footer.cookies': 'Cookie Policy',
@@ -266,7 +269,7 @@
     'ct.address': 'Address',
     'ct.email': 'Email',
     'ct.hours': 'Hours',
-    'ct.hours_desc': '12h00 — 02h00<br>Every day',
+    'ct.hours_desc': 'Sun–Thu: 12h30 — 00h00<br>Fri–Sat: 12h30 — 02h00',
     'ct.phone': 'Phone',
     'ct.phone_note': 'Call to national mobile network'
   };
