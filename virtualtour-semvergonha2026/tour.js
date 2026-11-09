@@ -124,12 +124,15 @@
   var viewer = null, current = null, busy = false, autoOn = true, autoTimer, veilAt = 0, arriving = null;
 
   function arrow() {
-    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   }
 
   function buildGo(div, h) {
-    div.innerHTML = '<span class="hs__ring">' + arrow() + '</span><span class="hs__label" data-to="' + h.to + '"></span>';
-    div.querySelector('.hs__label').textContent = L(byId[h.to].title);
+    div.innerHTML = '<span class="hs__disc"><i></i><i></i></span>' +
+      '<span class="hs__pill"><span class="hs__go">' + arrow() + '</span>' +
+      '<span class="hs__txt"><em></em><b class="hs__name" data-to="' + h.to + '"></b></span></span>';
+    div.querySelector('em').textContent = pad(byId[h.to].index + 1);
+    div.querySelector('.hs__name').textContent = L(byId[h.to].title);
     div.setAttribute('role', 'button');
     div.setAttribute('tabindex', '0');
     div.addEventListener('keydown', function (e) { if (e.key === 'Enter') goTo(h.to, { hotspot: h }); });
@@ -150,7 +153,7 @@
   }
 
   function refreshHotspotText() {
-    document.querySelectorAll('.hs__label[data-to]').forEach(function (el) { el.textContent = L(byId[el.getAttribute('data-to')].title); });
+    document.querySelectorAll('.hs__name[data-to]').forEach(function (el) { el.textContent = L(byId[el.getAttribute('data-to')].title); });
     document.querySelectorAll('.hs--info').forEach(fillPop);
   }
 
