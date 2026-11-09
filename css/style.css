@@ -126,7 +126,7 @@ img { display: block; max-width: 100%; }
 }
 .hero__logo-img {
   width: clamp(280px, 50vw, 600px); height: auto;
-  filter: brightness(0) invert(1);
+  filter: drop-shadow(0 0 18px rgba(246,237,228,0.55)) drop-shadow(0 0 3px rgba(246,237,228,0.7));   /* halo bege: o castanho le-se melhor sobre a foto */
   opacity: 0; animation: fadeUp 1s 0.45s var(--ease) forwards;
 }
 .footer__logo-img {
