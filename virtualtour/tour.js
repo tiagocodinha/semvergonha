@@ -18,7 +18,7 @@
 
   function $(id) { return document.getElementById(id); }
   var body = document.body;
-  var cover = $('cover'), tour = $('tour'), veil = $('veil');
+  var cover = $('cover'), tour = $('tour');
   var info = $('info'), drawer = $('drawer'), missing = $('missing');
 
   /* ══════════════════════════════════════════════════════════
@@ -120,7 +120,7 @@
   /* ══════════════════════════════════════════════════════════
      VIEWER
      ══════════════════════════════════════════════════════════ */
-  var viewer = null, current = null, busy = false, autoOn = true, autoTimer, veilAt = 0, arriving = null;
+  var viewer = null, current = null, busy = false, autoOn = true, autoTimer, arriving = null;
 
   function arrow() {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
@@ -189,7 +189,7 @@
   function createViewer(first) {
     var cfg = {
       'default': {
-        firstScene: first.id, sceneFadeDuration: 0, autoLoad: true,
+        firstScene: first.id, sceneFadeDuration: 1400, autoLoad: true,
         minHfov: 45, maxHfov: HFOV_MAX, showControls: false, compass: false,
         keyboardZoom: false, mouseZoom: true, friction: 0.12,
         autoRotateInactivityDelay: 6000
@@ -211,16 +211,6 @@
   }
 
   /* ── Transicao entre cenas ──────────────────────────────── */
-  function showVeil(s) {
-    $('veilCount').textContent = t('count.space') + ' ' + pad(s.index + 1);
-    $('veilTitle').textContent = L(s.title);
-    veil.classList.remove('is-out'); veil.classList.add('is-on');
-    veilAt = Date.now();
-  }
-  function hideVeil() {
-    veil.classList.remove('is-on'); veil.classList.add('is-out');
-  }
-
   function goTo(id, opts) {
     opts = opts || {};
     var s = byId[id];
@@ -229,17 +219,11 @@
     busy = true;
     closeDrawer(); closeInfoHotspots(); stopAuto(); hideHint(); missing.hidden = true;
 
-    var zoomMs = (opts.hotspot && !REDUCED) ? 850 : 0;
-    if (zoomMs) viewer.lookAt(opts.hotspot.pitch, opts.hotspot.yaw, 52, zoomMs);
-
-    setTimeout(function () {
-      showVeil(s);
-      setTimeout(function () {
-        var yaw = (opts.hotspot && typeof opts.hotspot.arrive === 'number') ? opts.hotspot.arrive : (s.yaw || 0);
-        arriving = { scene: s, yaw: yaw, hfov: s.hfov || HFOV_MAX, dur: REDUCED ? 0 : 1700 };
-        viewer.loadScene(s.id, s.pitch || 0, REDUCED ? yaw : yaw - 40, HFOV_MAX);   // entra ja no maximo zoom-out e "varre" ate a direcao final
-      }, REDUCED ? 0 : 800);
-    }, Math.max(0, zoomMs - 120));
+    // Cross-fade directo para a nova cena (sceneFadeDuration); a camara chega
+    // ja no maximo zoom-out e roda suavemente ate a direcao final.
+    var yaw = (opts.hotspot && typeof opts.hotspot.arrive === 'number') ? opts.hotspot.arrive : (s.yaw || 0);
+    arriving = { scene: s, yaw: yaw, hfov: s.hfov || HFOV_MAX, dur: REDUCED ? 0 : 2200 };
+    viewer.loadScene(s.id, s.pitch || 0, REDUCED ? yaw : yaw - 28, HFOV_MAX);
   }
 
   function onLoad() {
@@ -247,13 +231,11 @@
     var a = arriving; arriving = null;
     missing.hidden = true;
     setCurrent(a.scene, a.first);
-    var wait = a.first ? 0 : Math.max(0, 1250 - (Date.now() - veilAt));   // deixa ler o nome do espaco
     setTimeout(function () {
-      if (!a.first) hideVeil();
       if (a.dur) viewer.lookAt(a.scene.pitch || 0, a.yaw, a.hfov, a.dur);
-      setTimeout(function () { busy = false; }, a.first ? 300 : 900);
+      setTimeout(function () { busy = false; }, a.first ? 300 : 1300);
       setTimeout(function () { if (a.first) showHint(); startAuto(); }, a.dur + 600);
-    }, wait);
+    }, 0);
   }
 
   function onError() {
@@ -261,7 +243,6 @@
     var a = arriving; arriving = null;
     if (a) setCurrent(a.scene, a.first);
     missing.hidden = false;
-    hideVeil();
     setTimeout(function () { busy = false; }, 400);
   }
 
@@ -285,9 +266,6 @@
   function fillInfo(s) {
     $('infoCount').textContent = t('count.space') + ' ' + pad(s.index + 1) + ' / ' + pad(scenes.length);
     $('infoTitle').textContent = L(s.title);
-    $('infoText').textContent = L(s.text);
-    var tags = $('infoTags'); tags.innerHTML = '';
-    (s.tags || []).forEach(function (tg) { var li = document.createElement('li'); li.textContent = L(tg); tags.appendChild(li); });
     var first = s.index === 0, last = s.index === scenes.length - 1;
     $('btnPrev').hidden = first;
     $('btnNext').hidden = last;
@@ -298,8 +276,6 @@
   $('btnNext').addEventListener('click', function () { if (current && scenes[current.index + 1]) goTo(scenes[current.index + 1].id); });
   $('btnPrev').addEventListener('click', function () { if (current && scenes[current.index - 1]) goTo(scenes[current.index - 1].id); });
   $('btnRestart').addEventListener('click', function () { goTo(scenes[0].id); });
-  $('infoToggle').addEventListener('click', function () { info.classList.toggle('is-collapsed'); });
-  if (window.matchMedia && matchMedia('(max-width: 768px)').matches) info.classList.add('is-collapsed');
 
   /* ── Progresso + gaveta ─────────────────────────────────── */
   function buildProgress() {
