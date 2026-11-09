@@ -194,7 +194,7 @@
   position: absolute; z-index: 8; left: 0; right: 0; top: 42%; transform: translateY(-50%);
   padding: 0 24px; text-align: center; pointer-events: none; color: #fff;
   font-family: var(--display); font-weight: 900; line-height: 1.05;
-  font-size: clamp(2.2rem, 6.5vw, 5.2rem); letter-spacing: -0.01em;
+  font-size: clamp(1.4rem, 3.4vw, 2.8rem); letter-spacing: -0.005em;
   text-shadow: 0 4px 40px rgba(44,35,32,0.55), 0 1px 6px rgba(44,35,32,0.4);
   opacity: 0; filter: blur(12px); transform: translateY(-38%) scale(0.96);
   transition: opacity 1s var(--ease), filter 1s var(--ease), transform 1.2s var(--ease);

@@ -17,7 +17,7 @@ window.SV_TOUR = {
       intro: {
         from: { yaw: 0.0, pitch: 0.0 },
         to:   { yaw: -158.0, pitch: 0.1 },
-        duration: 8000,            // ms que demora a rodar
+        duration: 4500,            // ms que demora a rodar
         message: { pt: 'Welcome to Sem Vergonha', en: 'Welcome to Sem Vergonha' },
         messageTime: 3000          // ms que a mensagem fica visivel
       },
