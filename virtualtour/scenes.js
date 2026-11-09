@@ -1,34 +1,4 @@
-/* ============================================================
-   SEM VERGONHA — VIRTUAL TOUR · CENAS
-   Este e o ficheiro que editas. Nao precisas de mexer em mais nada.
 
-   COMO ADICIONAR UMA CENA
-   1. Poe a imagem 360 (equirectangular, 2:1) em
-      virtualtour/360/  — JPG, idealmente ~1 MB.
-   2. Copia um bloco abaixo e muda id, image, textos.
-   3. Liga as cenas com "go(...)" (os circulos clicaveis).
-
-   COMO DESCOBRIR O yaw / pitch DE UM HOTSPOT
-   Abre a pagina com  ?edit  no fim do link, ex.:
-     https://www.semvergonharestaurant.com/virtualtour/?edit
-   Clica no sitio exacto do chao onde queres o circulo: aparece
-   no ecra (e fica copiado) o  yaw  e  pitch.
-
-   CAMPOS
-   id          nome unico, sem espacos (usa-se no link #id)
-   image       ficheiro da imagem 360
-   thumb       (opcional) miniatura leve para a gaveta dos espacos
-   yaw/pitch   para onde a camara olha quando a cena abre (graus)
-   hfov        (opcional) abertura da camara; por defeito o maximo (120). Menor = mais zoom
-   title/text  { pt, en }
-   tags        [{ pt, en }, ...]  pequenos detalhes (opcional)
-   hotspots    go('id-da-cena', yaw, pitch)  — a camara chega a olhar
-               na mesma direcao em que "caminhou"
-   info        pontos de detalhe com texto (opcional):
-                 { yaw, pitch, title: {pt,en}, text: {pt,en} }
-   ============================================================ */
-
-/* atalho: circulo que leva a outra cena */
 function go(to, yaw, pitch) { return { to: to, yaw: yaw, pitch: pitch, arrive: yaw }; }
 
 window.SV_TOUR = {
@@ -47,7 +17,7 @@ window.SV_TOUR = {
         en: 'This is where it all begins. A glass door open to the sea and, right beside it, the bar calling your name.'
       },
       tags: [{ pt: 'Frente ao mar', en: 'Seafront' }, { pt: 'Lounge', en: 'Lounge' }],
-      hotspots: [ go('lounge', -135, -14) ]
+      hotspots: [ go('lounge', -178.2, -26.4) ]
     },
 
     {

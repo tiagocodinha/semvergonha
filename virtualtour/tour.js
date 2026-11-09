@@ -11,7 +11,7 @@
   var byId = {};
   scenes.forEach(function (s, i) { s.index = i; byId[s.id] = s; });
 
-  var HFOV_MAX = 120;   // zoom-out maximo: e o que se usa ao abrir e ao trocar de cena
+  var HFOV_MAX = 140;   // zoom-out maximo: e o que se usa ao abrir e ao trocar de cena
   var EDIT = /[?&]edit\b/.test(location.search);
   var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var COARSE = window.matchMedia && matchMedia('(pointer: coarse)').matches;
