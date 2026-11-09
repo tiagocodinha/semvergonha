@@ -49,7 +49,7 @@ window.SV_TOUR = {
       image: '5.jpg',
       yaw: 0, pitch: 0,
       title: { pt: 'A Sala', en: 'The Dining Room' },
-      hotspots: [ go('bar-sala', 115, -10), go('sala-arte', -80, -12) ]
+      hotspots: [ go('bar-sala', 128.7, -13.0), go('sala-arte', -176.1, -19.9) ]
     },
 
     {
@@ -57,14 +57,9 @@ window.SV_TOUR = {
       image: '6.jpg',
       yaw: 0, pitch: 10,
       title: { pt: 'O teto que fala', en: 'The ceiling that talks' },
-      info: [
-        { yaw: 20, pitch: 55,
-          title: { pt: 'Olha para cima', en: 'Look up' },
-          text: { pt: 'Um teto feito de cartazes, retratos e cor.', en: 'A ceiling made of posters, portraits and colour.' } }
-      ],
-      hotspots: [ go('sala', 90, -10), go('sala-fundo', 140, -10) ]
+      hotspots: [ go('bar-sala', 90.8, -17.5), go('sala', 90, -10), go('sala-fundo', 140, -10) ]
     },
-
+yaw: 90.8, pitch: -17.5
     {
       id: 'sala-fundo',
       image: '7.jpg',
