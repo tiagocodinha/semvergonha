@@ -1,6 +1,13 @@
 {
   "routes": [
     {
+      "src": "/virtualtour-semvergonha2026(?:/.*)?",
+      "headers": {
+        "X-Robots-Tag": "noindex, nofollow, noarchive, nosnippet, noimageindex"
+      },
+      "continue": true
+    },
+    {
       "src": "/review(?:/.*)?",
       "headers": {
         "X-Robots-Tag": "noindex, nofollow, noarchive"
