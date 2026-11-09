@@ -27,6 +27,8 @@
   var EN = {
     'reserve': 'Book a Table',
     'nav.contacts': 'CONTACTS',
+    'mob.phone_note': 'Call to national mobile network',
+    'hours.mob': 'Sun to Thu <i class="hr-dot">●</i> 12h30 - 00h00 · Fri & Sat <i class="hr-dot">●</i> 12h30 - 02h00',
     'cover.label': 'Virtual Tour 360°',
     'cover.h1': 'Come in.<br>No shame.',
     'cover.cta': 'Start the tour',
