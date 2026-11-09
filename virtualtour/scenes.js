@@ -53,7 +53,7 @@ window.SV_TOUR = {
       image: '4.jpg',
       thumb: 'thumbs/bar-sala.jpg',
       yaw: -30, pitch: 0,
-      title: { pt: 'O Bar', en: 'From bar to dining room' },
+      title: { pt: 'O Bar', en: 'The Bar' },
       hotspots: [ go('bar', -2.7, -20.4), go('sala', -140.6, -16.1) ]
     },
 
@@ -71,7 +71,7 @@ window.SV_TOUR = {
       image: '6.jpg',
       thumb: 'thumbs/sala-arte.jpg',
       yaw: 0, pitch: 10,
-      title: { pt: 'A Sala', en: 'The ceiling that talks' },
+      title: { pt: 'A Sala', en: 'The Dining Room' },
       hotspots: [ go('sala', 1.4, -19.4), go('bar-sala', 94.6, -19.1), go('sala-fundo', -112.2, -21.5) ]
     },
 
@@ -80,7 +80,7 @@ window.SV_TOUR = {
       image: '7.jpg',
       thumb: 'thumbs/sala-fundo.jpg',
       yaw: 30, pitch: 0,
-      title: { pt: 'A Sala', en: 'Towards the back' },
+      title: { pt: 'A Sala', en: 'The Dining Room' },
       hotspots: [ go('sala-arte', -31.3, -20.9), go('sala-fundos', 102.4, -31.1) ]
     },
 
@@ -89,7 +89,7 @@ window.SV_TOUR = {
       image: '8.jpg',
       thumb: 'thumbs/sala-fundos.jpg',
       yaw: 10, pitch: 0,
-      title: { pt: 'A Sala Privada', en: 'The back room' },
+      title: { pt: 'A Sala Privada', en: 'The Private Room' },
       hotspots: [ go('sala-fundo', -108.7, -31.8), go('sala-fundos-2', -34.2, -17.8) ]
     },
 
@@ -98,7 +98,7 @@ window.SV_TOUR = {
       image: '9.jpg',
       thumb: 'thumbs/sala-fundos-2.jpg',
       yaw: 40, pitch: 0,
-      title: { pt: 'A Sala Privada', en: 'At the far end' },
+      title: { pt: 'A Sala Privada', en: 'The Private Room' },
       hotspots: [ go('sala-fundos', -143.5, -19.0) ]
     }
 
