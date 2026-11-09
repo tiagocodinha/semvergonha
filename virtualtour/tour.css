@@ -4,6 +4,7 @@
    Aqui so ha o que e exclusivo da visita 360.
    ============================================================ */
 
+:root { color-scheme: only light; }
 .tour-page { background: var(--black); overflow: hidden; height: 100vh; height: 100dvh; }
 
 /* A nav fica sempre em modo "vidro escuro" e o botao Reservar visivel */
