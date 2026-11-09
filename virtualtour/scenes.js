@@ -10,8 +10,17 @@ window.SV_TOUR = {
     {
       id: 'entrada',
       image: '1.jpg',
-      yaw: 0, pitch: 0,
+      yaw: -158.0, pitch: 0.1,
       title: { pt: 'Entrada', en: 'Entrance' },
+      /* Animacao de abertura (so na primeira entrada na visita): a camara
+         roda de "from" ate "to" (yaw/pitch da cena) e aparece uma mensagem. */
+      intro: {
+        from: { yaw: 0.0, pitch: 0.0 },
+        to:   { yaw: -158.0, pitch: 0.1 },
+        duration: 8000,            // ms que demora a rodar
+        message: { pt: 'Welcome to Sem Vergonha', en: 'Welcome to Sem Vergonha' },
+        messageTime: 3000          // ms que a mensagem fica visivel
+      },
       hotspots: [ go('lounge', -178.2, -26.4) ]
     },
 
@@ -57,7 +66,7 @@ window.SV_TOUR = {
       image: '6.jpg',
       yaw: 0, pitch: 10,
       title: { pt: 'O teto que fala', en: 'The ceiling that talks' },
-      hotspots: [ go('sala-fundo', -112.2, -21.5) ]
+      hotspots: [ go('sala', 1.4, -19.4), go('bar-sala', 94.6, -19.1), go('sala-fundo', -112.2, -21.5) ]
     },
 
     {
@@ -65,7 +74,7 @@ window.SV_TOUR = {
       image: '7.jpg',
       yaw: 30, pitch: 0,
       title: { pt: 'A caminho do fundo', en: 'Towards the back' },
-      hotspots: [ go('sala-arte', -100, -10), go('sala-fundos', 110, -10) ]
+      hotspots: [ go('sala-arte', -31.3, -20.9), go('sala-fundos', 102.4, -31.1) ]
     },
 
     {
@@ -73,7 +82,7 @@ window.SV_TOUR = {
       image: '8.jpg',
       yaw: 10, pitch: 0,
       title: { pt: 'Sala dos fundos', en: 'The back room' },
-      hotspots: [ go('sala-fundo', -130, -10), go('sala-fundos-2', 10, -10) ]
+      hotspots: [ go('sala-fundo', -108.7, -31.8), go('sala-fundos-2', -34.2, -17.8) ]
     },
 
     {
@@ -81,7 +90,7 @@ window.SV_TOUR = {
       image: '9.jpg',
       yaw: 40, pitch: 0,
       title: { pt: 'Ao fundo', en: 'At the far end' },
-      hotspots: [ go('sala-fundos', 120, -10) ]
+      hotspots: [ go('sala-fundos', -143.5, -19.0) ]
     }
 
   ]

@@ -188,6 +188,19 @@
 .hs--info.is-open { z-index: 5; }
 .hs--info.is-open .hs__pop { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
 
+/* ── MENSAGEM DE BOAS-VINDAS ── */
+.twelcome {
+  position: absolute; z-index: 8; left: 0; right: 0; top: 42%; transform: translateY(-50%);
+  padding: 0 24px; text-align: center; pointer-events: none; color: #fff;
+  font-family: var(--display); font-weight: 900; line-height: 1.05;
+  font-size: clamp(2.2rem, 6.5vw, 5.2rem); letter-spacing: -0.01em;
+  text-shadow: 0 4px 40px rgba(44,35,32,0.55), 0 1px 6px rgba(44,35,32,0.4);
+  opacity: 0; filter: blur(12px); transform: translateY(-38%) scale(0.96);
+  transition: opacity 1s var(--ease), filter 1s var(--ease), transform 1.2s var(--ease);
+}
+.twelcome.is-on { opacity: 1; filter: blur(0); transform: translateY(-50%) scale(1); }
+.twelcome.is-out { opacity: 0; filter: blur(10px); transform: translateY(-62%) scale(1.03); transition-duration: 0.9s; }
+
 /* ── IMAGEM EM FALTA ── */
 .tour__pano .pnlm-error-msg { display: none !important; }
 .tmissing { position: absolute; inset: 0; z-index: 4; pointer-events: none; display: grid; place-items: center; padding: 24px; background: rgba(44,35,32,0.82); }

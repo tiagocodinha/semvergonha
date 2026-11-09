@@ -199,12 +199,14 @@
     scenes.forEach(function (s) { cfg.scenes[s.id] = sceneConfig(s); });
     // A primeira cena abre com a camara aberta e "aterra" a rodar
     cfg.scenes[first.id].hfov = HFOV_MAX;
-    cfg.scenes[first.id].yaw = (first.yaw || 0) - 50;
+    var intro = (first.index === 0 && !location.hash.slice(1) && !REDUCED) ? first.intro : null;
+    cfg.scenes[first.id].yaw = intro ? intro.from.yaw : (first.yaw || 0) - 50;
+    if (intro) cfg.scenes[first.id].pitch = intro.from.pitch;
 
     viewer = pannellum.viewer('pano', cfg);
     viewer.on('load', onLoad);
     viewer.on('error', onError);
-    arriving = { scene: first, yaw: first.yaw || 0, hfov: first.hfov || HFOV_MAX, dur: 2600, first: true };
+    arriving = { scene: first, yaw: first.yaw || 0, hfov: first.hfov || HFOV_MAX, dur: intro ? intro.duration : 2600, first: true, intro: intro };
     $('pano').addEventListener('mousedown', hideHint, { once: true });
     $('pano').addEventListener('touchstart', hideHint, { once: true, passive: true });
     if (EDIT) setupEdit();
@@ -233,9 +235,18 @@
     setCurrent(a.scene, a.first);
     setTimeout(function () {
       if (a.dur) viewer.lookAt(a.scene.pitch || 0, a.yaw, a.hfov, a.dur);
+      if (a.intro && a.intro.message) showWelcome(a.intro);
       setTimeout(function () { busy = false; }, a.first ? 300 : 1300);
       setTimeout(function () { if (a.first) showHint(); startAuto(); }, a.dur + 600);
     }, 0);
+  }
+
+  // Mensagem de boas-vindas da animacao de abertura: entra, fica messageTime ms e sai
+  function showWelcome(intro) {
+    var el = $('welcome');
+    el.textContent = L(intro.message);
+    el.classList.add('is-on');
+    setTimeout(function () { el.classList.remove('is-on'); el.classList.add('is-out'); }, intro.messageTime || 3000);
   }
 
   function onError() {
