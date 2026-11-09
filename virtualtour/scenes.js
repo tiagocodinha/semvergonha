@@ -59,7 +59,6 @@ window.SV_TOUR = {
       title: { pt: 'O teto que fala', en: 'The ceiling that talks' },
       hotspots: [ go('bar-sala', 90.8, -17.5), go('sala', 90, -10), go('sala-fundo', 140, -10) ]
     },
-yaw: 90.8, pitch: -17.5
     {
       id: 'sala-fundo',
       image: '7.jpg',
