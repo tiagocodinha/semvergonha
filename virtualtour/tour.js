@@ -11,6 +11,7 @@
   var byId = {};
   scenes.forEach(function (s, i) { s.index = i; byId[s.id] = s; });
 
+  var HFOV_MAX = 120;   // zoom-out maximo: e o que se usa ao abrir e ao trocar de cena
   var EDIT = /[?&]edit\b/.test(location.search);
   var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var COARSE = window.matchMedia && matchMedia('(pointer: coarse)').matches;
@@ -180,7 +181,7 @@
     });
     return {
       type: 'equirectangular', panorama: DATA.base + s.image,
-      pitch: s.pitch || 0, yaw: s.yaw || 0, hfov: s.hfov || 100,
+      pitch: s.pitch || 0, yaw: s.yaw || 0, hfov: s.hfov || HFOV_MAX,
       hotSpots: hs
     };
   }
@@ -189,7 +190,7 @@
     var cfg = {
       'default': {
         firstScene: first.id, sceneFadeDuration: 0, autoLoad: true,
-        minHfov: 45, maxHfov: 120, showControls: false, compass: false,
+        minHfov: 45, maxHfov: HFOV_MAX, showControls: false, compass: false,
         keyboardZoom: false, mouseZoom: true, friction: 0.12,
         autoRotateInactivityDelay: 6000
       },
@@ -197,13 +198,13 @@
     };
     scenes.forEach(function (s) { cfg.scenes[s.id] = sceneConfig(s); });
     // A primeira cena abre com a camara aberta e "aterra" a rodar
-    cfg.scenes[first.id].hfov = 120;
+    cfg.scenes[first.id].hfov = HFOV_MAX;
     cfg.scenes[first.id].yaw = (first.yaw || 0) - 50;
 
     viewer = pannellum.viewer('pano', cfg);
     viewer.on('load', onLoad);
     viewer.on('error', onError);
-    arriving = { scene: first, yaw: first.yaw || 0, hfov: first.hfov || 100, dur: 2600, first: true };
+    arriving = { scene: first, yaw: first.yaw || 0, hfov: first.hfov || HFOV_MAX, dur: 2600, first: true };
     $('pano').addEventListener('mousedown', hideHint, { once: true });
     $('pano').addEventListener('touchstart', hideHint, { once: true, passive: true });
     if (EDIT) setupEdit();
@@ -235,7 +236,7 @@
       showVeil(s);
       setTimeout(function () {
         var yaw = (opts.hotspot && typeof opts.hotspot.arrive === 'number') ? opts.hotspot.arrive : (s.yaw || 0);
-        arriving = { scene: s, yaw: yaw, hfov: s.hfov || 100, dur: REDUCED ? 0 : 1700 };
+        arriving = { scene: s, yaw: yaw, hfov: s.hfov || HFOV_MAX, dur: REDUCED ? 0 : 1700 };
         viewer.loadScene(s.id, s.pitch || 0, yaw, REDUCED ? arriving.hfov : (zoomMs ? 62 : 85));
       }, REDUCED ? 0 : 800);
     }, Math.max(0, zoomMs - 120));

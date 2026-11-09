@@ -19,7 +19,7 @@
    image       ficheiro da imagem 360
    thumb       (opcional) miniatura leve para a gaveta dos espacos
    yaw/pitch   para onde a camara olha quando a cena abre (graus)
-   hfov        abertura inicial da camara (50 a 120; menor = mais zoom)
+   hfov        (opcional) abertura da camara; por defeito o maximo (120). Menor = mais zoom
    title/text  { pt, en }
    tags        [{ pt, en }, ...]  pequenos detalhes (opcional)
    hotspots    go('id-da-cena', yaw, pitch)  — a camara chega a olhar
@@ -40,7 +40,7 @@ window.SV_TOUR = {
     {
       id: 'entrada',
       image: '1.jpg',
-      yaw: 0, pitch: 0, hfov: 100,
+      yaw: 0, pitch: 0,
       title: { pt: 'Entrada', en: 'Entrance' },
       text: {
         pt: 'É por aqui que tudo começa. Uma porta de vidro aberta para o mar e, logo ao lado, o bar a chamar por ti.',
@@ -53,7 +53,7 @@ window.SV_TOUR = {
     {
       id: 'lounge',
       image: '2.jpg',
-      yaw: -40, pitch: 0, hfov: 100,
+      yaw: -40, pitch: 0,
       title: { pt: 'Lounge', en: 'Lounge' },
       text: {
         pt: 'Sofás baixos, azulejo azul e círculos dourados na parede. Um canto para esperar, para brindar ou para ficar.',
@@ -71,7 +71,7 @@ window.SV_TOUR = {
     {
       id: 'bar',
       image: '3.jpg',
-      yaw: -70, pitch: 0, hfov: 100,
+      yaw: -70, pitch: 0,
       title: { pt: 'O Bar', en: 'The Bar' },
       text: {
         pt: 'Cocktails de autor feitos ao balcão, sob uma cúpula de madeira e luz quente. Do primeiro gin ao último brinde.',
@@ -84,7 +84,7 @@ window.SV_TOUR = {
     {
       id: 'bar-sala',
       image: '4.jpg',
-      yaw: -30, pitch: 0, hfov: 100,
+      yaw: -30, pitch: 0,
       title: { pt: 'Do bar à sala', en: 'From bar to dining room' },
       text: {
         pt: 'Daqui vês os dois mundos: o balcão de um lado e as mesas do outro, com o mar ao fundo.',
@@ -96,7 +96,7 @@ window.SV_TOUR = {
     {
       id: 'sala',
       image: '5.jpg',
-      yaw: 0, pitch: 0, hfov: 100,
+      yaw: 0, pitch: 0,
       title: { pt: 'A Sala', en: 'The Dining Room' },
       text: {
         pt: 'Mesas para partilhar, janelões de luz e um teto cheio de arte. Almoços que se alongam, jantares que não têm pressa.',
@@ -109,7 +109,7 @@ window.SV_TOUR = {
     {
       id: 'sala-arte',
       image: '6.jpg',
-      yaw: 0, pitch: 10, hfov: 100,
+      yaw: 0, pitch: 10,
       title: { pt: 'O teto que fala', en: 'The ceiling that talks' },
       text: {
         pt: 'Olha para cima. Cartazes, rostos e cores a cobrir o teto: cada mesa tem uma história diferente por cima.',
@@ -127,7 +127,7 @@ window.SV_TOUR = {
     {
       id: 'sala-fundo',
       image: '7.jpg',
-      yaw: 30, pitch: 0, hfov: 100,
+      yaw: 30, pitch: 0,
       title: { pt: 'A caminho do fundo', en: 'Towards the back' },
       text: {
         pt: 'A sala continua, mais verde e mais recolhida. Banco corrido, plantas e uma girafa que vigia tudo.',
@@ -139,7 +139,7 @@ window.SV_TOUR = {
     {
       id: 'sala-fundos',
       image: '8.jpg',
-      yaw: 10, pitch: 0, hfov: 100,
+      yaw: 10, pitch: 0,
       title: { pt: 'Sala dos fundos', en: 'The back room' },
       text: {
         pt: 'Chão preto e branco, teto em mosaico e uma mesa só para o teu grupo. Mais reservado, com o mesmo à vontade.',
@@ -152,7 +152,7 @@ window.SV_TOUR = {
     {
       id: 'sala-fundos-2',
       image: '9.jpg',
-      yaw: 40, pitch: 0, hfov: 100,
+      yaw: 40, pitch: 0,
       title: { pt: 'Ao fundo', en: 'At the far end' },
       text: {
         pt: 'A última sala. Uma parede iluminada, ripas em verde-escuro e o sítio perfeito para uma noite que não queres que acabe.',
