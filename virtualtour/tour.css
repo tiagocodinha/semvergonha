@@ -71,11 +71,13 @@
   position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
   z-index: 3; display: flex; gap: 10px;
 }
-.tcover__dots i {
-  width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3);
-  transition: all 0.3s var(--ease);
+.tcover__dots button {
+  position: relative; width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(255,255,255,0.3); transition: all 0.3s var(--ease);
 }
-.tcover__dots i.is-on { background: #fff; transform: scale(1.3); }
+.tcover__dots button::after { content: ''; position: absolute; inset: -12px; }   /* alvo de toque maior */
+.tcover__dots button:hover { background: rgba(255,255,255,0.7); }
+.tcover__dots button.is-on { background: #fff; transform: scale(1.3); }
 
 /* ============================================================
    TOUR (camada do 360)

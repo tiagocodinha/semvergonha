@@ -99,15 +99,20 @@
      ══════════════════════════════════════════════════════════ */
   var slides = document.querySelectorAll('.tcover__slide');
   var dotsBox = $('coverDots'), slideNow = 0, slideTimer;
+  function autoCover() { clearInterval(slideTimer); slideTimer = setInterval(function () { coverTo((slideNow + 1) % slides.length); }, 5000); }
   slides.forEach(function (_, i) {
-    var d = document.createElement('i'); if (i === 0) d.className = 'is-on'; dotsBox.appendChild(d);
+    var d = document.createElement('button');
+    d.type = 'button'; d.setAttribute('aria-label', 'Foto ' + (i + 1));
+    if (i === 0) d.className = 'is-on';
+    d.addEventListener('click', function () { coverTo(i); autoCover(); });
+    dotsBox.appendChild(d);
   });
   function coverTo(n) {
     slides[slideNow].classList.remove('is-on'); dotsBox.children[slideNow].classList.remove('is-on');
     slideNow = n;
     slides[slideNow].classList.add('is-on'); dotsBox.children[slideNow].classList.add('is-on');
   }
-  slideTimer = setInterval(function () { coverTo((slideNow + 1) % slides.length); }, 5000);
+  autoCover();
 
   // Aquece a primeira imagem 360 enquanto o visitante le a capa
   function preload(id) {
