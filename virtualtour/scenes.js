@@ -4,13 +4,13 @@
 
    COMO ADICIONAR UMA CENA
    1. Poe a imagem 360 (equirectangular, 2:1) em
-      virtualtour-semvergonha2026/360/  — JPG, idealmente ~1 MB.
+      virtualtour/360/  — JPG, idealmente ~1 MB.
    2. Copia um bloco abaixo e muda id, image, textos.
    3. Liga as cenas com "go(...)" (os circulos clicaveis).
 
    COMO DESCOBRIR O yaw / pitch DE UM HOTSPOT
    Abre a pagina com  ?edit  no fim do link, ex.:
-     https://www.semvergonharestaurant.com/virtualtour-semvergonha2026/?edit
+     https://www.semvergonharestaurant.com/virtualtour/?edit
    Clica no sitio exacto do chao onde queres o circulo: aparece
    no ecra (e fica copiado) o  yaw  e  pitch.
 
@@ -33,7 +33,7 @@ function go(to, yaw, pitch) { return { to: to, yaw: yaw, pitch: pitch, arrive: y
 
 window.SV_TOUR = {
 
-  base: '/virtualtour-semvergonha2026/360/',
+  base: '/virtualtour/360/',
 
   scenes: [
 
