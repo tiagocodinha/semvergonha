@@ -313,7 +313,12 @@
       if (current && current.id === s.id) b.className += ' is-on';
       b.innerHTML = '<span><i>' + pad(s.index + 1) + '</i><b></b></span>';
       b.querySelector('b').textContent = L(s.title);
-      if (drawerImages) b.style.backgroundImage = 'url("' + DATA.base + (s.thumb || s.image) + '")';
+      if (drawerImages) {
+        b.style.backgroundImage = 'url("' + DATA.base + (s.thumb || s.image) + '")';
+        // foto normal (thumb) preenche o cartao; sem thumb usa um recorte da imagem 360
+        if (s.thumb) b.style.backgroundSize = 'cover';
+        if (s.thumbPos) b.style.backgroundPosition = s.thumbPos;
+      }
       b.addEventListener('click', function () { goTo(s.id); });
       list.appendChild(b);
     });
