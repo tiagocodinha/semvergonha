@@ -317,12 +317,27 @@
         b.style.backgroundImage = 'url("' + DATA.base + (s.thumb || s.image) + '")';
         // foto normal (thumb) preenche o cartao; sem thumb usa um recorte da imagem 360
         if (s.thumb) b.style.backgroundSize = 'cover';
-        if (s.thumbPos) b.style.backgroundPosition = s.thumbPos;
+        if (s.thumbPos) { b.style.backgroundRepeat = 'repeat-x'; b.style.backgroundPosition = s.thumbPos; }
+        else if (!s.thumb) thumbView(b, s);
       }
       b.addEventListener('click', function () { goTo(s.id); });
       list.appendChild(b);
     });
   }
+  // Miniatura = recorte da imagem 360 centrado numa vista (por defeito, a vista de abertura da cena;
+  // podes mudar com thumbYaw / thumbPitch no scenes.js). Tamanho do recorte: 260% da largura.
+  function thumbView(el, s) {
+    var yaw = typeof s.thumbYaw === 'number' ? s.thumbYaw : (s.yaw || 0);
+    var pitch = typeof s.thumbPitch === 'number' ? s.thumbPitch : (s.pitch || 0);
+    var S = 2.6, R = 0.3;                                   // zoom do recorte; altura caixa / altura imagem
+    var c = ((yaw + 180) % 360 + 360) % 360 / 360;          // posicao horizontal da vista na imagem (0..1)
+    var px = (c * S - 0.5) / (S - 1) * 100;                 // pode sair de 0..100: a imagem repete-se na horizontal
+    var cv = (90 - Math.max(-90, Math.min(90, pitch))) / 180;
+    var py = Math.max(0, Math.min(1, (cv - 0.5 * R) / (1 - R))) * 100;
+    el.style.backgroundRepeat = 'repeat-x';
+    el.style.backgroundPosition = px.toFixed(1) + '% ' + py.toFixed(1) + '%';
+  }
+
   function openDrawer() {
     if (!drawerImages) { drawerImages = true; buildDrawer(); }
     drawer.classList.add('is-open'); drawer.setAttribute('aria-hidden', 'false');

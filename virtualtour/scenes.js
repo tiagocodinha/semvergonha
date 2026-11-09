@@ -10,6 +10,7 @@ window.SV_TOUR = {
     {
       id: 'entrada',
       image: '1.jpg',
+      thumbPos: '180% 60%',
       yaw: -158.0, pitch: 0.1,
       title: { pt: 'A Entrada', en: 'Entrance' },
       /* Animacao de abertura (so na primeira entrada na visita): a camara
