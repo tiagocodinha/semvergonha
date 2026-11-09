@@ -237,7 +237,7 @@
       setTimeout(function () {
         var yaw = (opts.hotspot && typeof opts.hotspot.arrive === 'number') ? opts.hotspot.arrive : (s.yaw || 0);
         arriving = { scene: s, yaw: yaw, hfov: s.hfov || HFOV_MAX, dur: REDUCED ? 0 : 1700 };
-        viewer.loadScene(s.id, s.pitch || 0, yaw, REDUCED ? arriving.hfov : (zoomMs ? 62 : 85));
+        viewer.loadScene(s.id, s.pitch || 0, REDUCED ? yaw : yaw - 40, HFOV_MAX);   // entra ja no maximo zoom-out e "varre" ate a direcao final
       }, REDUCED ? 0 : 800);
     }, Math.max(0, zoomMs - 120));
   }

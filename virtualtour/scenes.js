@@ -35,7 +35,7 @@ window.SV_TOUR = {
           title: { pt: 'A parede', en: 'The wall' },
           text: { pt: 'Azulejo azul com círculos dourados: o ponto de partida da decoração.', en: 'Blue tiles with golden circles: where the décor begins.' } }
       ],
-      hotspots: [ go('entrada', 10, -14), go('bar', -95, -14) ]
+      hotspots: [ go('entrada', -4.0, -21.9), go('bar', -95, -14) ]
     },
 
     {
