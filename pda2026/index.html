@@ -27,43 +27,60 @@
   <main class="menu">
     <header class="menu__head">
       <img src="/assets/semvergonha_logo.png" alt="Sem Vergonha" class="menu__logo">
-      <span class="menu__eyebrow">Passagem de Ano · 2026</span>
+      <span class="menu__eyebrow" data-pt="Passagem de Ano · 2026" data-en="New Year&rsquo;s Eve · 2026">Passagem de Ano · 2026</span>
     </header>
 
     <section class="menu__body">
       <div class="course">
-        <p>Welcome Drink</p>
+        <p data-pt="Welcome Drink" data-en="Welcome Drink">Welcome Drink</p>
       </div>
 
       <div class="course">
-        <p>Ostra Assinatura</p>
-        <p>Brioche · Gamba Violeta<br>do Algarve</p>
-        <p>Espetada de Língua · Molho Tonnato<br>Sementes de Mostarda</p>
+        <p data-pt="Ostra Assinatura" data-en="Signature Oyster">Ostra Assinatura</p>
+        <p data-pt="Brioche · Gamba Violeta<br>do Algarve" data-en="Brioche · Algarve<br>Purple Prawn">Brioche · Gamba Violeta<br>do Algarve</p>
+        <p data-pt="Espetada de Língua · Molho Tonnato<br>Sementes de Mostarda" data-en="Beef Tongue Skewer · Tonnato Sauce<br>Mustard Seeds">Espetada de Língua · Molho Tonnato<br>Sementes de Mostarda</p>
       </div>
 
       <div class="course">
-        <p>Cavala Braseada · Dashi<br>Koshu de Lima</p>
+        <p data-pt="Cavala Braseada · Dashi<br>Koshu de Lima" data-en="Embered Mackerel · Dashi<br>Lime Koshu">Cavala Braseada · Dashi<br>Koshu de Lima</p>
       </div>
 
       <div class="course">
-        <p>Carabineiro · Massa Pevide<br>Bulhão Pato</p>
-        <p>Costela de Vaca<br>Puré de Topinambur<br>Cogumelos de Temporada<br>Couve Coração</p>
+        <p data-pt="Carabineiro · Massa Pevide<br>Bulhão Pato" data-en="Carabineiro Prawn · Pevide Pasta<br>Bulhão Pato Sauce">Carabineiro · Massa Pevide<br>Bulhão Pato</p>
+        <p data-pt="Costela de Vaca<br>Puré de Topinambur<br>Cogumelos de Temporada<br>Couve Coração" data-en="Beef Short Rib<br>Jerusalem Artichoke Purée<br>Seasonal Mushrooms<br>Sweetheart Cabbage">Costela de Vaca<br>Puré de Topinambur<br>Cogumelos de Temporada<br>Couve Coração</p>
       </div>
 
       <div class="course">
-        <p>A Última Maria</p>
+        <p data-pt="A Última Maria" data-en="A Última Maria">A Última Maria</p>
       </div>
     </section>
   </main>
 
-  <!-- Ecra inteiro: toque no icone (so aparece fora do modo ecra inteiro) -->
-  <button type="button" class="fs" id="fs" aria-label="Ecrã inteiro" hidden>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
-  </button>
+  <div class="tools">
+    <button type="button" class="tool tool--lang" id="lang" aria-label="Change language to English">EN</button>
+    <!-- Ecra inteiro: so aparece fora do modo ecra inteiro -->
+    <button type="button" class="tool" id="fs" aria-label="Ecrã inteiro" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+    </button>
+  </div>
 
   <script>
     (function () {
-      var b = document.getElementById("fs"), el = document.documentElement;
+      var el = document.documentElement, lang = "pt";
+      var langBtn = document.getElementById("lang");
+      var titles = { pt: "Menu Passagem de Ano | Sem Vergonha", en: "New Year's Eve Menu | Sem Vergonha" };
+
+      function setLang(l) {
+        lang = l;
+        el.lang = l === "en" ? "en" : "pt-PT";
+        document.title = titles[l];
+        document.querySelectorAll("[data-pt]").forEach(function (n) { n.innerHTML = n.getAttribute("data-" + l); });
+        langBtn.textContent = l === "en" ? "PT" : "EN";
+        langBtn.setAttribute("aria-label", l === "en" ? "Mudar idioma para português" : "Change language to English");
+      }
+      langBtn.addEventListener("click", function () { setLang(lang === "pt" ? "en" : "pt"); });
+
+      var b = document.getElementById("fs");
       var req = el.requestFullscreen || el.webkitRequestFullscreen;
       var standalone = matchMedia("(display-mode: fullscreen), (display-mode: standalone)").matches || navigator.standalone;
       function sync() { b.hidden = standalone || !!(document.fullscreenElement || document.webkitFullscreenElement); }
