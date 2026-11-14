@@ -1,0 +1,48 @@
+/* Menu Passagem de Ano 2026 — pagina autonoma, sempre dentro do ecra (sem scroll). */
+:root {
+  --ink: #161110;
+  --cream: #f6ede4;
+  --gold: #c8a96e;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; -webkit-font-smoothing: antialiased; }
+body { background: var(--ink); color: var(--cream); font-family: 'Poppins', -apple-system, 'Segoe UI', sans-serif; }
+
+.menu {
+  height: 100vh; height: 100dvh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3.2vh;
+  padding: 3vh 5vw;
+  text-align: center;
+  /* tamanho guiado pela altura E largura: nunca ultrapassa o ecra */
+  font-size: min(2.3vh, 4.1vw);
+  background:
+    radial-gradient(90% 60% at 50% 0%, rgba(117, 92, 85, 0.35) 0%, rgba(117, 92, 85, 0) 70%),
+    radial-gradient(rgba(246, 237, 228, 0.05) 1px, transparent 1.5px) 0 0 / 5px 5px,
+    var(--ink);
+}
+
+.menu__head { display: flex; flex-direction: column; align-items: center; gap: 1.2vh; }
+.menu__logo { width: min(48vw, 24vh); height: auto; filter: brightness(0) invert(1) opacity(0.92); }
+.menu__eyebrow {
+  font-size: 0.62em; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+.menu__body { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 46em; }
+
+.course { display: flex; flex-direction: column; gap: 1.5vh; width: 100%; }
+.course + .course { margin-top: 2.2vh; padding-top: 2.2vh; position: relative; }
+.course + .course::before {
+  content: ""; position: absolute; top: 0; left: 50%; width: min(70%, 22em); transform: translateX(-50%);
+  height: 1px; background: linear-gradient(90deg, transparent, rgba(200, 169, 110, 0.7), transparent);
+}
+
+.course p {
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.32;
+  font-size: 1em;
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .menu { font-size: min(2.3vh, 2.4vw); }
+}
