@@ -46,3 +46,14 @@ body { background: var(--ink); color: var(--cream); font-family: 'Poppins', -app
 @media (min-aspect-ratio: 1/1) {
   .menu { font-size: min(2.3vh, 2.4vw); }
 }
+
+/* Botao discreto de ecra inteiro */
+.fs {
+  position: fixed; right: 2vmin; bottom: 2vmin; width: 5.5vmin; height: 5.5vmin; min-width: 36px; min-height: 36px;
+  display: grid; place-items: center; padding: 0; cursor: pointer;
+  color: var(--cream); background: rgba(246, 237, 228, 0.06); border: 1px solid rgba(246, 237, 228, 0.18);
+  border-radius: 50%; opacity: 0.45; transition: opacity 0.3s;
+}
+.fs:hover, .fs:focus-visible { opacity: 1; }
+.fs svg { width: 50%; height: 50%; }
+.fs[hidden] { display: none; }

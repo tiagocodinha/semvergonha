@@ -15,6 +15,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta name="theme-color" content="#161110">
+  <link rel="manifest" href="/pda2026/manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Menu PDA">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/assets/semvergonha_logo.png">
   <link rel="stylesheet" href="/pda2026/menu.css">
 </head>
 <body>
@@ -49,5 +55,25 @@
       </div>
     </section>
   </main>
+
+  <!-- Ecra inteiro: toque no icone (so aparece fora do modo ecra inteiro) -->
+  <button type="button" class="fs" id="fs" aria-label="Ecrã inteiro" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+  </button>
+
+  <script>
+    (function () {
+      var b = document.getElementById("fs"), el = document.documentElement;
+      var req = el.requestFullscreen || el.webkitRequestFullscreen;
+      var standalone = matchMedia("(display-mode: fullscreen), (display-mode: standalone)").matches || navigator.standalone;
+      function sync() { b.hidden = standalone || !!(document.fullscreenElement || document.webkitFullscreenElement); }
+      if (req && !standalone) {
+        sync();
+        b.addEventListener("click", function () { req.call(el); });
+        document.addEventListener("fullscreenchange", sync);
+        document.addEventListener("webkitfullscreenchange", sync);
+      }
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+{
+  "name": "Sem Vergonha — Menu Passagem de Ano",
+  "short_name": "Menu PDA",
+  "start_url": "/pda2026/",
+  "scope": "/pda2026/",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "background_color": "#161110",
+  "theme_color": "#161110",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
