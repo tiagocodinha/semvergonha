@@ -1,0 +1,190 @@
+/* ============================================
+   PASSAGEM DE ANO 2026 — landing page
+   Usa css/style.css (nav, footer, intro, gallery)
+   e acrescenta a paleta preto + dourado do cartaz.
+   ============================================ */
+
+.pda26 {
+  --p26-ink: #140f0d;
+  --p26-ink-2: #1d1613;
+  --p26-gold: #c9a35f;
+  --p26-gold-l: #e2c487;
+  --p26-gold-d: #a98544;
+  --p26-cream: #f3ece4;
+}
+
+/* ── Elementos comuns ── */
+.p26-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--p26-gold);
+}
+
+.p26-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+.p26-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 46px; padding: 0 22px; border-radius: 999px;
+  font-family: 'Poppins', sans-serif; font-size: 0.86rem; font-weight: 600; letter-spacing: 0.01em; text-transform: none;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.p26-btn:focus-visible { outline: 2px solid var(--p26-gold-l); outline-offset: 3px; }
+.p26-btn svg { flex: 0 0 auto; }
+
+/* Dourado: ícone do WhatsApp num círculo escuro + texto */
+.p26-btn--gold {
+  padding: 0 22px 0 6px;
+  color: var(--p26-ink);
+  background: linear-gradient(180deg, var(--p26-gold-l) 0%, var(--p26-gold) 60%, var(--p26-gold-d) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+.p26-btn--gold:hover { background: linear-gradient(180deg, #e8cd95 0%, #d1ad69 60%, #b08b4a 100%); }
+.p26-btn__icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--p26-ink); color: var(--p26-gold-l);
+}
+.p26-btn__icon svg { width: 16px; height: 16px; }
+
+/* Secundário: contorno dourado */
+.p26-btn--ghost {
+  color: var(--p26-cream);
+  border: 1px solid rgba(226, 196, 135, 0.35);
+}
+.p26-btn--ghost svg { color: var(--p26-gold); }
+.p26-btn--ghost:hover { border-color: rgba(226, 196, 135, 0.7); background: rgba(226, 196, 135, 0.06); }
+
+/* ── Hero ── */
+.p26-hero {
+  position: relative; overflow: hidden;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 120px clamp(20px, 5vw, 48px) 96px;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(201, 163, 95, 0.14) 0%, transparent 60%),
+    var(--p26-ink);
+  color: #fff; text-align: center;
+}
+.p26-hero::before { /* textura de pontos, como no cartaz */
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.35;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 6px 6px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+.p26-hero__year {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -58%);
+  font-family: var(--logo); font-size: clamp(14rem, 42vw, 34rem); line-height: 1; letter-spacing: 0.02em;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(201, 163, 95, 0.22);
+  pointer-events: none; user-select: none; white-space: nowrap;
+}
+.p26-hero__glow {
+  position: absolute; left: 50%; bottom: -30%; width: 120%; height: 60%; transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(201, 163, 95, 0.12), transparent 65%);
+  pointer-events: none;
+}
+.p26-hero__content { position: relative; z-index: 1; max-width: 720px; }
+.p26-hero__title {
+  margin: 22px 0 24px;
+  font-family: var(--display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(2.8rem, 9vw, 6.2rem); line-height: 0.98; letter-spacing: 0.08em;
+  color: #fff;
+}
+.p26-hero__title em {
+  font-style: normal;
+  background: linear-gradient(180deg, var(--p26-gold-l), var(--p26-gold-d));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.p26-hero__lead {
+  max-width: 540px; margin: 0 auto 40px;
+  font-size: clamp(0.95rem, 1.6vw, 1.08rem); line-height: 1.75; font-weight: 300;
+  color: rgba(255, 255, 255, 0.78);
+}
+.p26-hero__scroll {
+  position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 1;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--p26-gold); border: 1px solid rgba(201, 163, 95, 0.35);
+  animation: p26Bob 2.4s ease-in-out infinite;
+}
+@keyframes p26Bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 6px); } }
+
+/* ── Menu ── */
+.p26-menu {
+  position: relative;
+  padding: clamp(80px, 11vw, 140px) 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201, 163, 95, 0.1), transparent 55%),
+    var(--p26-ink);
+}
+.p26-menu__card {
+  max-width: 620px; margin: 0 auto;
+  padding: clamp(40px, 7vw, 72px) clamp(24px, 6vw, 64px);
+  background: var(--p26-cream); color: #231b18;
+  border-radius: 6px; text-align: center;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45);
+  transform: rotate(-0.6deg);
+}
+.p26-menu__card.visible { transform: rotate(-0.6deg); }
+.p26-menu__head { margin-bottom: 26px; }
+.p26-menu__head .p26-eyebrow { color: var(--p26-gold-d); }
+.p26-menu__title {
+  margin-top: 6px;
+  font-family: var(--display); font-weight: 400; font-style: italic;
+  font-size: clamp(2.4rem, 6vw, 3.2rem); line-height: 1; color: #231b18;
+}
+.p26-course { padding: 22px 0; border-top: 1px solid rgba(35, 27, 24, 0.16); }
+.p26-course:first-of-type { border-top: 0; }
+.p26-course p {
+  font-size: clamp(0.82rem, 2.4vw, 0.95rem); font-weight: 600; line-height: 1.55;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.p26-course p + p { margin-top: 14px; }
+.p26-price {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  margin-top: 18px; padding-top: 30px; border-top: 1px solid rgba(35, 27, 24, 0.16);
+}
+.p26-price strong {
+  display: inline-block; padding: 6px 26px; border-radius: 999px;
+  background: #231b18; color: var(--p26-gold-l);
+  font-size: clamp(1.8rem, 5vw, 2.3rem); font-weight: 800; letter-spacing: 0.02em;
+}
+.p26-price span { margin-top: 10px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
+.p26-price small { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(35, 27, 24, 0.6); }
+
+/* ── Galeria (reaproveita .gallery, fundo escuro) ── */
+.pda26 .gallery { background: var(--p26-ink); padding-bottom: 0; }
+
+/* ── CTA final ── */
+.p26-cta {
+  padding: clamp(80px, 11vw, 130px) 0;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(201, 163, 95, 0.14), transparent 60%),
+    var(--p26-ink);
+  color: #fff; text-align: center;
+}
+.p26-cta__inner { max-width: 640px; margin: 0 auto; }
+.p26-cta h2 {
+  margin: 16px 0 18px;
+  font-family: var(--display); font-weight: 800; line-height: 1.12;
+  font-size: clamp(1.9rem, 4.6vw, 3rem); color: #fff;
+}
+.p26-cta p { margin: 0 auto 34px; max-width: 500px; line-height: 1.75; font-weight: 300; color: rgba(255, 255, 255, 0.75); }
+.p26-cta h2 + .p26-actions { margin-top: 36px; }
+.p26-cta__note { display: block; margin-top: 16px; font-size: 0.72rem; color: rgba(255, 255, 255, 0.4); }
+
+/* ── Ligação ao footer: o fundo escuro continua à volta do cartão do footer ── */
+.pda26 { background: var(--p26-ink); }
+.pda26 .p26-cta { padding-bottom: clamp(64px, 8vw, 100px); }
+.pda26 .footer { background: var(--p26-ink); }
+
+/* ── Telemóvel ── */
+@media (max-width: 640px) {
+  .p26-actions { flex-direction: column; align-items: stretch; }
+  .p26-menu__card, .p26-menu__card.visible { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p26-hero__scroll { animation: none; }
+}

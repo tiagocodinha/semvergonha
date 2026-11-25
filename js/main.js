@@ -58,6 +58,7 @@
   var total = slides.length;
 
   function goToSlide(n) {
+    if (!total) return;
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
     current = n;
