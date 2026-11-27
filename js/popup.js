@@ -22,6 +22,7 @@
 
   function open() {
     store(STORAGE_KEY, '1');
+    if (typeof window.clarity === 'function') window.clarity('event', 'popup_visto');
     lastFocus = document.activeElement;
     popup.hidden = false;
     document.documentElement.classList.add('pda-popup-open');
@@ -49,6 +50,7 @@
   if (cta) {
     cta.addEventListener('click', function () {
       if (window.dataLayer) window.dataLayer.push({ event: 'pda2027_popup_saber_mais' });
+      if (typeof window.clarity === 'function') window.clarity('event', 'popup_saber_mais');
     });
   }
 

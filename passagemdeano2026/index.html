@@ -270,8 +270,8 @@
     // Botões WhatsApp: mensagem já escrita, na língua escolhida
     (function () {
       var MSG = {
-        pt: 'Olá! Gostaria de reservar para a Passagem de Ano no Sem Vergonha. Somos _ pessoas.',
-        en: 'Hi! I would like to book for New Year\'s Eve at Sem Vergonha. We are _ people.'
+        pt: 'Olá! Gostaria de reservar uma mesa para a Passagem de Ano',
+        en: 'Hi! I would like to book a table for New Year\'s Eve'
       };
       document.querySelectorAll('[data-wa]').forEach(function (a) {
         a.addEventListener('click', function () {
@@ -279,6 +279,7 @@
           try { lang = localStorage.getItem('sv_lang') === 'en' ? 'en' : 'pt'; } catch (e) {}
           a.href = 'https://wa.me/351936437156?text=' + encodeURIComponent(MSG[lang]);
           if (window.dataLayer) window.dataLayer.push({ event: 'pda26_whatsapp_click' });
+          if (typeof window.clarity === 'function') window.clarity('event', 'pda26_whatsapp_click');
         });
       });
     })();
