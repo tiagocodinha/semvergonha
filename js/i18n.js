@@ -4,6 +4,9 @@
   var EN = {
     'reserve': 'Book a Table',
     'pda.popup_more': 'Learn More',
+    'nyeh.label': 'New Year&rsquo;s Eve · December 31',
+    'nyeh.h2': 'Step into 2027.<br>Sem Vergonha.',
+    'nyeh.p': 'From the welcome drink to dessert, our kitchen has prepared a menu just for this night with that Sem Vergonha touch you already know.',
     'pda26.eyebrow': 'December 31 · Nazaré',
     'pda26.title': 'New Year&rsquo;s<br><em>Eve</em>',
     'pda26.lead': 'Say goodbye to 2026 at the table, with the Nazaré sea ahead and a menu created just for the last night of the year.',
