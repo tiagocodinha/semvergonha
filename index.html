@@ -320,6 +320,24 @@ O nome vem do antigo <strong>"Muro da Pouca Vergonha"</strong>, onde os encontro
   <script src="js/main.js"></script>
   <script src="js/reservas.js"></script>
 
+  <!-- POP-UP PASSAGEM DE ANO 2027 -->
+  <div class="pda-popup" id="pdaPopup" role="dialog" aria-modal="true" aria-label="Passagem de Ano 2027" hidden>
+    <div class="pda-popup__backdrop" data-pda-close></div>
+    <div class="pda-popup__box">
+      <button class="pda-popup__close" type="button" aria-label="Fechar" data-pda-close>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
+      <div class="pda-popup__media">
+        <picture>
+          <!-- <source media="(max-width: 700px)" srcset="assets/pda2027-popup-mobile.webp"> -->
+          <img src="assets/pda2027-popup.webp" alt="Passagem de Ano 2027 — 31 Dezembro no Sem Vergonha" class="pda-popup__img" width="1920" height="1080">
+        </picture>
+        <a href="passagemdeano2026/" class="pda-popup__btn" id="pdaPopupCta" data-i18n="pda.popup_more">Saber Mais</a>
+      </div>
+    </div>
+  </div>
+  <script src="js/popup.js?v=3"></script>
+
   <!-- COOKIE BANNER -->
   <div class="cookie-banner">
     <div class="cookie-banner__inner">
