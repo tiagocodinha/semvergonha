@@ -18,11 +18,18 @@
   var isTest = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]popup\b/.test(location.search);
   if (!isTest && store(STORAGE_KEY)) return;
 
+  // Envia um evento ao Clarity. Se o Clarity ainda não carregou, fica em fila
+  // (é o mesmo mecanismo do snippet oficial) e é enviado quando carregar.
+  function track(name) {
+    window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+    window.clarity('event', name);
+  }
+
   var lastFocus;
 
   function open() {
     store(STORAGE_KEY, '1');
-    if (typeof window.clarity === 'function') window.clarity('event', 'popup_visto');
+    track('popup_visto');
     lastFocus = document.activeElement;
     popup.hidden = false;
     document.documentElement.classList.add('pda-popup-open');
@@ -50,7 +57,7 @@
   if (cta) {
     cta.addEventListener('click', function () {
       if (window.dataLayer) window.dataLayer.push({ event: 'pda2027_popup_saber_mais' });
-      if (typeof window.clarity === 'function') window.clarity('event', 'popup_saber_mais');
+      track('popup_saber_mais');
     });
   }
 

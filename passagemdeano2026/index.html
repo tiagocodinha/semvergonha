@@ -279,7 +279,8 @@
           try { lang = localStorage.getItem('sv_lang') === 'en' ? 'en' : 'pt'; } catch (e) {}
           a.href = 'https://wa.me/351936437156?text=' + encodeURIComponent(MSG[lang]);
           if (window.dataLayer) window.dataLayer.push({ event: 'pda26_whatsapp_click' });
-          if (typeof window.clarity === 'function') window.clarity('event', 'pda26_whatsapp_click');
+          window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+          window.clarity('event', 'pda26_whatsapp_click');
         });
       });
     })();
